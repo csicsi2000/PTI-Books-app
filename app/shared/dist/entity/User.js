@@ -28,6 +28,10 @@ var User = exports.User = /** @class */ (function () {
     ], User.prototype, "lastName", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "email", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
     ], User.prototype, "age", void 0);
     User = __decorate([

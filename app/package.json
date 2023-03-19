@@ -5,8 +5,13 @@
   },
   "scripts": {
     "build:shared": "cd shared && npm run build && npm link",
-    "start:frontend": "cd frontend && npm link shared-component && npm run dev",
     "start:backend": "cd backend && npm link shared-component && npm run build && npm start",
-    "dev": "npm-run-all -p build:shared start:frontend start:backend"
+    "start:frontend": "cd frontend && npm link shared-component && npm run dev",
+    "dev": "npm-run-all -p build:shared start:frontend start:backend",
+
+    "install:shared": "cd shared && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "prepare": "npm-run-all -p install:shared install:backend install:frontend"
   }
 }
