@@ -1,5 +1,6 @@
 <script>
-        //Import Bootstrap CSS 
-        import 'bootstrap/dist/css/bootstrap.min.css';
+    // import the Bootstrap style files
+    import 'bootstrap/dist/css/bootstrap.min.css';
 </script>
-<h1>Title test</h1>
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
