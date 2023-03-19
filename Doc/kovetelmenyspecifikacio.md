@@ -2,29 +2,34 @@
 
 ## 1. Cél
 
-A cél egy modern, könnyen használható és megbízható hírportál létrehozása, amely lehetővé teszi a felhasználók számára, hogy könnyen és gyorsan hozzáférjenek a legfrissebb hírekhez, eseményekhez és információkhoz.
+A cél egy modern, könnyen használható és megbízható könyvportál létrehozása, amely lehetővé teszi a felhasználók számára, hogy könnyen és gyorsan hozzáférjenek a legfrissebb könyvekhez, eseményekhez és információkhoz.
 
 ## 2. Felhasználói igények
 
 Az oldal felhasználói igényei a következők:
 - Az oldal legyen könnyen navigálható és egyszerűen használható.
 - Az oldal legyen gyors és megbízható.
-- Az oldalon megjelenő hírek legyenek frissek és naprakészek.
+- Az oldalon megjelenő könyvek legyenek frissek és naprakészek.
 - Az oldal legyen reszponzív és minden eszközön megfelelően jelenjen meg.
+- Könyveket lehessen értekelni 
+- Könyveket lehessen kommentelni
+- Könyveket le lehessen menteni listákba
+- Adott könyv olvasott állapota
+- Barátokat is hozzáadni
 
 ## 3. Funkcionális követelmények
 
 ### 3.1. Felhasználói felület
 
 Az oldal felhasználói felülete a következőkből áll:
-- Főoldal: Ez az oldal tartalmazza a legfrissebb híreket és eseményeket.
-- Kategóriák: Ez az oldal lehetővé teszi a felhasználók számára, hogy kategóriák alapján böngésszenek a hírek között.
-- Részletes hír oldal: Ez az oldal tartalmazza a kiválasztott hír részletes információit.
-- Bejelentkezés: Ez az oldal lehetővé teszi a felhasználók számára, hogy belépjenek a saját fiókjukba, és hozzáférjenek az elmentett hírekhez.
+- Főoldal: Ez az oldal tartalmazza a legfrissebb könyveket és eseményeket.
+- Kategóriák: Ez az oldal lehetővé teszi a felhasználók számára, hogy kategóriák alapján böngésszenek a könyvek között.
+- Részletes könyv oldal: Ez az oldal tartalmazza a kiválasztott könyv részletes információit.
+- Bejelentkezés: Ez az oldal lehetővé teszi a felhasználók számára, hogy belépjenek a saját fiókjukba, és hozzáférjenek az elmentett könyvekhez.
 
-### 3.2. Hírek betöltése
+### 3.2. könyvek betöltése
 
-Az oldal a New York Times API-t használja a hírek betöltéséhez.
+Az oldal a New York Times API-t használja a könyvek betöltéséhez.
 
 ## 3.3. Felhasználói fiók
 
@@ -60,7 +65,7 @@ A MySQL egy ingyenesen elérhető, nyílt forráskódú relációs adatbázis-ke
 
 Az oldalnak biztonságosnak és megbízhatónak kell lennie, és védelmet kell nyújtania a felhasználói adatoknak. Az alkalmazásnak meg kell felelnie az adatvédelmi törvényeknek, és biztosítania kell a felhasználói adatok biztonságos kezelését.
 
-Az oldal gyors és megbízható teljesítményt kell nyújtson, és biztosítania kell, hogy a felhasználók bármikor könnyedén hozzáférhessenek a hírekhez. Az alkalmazásnak meg kell felelnie a legújabb webes szabványoknak, és optimalizáltnak kell lennie a gyors betöltés és a könnyű használat érdekében.
+Az oldal gyors és megbízható teljesítményt kell nyújtson, és biztosítania kell, hogy a felhasználók bármikor könnyedén hozzáférhessenek a könyvekhez. Az alkalmazásnak meg kell felelnie a legújabb webes szabványoknak, és optimalizáltnak kell lennie a gyors betöltés és a könnyű használat érdekében.
 
 Az oldalhoz tartozó forráskód könnyen karbantartható és bővíthető legyen a jövőbeni fejlesztések során. A fejlesztőknek egyértelműen dokumentálniuk kell a forráskódot, és biztosítaniuk kell, hogy a kód könnyen érthető és módosítható legyen.
 
