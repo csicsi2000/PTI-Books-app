@@ -2,7 +2,7 @@
 
 ## 1. Cél
 
-A cél egy modern, könnyen használható és megbízható könyvportál létrehozása, amely lehetővé teszi a felhasználók számára, hogy könnyen és gyorsan hozzáférjenek a legfrissebb könyvekhez, eseményekhez és információkhoz.
+A cél egy modern, könnyen használható és megbízható könyveket bemutató oldal létrehozása, amely bemutatja a felhasználóknak a legújabb könyveket, és az olvasók számára lehetővé teszi a könyvek megvásárlását is. A cél az, hogy az olvasók széles választékából válogathassanak, és hogy az oldal hozzájáruljon az olvasási kultúra fejlődéséhez.
 
 ## 2. Felhasználói igények
 
@@ -14,7 +14,7 @@ Az oldal felhasználói igényei a következők:
 - Könyveket lehessen értekelni 
 - Könyveket lehessen kommentelni
 - Könyveket le lehessen menteni listákba
-- Adott könyv olvasott állapota
+- Az oldalon lehetőség legyen a könyvek olvasási állapotának nyilvántartására, például: elolvasva, jelenleg olvasom, el szeretném olvasni.
 - Barátokat is hozzáadni
 
 ## 3. Funkcionális követelmények
@@ -22,9 +22,9 @@ Az oldal felhasználói igényei a következők:
 ### 3.1. Felhasználói felület
 
 Az oldal felhasználói felülete a következőkből áll:
-- Főoldal: Ez az oldal tartalmazza a legfrissebb könyveket és eseményeket.
+- Főoldal: Ez az oldal tartalmazza a legfrissebb könyveket.
 - Kategóriák: Ez az oldal lehetővé teszi a felhasználók számára, hogy kategóriák alapján böngésszenek a könyvek között.
-- Részletes könyv oldal: Ez az oldal tartalmazza a kiválasztott könyv részletes információit.
+- Részletes könyv oldal: Ez az oldal tartalmazza a kiválasztott könyv részletes információit. Ezek az információk a könyv címe, borítókép, rövid tartalmi összefoglaló, szerző neve, kiadás éve, vásárlói értékelések, vélemények és linkek, ahol a könyvet meg lehet vásárolni.
 - Bejelentkezés: Ez az oldal lehetővé teszi a felhasználók számára, hogy belépjenek a saját fiókjukba, és hozzáférjenek az elmentett könyvekhez.
 
 ### 3.2. könyvek betöltése
@@ -33,7 +33,7 @@ Az oldal a New York Times API-t használja a könyvek betöltéséhez.
 
 ## 3.3. Felhasználói fiók
 
-Az alkalmazás lehetőséget biztosít a felhasználói fiókok regisztrációjára és használatára, amelyek segítségével a felhasználók személyre szabott élményt élvezhetnek. A felhasználói fiókok lehetővé teszik a felhasználók számára, hogy elmenthessék kedvenc cikkeiket és megoszthassák azokat más felhasználókkal. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva, és biztosítják az alkalmazás biztonságos használatát a felhasználók és a szerkesztők számára.
+Az alkalmazás lehetőséget biztosít a felhasználói fiókok regisztrációjára és használatára, amelyek segítségével a felhasználók személyre szabott élményt élvezhetnek. A felhasználói fiókok lehetővé teszik a felhasználók számára, hogy elmenthessék kedvenc könyveiket és megoszthassák azokat más felhasználókkal. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva, és biztosítják az alkalmazás biztonságos használatát a felhasználók és a szerkesztők számára.
 
 
 ## 4. Technikai követelmények
