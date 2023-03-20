@@ -1,6 +1,8 @@
 <script>
     // import the Bootstrap style files
     import 'bootstrap/dist/css/bootstrap.min.css';
+    // import of Nav_bar
+    import Nav from './nav.svelte';
 </script>
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+
+<Nav />
