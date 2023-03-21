@@ -1,28 +1,14 @@
 <script lang="ts">
-	import { NewYorkTimesBook } from '../../lib/api/newYorkTimesBook';
+    import type { PageData } from './$types';
     // import of Nav_bar
     import Nav from '../nav.svelte';
-	import type { FullOverview } from '../../types/new-york-times-book/fullOverview';
-    import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 
-    let contentOverview :FullOverview;
+    export let data :PageData;
 
-
-    onMount(() => {
-        if(browser){
-            console.log("This code only runs on the client");
-            setData();
-        }
-    })
-
-    async function setData() {
-        console.log("Call api");
-        let bookapi = new NewYorkTimesBook();
-
-        contentOverview = await bookapi.getOverview();
-        console.log(contentOverview);
+    $:{
+        console.log(data);
     }
+
 </script>
 <Nav />
-<p>{contentOverview}</p>
+<pre>{JSON.stringify( data,null, 2)}</pre>

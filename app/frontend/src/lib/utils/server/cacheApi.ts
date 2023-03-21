@@ -40,7 +40,7 @@ export class CacheApi {
       cachedData = JSON.parse(cachedDataStr);
 
       if (!this.isDataStale(new Date(cachedData.lastFetchedTime))) {
-        console.log('Get from cache', 'background: #222; color: #bada55');
+        console.log('Get from cache');
         return cachedData.data;
       }
     }
