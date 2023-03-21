@@ -9,38 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.BookList = void 0;
 var typeorm_1 = require("typeorm");
-var User = exports.User = /** @class */ (function () {
-    function User() {
+var BookList = exports.BookList = /** @class */ (function () {
+    function BookList() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
+    ], BookList.prototype, "id", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "firstName", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "lastName", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "email", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", Number)
-    ], User.prototype, "age", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "password", void 0);
-    User = __decorate([
+    ], BookList.prototype, "name", void 0);
+    BookList = __decorate([
         (0, typeorm_1.Entity)()
-    ], User);
-    return User;
+    ], BookList);
+    return BookList;
 }());
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=BookList.js.map
