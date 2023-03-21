@@ -9,4 +9,7 @@ declare global {
 	}
 }
 
+declare const $client: boolean;
+declare module "shared-component";
+
 export {};
