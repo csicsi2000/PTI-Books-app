@@ -1,5 +1,5 @@
 import type { FullOverview } from "../../types/new-york-times-book/fullOverview";
-import { CacheApi } from "../utils/server/cacheApi";
+import { CacheApi } from "../server/cacheApi";
 
 export class NewYorkTimesBook{
     async getOverview(): Promise<FullOverview> {
