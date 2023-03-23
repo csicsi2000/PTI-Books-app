@@ -16,7 +16,7 @@
 <Nav />
 <!-- main container-->
 <div class="container mt-3 bg-light">
-    <div class="row align-items-center">
+    <div class="row">
         <Book />
     </div>
 </div>
