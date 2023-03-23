@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount} from 'svelte';
 
 	interface Book {
 		age_group: string;
@@ -42,8 +42,8 @@
 			}
 
 			const data = await response.json();
-            //	console.log(data.results.lists[0].books[0]);
-			return data.results.lists[0].books;
+        	return data.results.lists;
+			//return data.results.lists[0].books;
 		} catch (error: any) {
 			let errorMessage = error.message;
 			console.error(errorMessage);
@@ -51,27 +51,50 @@
 	}
 
 	let books: Book[] = [];
-
+/*
 	onMount(async () => {
 		try {
-			books = await fetchData();
-            console.log(books)
+			books= await fetchData();
+			
+            console.log(books);
 		} catch (error) {
 			console.error(error);
 			throw error;
 		}
 	});
+
+*/
+	
+	onMount(async () => {
+		try {
+			let booklist = await fetchData();
+			booklist.forEach((element:any) => {
+				//console.log(element);	
+				
+				element.books.forEach((book:any)=>{
+					books.push(book)
+				})
+			});
+            console.log(books);
+			books = books;	
+		} catch (error) {
+			console.error(error);
+			throw error;
+		}
+	});
+
 </script>
 
 
     
         {#each books as book}
-        <div class="col m-2">
-            <div class="card book" style="width: 18rem;">
-                <img class="card-img-top" src={book.book_image} alt={book.title} />
-                <div class="card-body">
+        <div class="col m-2 d-flex justify-content-center">
+            <div class="card book" style="width: 15rem;">
+                <img class="card-img-top" style="width: 238px; height: 362px" src={book.book_image} alt={book.title} />
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{book.title}</h5>
                     <p class="card-text">{book.description}</p>
+					<small class="mt-auto"><b>{book.author}</b></small>
                 </div>
             </div>
         </div>
