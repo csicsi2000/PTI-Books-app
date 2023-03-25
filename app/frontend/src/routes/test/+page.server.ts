@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { NewYorkTimesBook } from '../../lib/api/newYorkTimesBook';
-import type { FullOverview } from '../../types/new-york-times-book/fullOverview';
+import type { FullOverview } from '../../lib/new-york-times-book/fullOverview';
 
 export const load = (async () => {
     console.log("Call api");
