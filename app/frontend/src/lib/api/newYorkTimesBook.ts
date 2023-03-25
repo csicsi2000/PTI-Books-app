@@ -1,4 +1,4 @@
-import type { FullOverview } from "../new-york-times-book/fullOverview";
+import type { FullOverview } from "../types/new-york-times-book/fullOverview";
 import { CacheApi } from "../server/cacheApi";
 
 export class NewYorkTimesBook{
