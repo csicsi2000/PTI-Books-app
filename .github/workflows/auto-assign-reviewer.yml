@@ -2,7 +2,7 @@ name: Auto Assign Reviewer
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs:
   assign-reviewer:
@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Set Reviewer
         env:
-          REVIEWER: "csik-patrik" # replace with the username of the reviewer you want to assign
+          REVIEWER: "csik-patrik"
         run: |
           token="${{ secrets.GITHUB_TOKEN }}"
           pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
