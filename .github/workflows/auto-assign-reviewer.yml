@@ -1,0 +1,19 @@
+name: Auto Assign Reviewer
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set Reviewer
+        env:
+          REVIEWER: "csik-patrik" # replace with the username of the reviewer you want to assign
+        run: |
+          token="${{ secrets.GITHUB_TOKEN }}"
+          pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          curl -X POST -H "Authorization: token $token" -H "Accept: application/vnd.github.v3+json" -d "{\"reviewers\":[\"$REVIEWER\"]}" "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$pr_number/requested_reviewers"
