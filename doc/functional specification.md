@@ -1,0 +1,3 @@
+# Bevezető:
+
+A Book Heaven egy olyan weboldal, amely segít az olvasóknak megtalálni és megvásárolni az újonnan megjelent könyveket. Az oldal célja, hogy a felhasználók számára egyszerű és könnyen használható platformot nyújtson, ahol nagy választékból válogathatnak az új kiadások között, ezáltal az oldal az olvasási kultúra fejlődéséhez is hozzájárul. A kínálata folyamatosan frissül a legújabb írásokkal, és a felhasználóknak lehetőségük van értékelni és véleményt nyilvánítani a könyvekről. Emellett az oldal kényelmes és biztonságos vásárlási lehetőségeket is kínál, ahol az olvasók könnyen megtalálhatják a számukra megfelelő könyveket, és egyszerűen és biztonságosan megvásárolhatják azokat online. 
