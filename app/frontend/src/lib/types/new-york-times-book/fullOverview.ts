@@ -1,9 +1,4 @@
-export interface Pokedex {
-    data:            Data;
-    lastFetchedTime: Date;
-}
-
-export interface Data {
+export interface FullOverview {
     status:      string;
     copyright:   string;
     num_results: number;
