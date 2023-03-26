@@ -12,8 +12,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Set Reviewer
         env:
-          REVIEWER: "csik-patrik"
+          REVIEWER: "username" # replace with the username of the reviewer you want to assign
         run: |
           token="${{ secrets.GITHUB_TOKEN }}"
           pr_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          curl -X POST -H "Authorization: token $token" -H "Accept: application/vnd.github.v3+json" -d "{\"reviewers\":[\"$REVIEWER\"]}" "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$pr_number/requested_reviewers"
+          response=$(curl -X POST -H "Authorization: token $token" -H "Accept: application/vnd.github.v3+json" -d "{\"reviewers\":[\"$REVIEWER\"]}" "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$pr_number/requested_reviewers" -w "\n%{http_code}")
+          echo "$response"
+          if [[ "$response" != *"2"* ]]; then
+            echo "Failed to assign reviewer"
+            exit 1
+          fi
