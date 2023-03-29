@@ -1,25 +1,6 @@
-# Bevezető
+# Rendszerterv
 
-# A rendszer célja
-
-# Projekt terv
-
-# Üzleti folyamatok modellje
-
-# Követelmények
-
-# Funkcionális terv
-
-# Fizikai környezet
-
-
-
-
-# Adatbázis terv
-
-![Picture of the entity relationships](img/entity_diagram.png)
-
-# Mappa struktúra
+## Mappa struktúra
 
 | Tárolt fájlok  | Útvonal | Komment |
 | ------------- | ------------- |------------- |
@@ -32,5 +13,3 @@
 |frontend specifikus adattípusok   | ```app/frontend/src/lib/types``` | Adattypust definiáló osztályok helye.  |
 | backend kód  | ```app/backend```   | Szerveren futó alkalmazás kódja, ami kezeli az adatbázist |
 | közösen használt kód  | ```app/shared```   | olyan kódok amik közösen vannak használva. Főleg adat típus kódok|
-
-# Tesztterv
