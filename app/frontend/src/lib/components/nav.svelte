@@ -12,7 +12,7 @@
           <a class="nav-link text-white" href="#">Link 1</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Link 2</a>
+          <a class="nav-link text-white" href="/test">Test Call</a>
         </li>
       </ul>
     </div>
