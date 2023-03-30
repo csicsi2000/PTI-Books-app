@@ -51,7 +51,7 @@ export interface Book {
     title:                string;
     updated_date:         Date;
     weeks_on_list:        number;
-    buy_links:            BuyLink[];n
+    buy_links:            BuyLink[];
 }
 
 
