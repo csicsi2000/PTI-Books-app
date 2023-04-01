@@ -7,3 +7,25 @@ A Book Heaven egy olyan weboldal, amely segít az olvasóknak tájékozódni az 
 A könyvpiacon az utóbbi években jelentős változások történtek. A fizikai könyvpiac még mindig jelentős, számos könyvesbolt, antikvárium és könyvtár működik, azonban a könyvpiacon is érezhető az általános trend, hogy az emberek egyre inkább az online térben keresnek információkat és vásárolnak termékeket. 
 
 # Vágyálom rendszer leírása:
+
+Célunk egy könyveket bemutató oldal készítése, amely a Svelte keretrendszer segítségével készült, és amit  Node.js szerver szolgál ki. A weboldalnak a New York Times Book API szolgaltatja az adatokat Két szerepkört különböztetünk meg: a vendégeket és a regisztrált felhasználókat. A vendégek csak kereshetnek a könyvek között, illetve a hozzászólásokat olvashatják, míg a regisztrált felhasználók számára lehetoseg van, hogy elmenthessék kedvenc könyveiket és velemenyeket, hozzaszolassokat irhatnak az adott konyvrol. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva. A program az adatbazisból adatokat kér le, módosít és töröl.
+
+Az adatbázisban tárolt adatok a felhasználókról:
++ Csicsi
++ Csicsi
++ Csicsi
++ Csicsi
++ Csicsi
+
+Az adatbázisban tárolt adatok a könyvekről:
++ Csicsi
++ Csicsi
++ Csicsi
++ Csicsi
++ Csicsi
+
+# A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások leírása:
+
+A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, nem lesznek át adva harmadik félnek. Ezekkel az adatokat a weblap készítői nem tudják felhasználni saját céljaikra. A felhasználó által nyújtott bizalommal nem fognak vissza élni. Sohasem fog kapni a felhasználó olyan email-t, amiben kérik őt arra, hogy a jelszavát adja meg. Az oldalon mindig az aktuális, friss információk lesznek megjelenítve. A felhasználó megfelelően lesz tájékoztatva, azaz az oldalon az összes olyan információ fenn lesz, amelyre szüksége van.
+
+# Jelenlegi üzleti folyamatok modellje:
