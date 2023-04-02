@@ -54,7 +54,15 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 # Forgatókönyvek
 
 # Funkció - követelmény megfeleltetés
-
+ID|Verzió|Követelmény|Funkció
+--|------|---|--------
+K01|V1.0|Könyvek használata|Könyvek kommentelése, értékelése és kedvencelése, amit a használati esetekben leírtak szerint végezhetnek el.
+K02|V1.0|Felhasználói fiókok kezelése|A felhasználók bejelentkezésének kezelése és a felhasználói adatok módosításának lehetőségének biztosítása. Ügyfelek regisztrálása, törlése és adataik módosítása, amit az ügyfelek végezhetnek a használati esetekben leírtak szerint.  
+K03|V1.0|Egyszerűen használható kezelőfelület|A felhasználói felület megvalósítása, a képernyőtervek fejezetben láthatóan módon szerint. 
+K04|V1.0|Bejelentkezés nélkül a honlap elérhető és kereshető lesz.
+K05,K08|V1.0|Platformfüggetlen, robosztus működés és költséghatékony üzemeltetés| Szabványos, elterjedt paltformfüggetlen technológiák használata.
+K06|V1.0|Bővíthetőség|Adatbáziskezelő rendszer használata, a tervezésnél figyelembe vesszük a későbbi bővítési igényeket.
+K07|V1.0|Rendszer migrálása|A rendszer rövid időn belül bevezethető más könyvtárakban is ha a kezelni kívánt könyvtári feladatok ugyanazok.
 # Fogalomszótár
 + Node.js: Node.js egy ingyenes és nyílt forráskódú, szerveroldali JavaScript futtatókörnyezet, amelyet gyakran használnak webszerverek és egyéb hálózati alkalmazások készítésére. Node.js lehetővé teszi a fejlesztők számára, hogy JavaScript nyelvet használjanak a szerveroldalon, amely korábban csak böngészőkben volt használatos. Node.js az aszinkron programozást támogatja, amely lehetővé teszi az alkalmazások számára, hogy hatékonyabban kezeljék az adatbázisokhoz, hálózati kommunikációhoz és más hosszabb ideig tartó műveletekhez kapcsolódó feladatokat. Emellett nagyon könnyű és hatékony az I/O-műveletek kezelése, amelyek nagyon fontosak a webszerverek és más hálózati alkalmazások számára. Node.js a Chrome V8 JavaScript motorján alapul, ami nagyon hatékony és gyors JavaScript futtatást biztosít. Node.js-ben rengeteg külső modul és csomag áll rendelkezésre a fejlesztőknek, amelyek jelentősen megkönnyítik az alkalmazások fejlesztését.
 + Svelte: Svelte egy ingyenes és nyílt forráskódú, komponens-alapú JavaScript keretrendszer, amely segít az interaktív webalkalmazások készítésében. A Svelte a Vue, az Angular és a React keretrendszerekhez hasonlóan segít a fejlesztőknek a hatékonyabb kódolásban és a felhasználói felület tervezésében, azonban a Svelte-ben a keretrendszer által generált kódmennyiség nagyon alacsony, ami azt jelenti, hogy a végtermék sokkal kisebb méretű és hatékonyabb, mint más keretrendszerekben. A Svelte-nek van saját sablonnyelve, amely lehetővé teszi a fejlesztők számára a HTML, a CSS és a JavaScript kód egyszerűbb és hatékonyabb kezelését. Emellett a Svelte a hagyományos keretrendszerekkel ellentétben a szerveroldali generálást is támogatja, amely lehetővé teszi a tartalom előzetes generálását a szerveren, és így a felhasználók számára gyorsabb oldalbetöltést biztosít.
