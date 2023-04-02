@@ -23,7 +23,7 @@ Az adatbázisban tárolt adatok a könyvekről:
 + Csicsi
 + Csicsi
 + Csicsi
-s
+
 # A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások leírása:
 
 A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, nem lesznek át adva harmadik félnek. Ezekkel az adatokat a weblap készítői nem tudják felhasználni saját céljaikra. A felhasználó által nyújtott bizalommal nem fognak vissza élni. Sohasem fog kapni a felhasználó olyan email-t, amiben kérik őt arra, hogy a jelszavát adja meg. Az oldalon mindig az aktuális, friss információk lesznek megjelenítve. A felhasználó megfelelően lesz tájékoztatva, azaz az oldalon az összes olyan információ fenn lesz, amelyre szüksége van.
@@ -50,6 +50,8 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 + Az oldal alapvető használatához regisztráció nem szükséges. 
 + Az oldal extra funkcióinak eléréséhez regisztráció szükséges.
 # Képernyőtervek
+![Main page](/doc/img/main_page.png "Main page")
+![Logged in](/doc/img/logged_in.png "Logged in")
 
 # Forgatókönyvek
 
