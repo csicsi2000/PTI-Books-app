@@ -8,7 +8,7 @@ A könyvpiacon az utóbbi években jelentős változások történtek. A fizikai
 
 # Vágyálom rendszer leírása:
 
-Célunk egy könyveket bemutató oldal készítése, amely a Svelte keretrendszer segítségével készült, és amit  Node.js szerver szolgál ki. A weboldalnak a New York Times Book API szolgaltatja az adatokat Két szerepkört különböztetünk meg: a vendégeket és a regisztrált felhasználókat. A vendégek csak kereshetnek a könyvek között, illetve a hozzászólásokat olvashatják, míg a regisztrált felhasználók számára lehetoseg van, hogy elmenthessék kedvenc könyveiket és velemenyeket, hozzaszolassokat irhatnak az adott konyvrol. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva. A program az adatbazisból adatokat kér le, módosít és töröl.
+Célunk egy könyveket bemutató oldal készítése, amely a Svelte keretrendszer segítségével készült, és amit  Node.js szerver szolgál ki. A weboldalnak a New York Times Book API szolgaltatja az adatokat. Két szerepkört különböztetünk meg: a vendégeket és a regisztrált felhasználókat. A vendégek csak kereshetnek a könyvek között, illetve a hozzászólásokat olvashatják, míg a regisztrált felhasználók számára lehetoseg van, hogy elmenthessék kedvenc könyveiket és velemenyeket, hozzaszolassokat irhatnak az adott konyvrol. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva. A program az adatbazisból adatokat kér le, módosít és töröl.
 
 Az adatbázisban tárolt adatok a felhasználókról:
 + Csicsi
@@ -33,12 +33,22 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 # Igényelt üzleti folyamatok modellje:
 
 # Követelménylista:
-
-# Követelménylista
 ## A rendszer felhasználói a következők:
++ Regisztrált felhasználók
++ Vendég felhasználók
+  
 ## A rendszernek a következő funkciókat kell ellátnia:
-## Előfeltételek:
+- Vendég felhasználók tudjanak könyveket keresni.
+- Vendég felhasználók tudjanak kommenteket olvasni.
+- Vendég felhasználók tudjanak az oldalra regisztrálni.
+- Regisztrált felhasználók tudjanak könyveket értekelni.
+- Regisztrált felhasználók tudjanak könyveket kommentelni.
+- Regisztrált felhasználók tudjanak könyveket menteni listákba.
+- Regisztrált felhasználók tudjanak személyes adatokat változtatni ( e-mail, jelszó, profilkép, stb.)
 
+## Előfeltételek:
++ Az oldal alapvető használatához regisztráció nem szükséges. 
++ Az oldal extra funkcióinak eléréséhez regisztráció szükséges.
 # Képernyőtervek
 
 # Forgatókönyvek
@@ -47,8 +57,7 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 
 # Fogalomszótár
 + Node.js: Node.js egy ingyenes és nyílt forráskódú, szerveroldali JavaScript futtatókörnyezet, amelyet gyakran használnak webszerverek és egyéb hálózati alkalmazások készítésére. Node.js lehetővé teszi a fejlesztők számára, hogy JavaScript nyelvet használjanak a szerveroldalon, amely korábban csak böngészőkben volt használatos. Node.js az aszinkron programozást támogatja, amely lehetővé teszi az alkalmazások számára, hogy hatékonyabban kezeljék az adatbázisokhoz, hálózati kommunikációhoz és más hosszabb ideig tartó műveletekhez kapcsolódó feladatokat. Emellett nagyon könnyű és hatékony az I/O-műveletek kezelése, amelyek nagyon fontosak a webszerverek és más hálózati alkalmazások számára. Node.js a Chrome V8 JavaScript motorján alapul, ami nagyon hatékony és gyors JavaScript futtatást biztosít. Node.js-ben rengeteg külső modul és csomag áll rendelkezésre a fejlesztőknek, amelyek jelentősen megkönnyítik az alkalmazások fejlesztését.
-+ svelte: Svelte egy ingyenes és nyílt forráskódú, komponens-alapú JavaScript keretrendszer, amely segít az interaktív webalkalmazások készítésében. A Svelte a Vue, az Angular és a React keretrendszerekhez hasonlóan segít a fejlesztőknek a hatékonyabb kódolásban és a felhasználói felület tervezésében, azonban a Svelte-ben a keretrendszer által generált kódmennyiség nagyon alacsony, ami azt jelenti, hogy a végtermék sokkal kisebb méretű és hatékonyabb, mint más keretrendszerekben. A Svelte-nek van saját sablonnyelve, amely lehetővé teszi a fejlesztők számára a HTML, a CSS és a JavaScript kód egyszerűbb és hatékonyabb kezelését. Emellett a Svelte a hagyományos keretrendszerekkel ellentétben a szerveroldali generálást is támogatja, amely lehetővé teszi a tartalom előzetes generálását a szerveren, és így a felhasználók számára gyorsabb oldalbetöltést biztosít.
++ Svelte: Svelte egy ingyenes és nyílt forráskódú, komponens-alapú JavaScript keretrendszer, amely segít az interaktív webalkalmazások készítésében. A Svelte a Vue, az Angular és a React keretrendszerekhez hasonlóan segít a fejlesztőknek a hatékonyabb kódolásban és a felhasználói felület tervezésében, azonban a Svelte-ben a keretrendszer által generált kódmennyiség nagyon alacsony, ami azt jelenti, hogy a végtermék sokkal kisebb méretű és hatékonyabb, mint más keretrendszerekben. A Svelte-nek van saját sablonnyelve, amely lehetővé teszi a fejlesztők számára a HTML, a CSS és a JavaScript kód egyszerűbb és hatékonyabb kezelését. Emellett a Svelte a hagyományos keretrendszerekkel ellentétben a szerveroldali generálást is támogatja, amely lehetővé teszi a tartalom előzetes generálását a szerveren, és így a felhasználók számára gyorsabb oldalbetöltést biztosít.
 + Webalkalmazás: Egy adott tevékenységi területen való webalkalmazást hasonlóan foghatunk fel, mint egy adott cél érdekében megvalósult létesítményt (pl.: egy termelőüzemet, vagy egy kereskedelmi objektumot), vagy mint egy szolgáltatást, amiket tulajdonképpen meg kell előznie egy fejlesztési, illetve beruházási folyamatnak. Itt is – mint minden számítástechnikai fejlesztésnél és alkalmazásnál - a rendszerszemlélet, egy meghatározó tényező.
 + Weblap: A weblap (más szóval weboldal) egy olyan számítógépes dokumentum, mely megfelel a World Wide Web számára, és alkalmas arra, hogy egy webböngésző megjelenítse.
-+ Adminisztrátor: Az adminisztrátorokat azért választja meg a közösség, hogy a projektet megvédjék a nemkívánatos külső beavatkozásoktól, illetve, hogy a projekt fejlődését technikai vagy egyéb módon elősegítsék.
 + Adatbázis: Az adatbázis azonos minőségű (jellemzőjű), többnyire strukturált adatok összessége, amelyet egy tárolására, lekérdezésére és szerkesztésére alkalmas szoftvereszköz kezel.
