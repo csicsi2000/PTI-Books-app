@@ -53,6 +53,16 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 
 # Forgatókönyvek
 
+A kezdőlap minden felhasználó számára az első oldal, ahol az összes könyv betöltődik. A kezdőlap tetején található a navigációs sáv. Bejelentkezés nélkül a navigációs sáv tartalmazza a Kezdőlap, Kategóriák, Bejelentkezés és a Regisztráció menüpontokat. Ezek a menüpontok mindig elérhetőek belépés előtt.
+
+Ha Bejelentkezésre kattintunk, a rendszerbe bejelentkezve már regisztrált felhasználóként használhatjuk a szolgáltatásokat. Ha hibás felhasználónév vagy jelszó kerül megadásra, újra meg kell adnunk az adatokat.
+
+Ha a Regisztráció gombra kattintunk, olyan oldalra lesz a felhasználó irányítva, ahol lehetőségünk van új felhasználói fiókot létrehozni. A regisztrációhoz szükséges egy e-mail cím, egy felhasználónév és jelszó kétszeres megadása. A regisztrációt követően a megadott e-mail címre egy visszaigazoló e-mailt küldünk. A fiók aktiválásához kövesd a visszaigazoló e-mailben lévő utasításokat.
+
+A belépést követően a navigációs sáv tartalma megváltozik, és a Bejelentkezés és Regisztráció helyett a Kedvenc könyvek, Olvasott könyvek, Profil és a Kijelentkezés menüpontok jelennek meg. Ha a Kezdőlap menüpontra kattintunk, az oldal visszairányul a kezdőoldalra. A profil gombra kattintva a felhasználó megtekinthetik és módosíthatják profiladataikat. Kilépés gombra kattintva pedig kijelentkezhetnek a rendszerből
+
+Az oldalon található könyvekre kattintva olyan oldalra lesz a felhasználó irányítva, ahol további információk jelennek meg az adott könyvről. Ezen az oldalon a regisztrált és bejelentkezett felhasználóknak lehetőségük lesz az adott könyvet értékelni, véleményt írni és hozzáadni a könyvet a kedvencek vagy az olvasott listához. Ezen az oldalon megjelennek azok a linkek is, ahol a felhasználó meg tudja vásárolni az adott könyvet.
+
 # Funkció - követelmény megfeleltetés
 ID|Verzió|Követelmény|Funkció
 --|------|---|--------
