@@ -31,3 +31,6 @@ Az adatbázisban tárolt adatok a könyvekről:
 # A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások leírása:
 
 A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, nem lesznek át adva harmadik félnek. Ezekkel az adatokat a weblap készítői nem tudják felhasználni saját céljaikra. A felhasználó által nyújtott bizalommal nem fognak vissza élni. Sohasem fog kapni a felhasználó olyan email-t, amiben kérik őt arra, hogy a jelszavát adja meg. Az oldalon mindig az aktuális, friss információk lesznek megjelenítve. A felhasználó megfelelően lesz tájékoztatva, azaz az oldalon az összes olyan információ fenn lesz, amelyre szüksége van.
+
+# Jelenlegi üzleti folyamatok modellje:
+A weboldal célja, hogy a felhasználóknak egyszerű és kényelmes megoldást kínáljon az új könyvek felfedezésére és megvásárlására. Az oldal készítői alaposan kutatták a piacon elérhető könyvgyűjtő weboldalakat, azonban hiányolták azokat a funkciókat, amelyek segítenek az olvasóknak a könyvek megválasztásában és vásárlásában. Ezért úgy döntöttek, hogy létrehoznak egy saját weboldalt, amely az olvasók igényeit szem előtt tartva biztosítja a legfrissebb és legérdekesebb könyvek bemutatását, valamint az olvasói vélemények megosztását és a könyvek megvásárlást is.
