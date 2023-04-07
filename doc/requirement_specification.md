@@ -40,8 +40,27 @@ A weboldal célja, hogy a felhasználóknak egyszerű és kényelmes megoldást 
 # Követelmény lista
 
 ## Funkcionális követelmények:
++ A főoldal tartalmazza a legfrissebb könyveket
++ Kategóriák szerinti könyv megjelenítés 
++ Részletes könyv oldal: Ez az oldal tartalmazza a kiválasztott könyv részletes információit. Ezek az információk a könyv címe, borítókép, rövid tartalmi összefoglaló, szerző neve, kiadás éve, vásárlói értékelések, vélemények és linkek, ahol a könyvet meg lehet vásárolni.
++ Regisztrációs lehetőség az oldal felhasználóinak 
++ Regisztrációt visszaigazoló email: a felhasználó kap egy igazoló emailt a regisztrációjáról
++ Bejelentkezés: bejelentkezési felület, ahol a felhasználó a felhasználóneve és jelszava megadásával be tud lépni
++ Könyveket lehessen értekelni 
++ Könyveket lehessen kommentelni
++ Könyveket le lehessen menteni listákba
+
 ## Nem funkcionális követelmények:
++ A weboldalt interneten lehet elérni.
++  Az oldal legyen könnyen navigálható és egyszerűen használható.
++  Az oldal legyen gyors és megbízható.
++ Az oldal legyen reszponzív és minden eszközön megfelelően jelenjen meg.
++ A témára vonatkozó adatokat tartalmazza, azaz ne jelenjenek meg oda nem illő tartalmak.
++ A funkciók a leírtaknak megfelelően működjenek.
++ Könnyen karbantartható és bővíthető forráskód
+
 ## Riport az ügyféllel
+
 # Fogalomszótár
 + Node.js: Node.js egy ingyenes és nyílt forráskódú, szerveroldali JavaScript futtatókörnyezet, amelyet gyakran használnak webszerverek és egyéb hálózati alkalmazások készítésére. Node.js lehetővé teszi a fejlesztők számára, hogy JavaScript nyelvet használjanak a szerveroldalon, amely korábban csak böngészőkben volt használatos. Node.js az aszinkron programozást támogatja, amely lehetővé teszi az alkalmazások számára, hogy hatékonyabban kezeljék az adatbázisokhoz, hálózati kommunikációhoz és más hosszabb ideig tartó műveletekhez kapcsolódó feladatokat. Emellett nagyon könnyű és hatékony az I/O-műveletek kezelése, amelyek nagyon fontosak a webszerverek és más hálózati alkalmazások számára. Node.js a Chrome V8 JavaScript motorján alapul, ami nagyon hatékony és gyors JavaScript futtatást biztosít. Node.js-ben rengeteg külső modul és csomag áll rendelkezésre a fejlesztőknek, amelyek jelentősen megkönnyítik az alkalmazások fejlesztését.
 + Svelte: Svelte egy ingyenes és nyílt forráskódú, komponens-alapú JavaScript keretrendszer, amely segít az interaktív webalkalmazások készítésében. A Svelte a Vue, az Angular és a React keretrendszerekhez hasonlóan segít a fejlesztőknek a hatékonyabb kódolásban és a felhasználói felület tervezésében, azonban a Svelte-ben a keretrendszer által generált kódmennyiség nagyon alacsony, ami azt jelenti, hogy a végtermék sokkal kisebb méretű és hatékonyabb, mint más keretrendszerekben. A Svelte-nek van saját sablonnyelve, amely lehetővé teszi a fejlesztők számára a HTML, a CSS és a JavaScript kód egyszerűbb és hatékonyabb kezelését. Emellett a Svelte a hagyományos keretrendszerekkel ellentétben a szerveroldali generálást is támogatja, amely lehetővé teszi a tartalom előzetes generálását a szerveren, és így a felhasználók számára gyorsabb oldalbetöltést biztosít.
