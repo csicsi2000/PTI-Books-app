@@ -52,6 +52,7 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 # Képernyőtervek
 ![Main page](/doc/img/main_page.png "Main page")
 ![Logged in](/doc/img/logged_in.png "Logged in")
+![Book page](/doc/img/book_page.png "Book page")
 
 # Forgatókönyvek
 
