@@ -125,11 +125,11 @@ _Bemutatkozás_
 
 **Ügyfél**: Nagy rajongója vagyok a fizikai könyveknek, de nem találtam még olyan oldalt ahol ezeket külön kéne kezelni. Jelenleg az amazon kívánság listáimban tárolom a dolgaimat, de kezdem megunni, hogy az elektromos rollerek, meg egyéb kütyüim között kell kutakodnom mindig ha meg akarok keresni egy könyvet amit lementettem. Sajnos nincs nagyon időm böngészni a különböző listákat, ezért a Top Seller könyvvekből szoktam választani, amikkel nem nagyon lehet félre lőni. Ami fontos nekem hogy amit lementek az mindig elérhető legyen.
 
-**Ekecluded**: Egy ilyen rendszer megvalósításához szükséges nagy mennyiségű adatok tárolására, mind a tananyagokról és a rendszert használó felhasználókról is. Mi ezzel kapcsolatban az elképzelése?
+**Ekecluded**: Egy ilyen rendszer megvalósításához szükséges nagy mennyiségű adatok tárolására, mind a könyvekről és a rendszert használó felhasználókról is. Mi ezzel kapcsolatban az elképzelése?
 
 **Ügyfél**: Azt szeretnénk, ha egy egy nyílt renddszert alkotnánk meg, hogy a többi könyv mániás is hozzátudjon jutni ehez a funkcióhoz. Jó lenne ha például megtudnánk osztani egymással a listáinkat, így egy tök jó közösséget be tudnánk vonni.
 
-**Ekecluded**: Hogyan érnék el azt, hogy egy adott felhasználó csak az őt érintő részeket érjék el a moodleből?
+**Ekecluded**: Hogyan érnék el azt, hogy egy adott felhasználó csak az őt érintő részeket érjék el?
 
 **Ügyfél**: Rendszerünk a felhasználóinak be kell jelentkezniük, hogy a kedvencek listájukat elérjék.
 
