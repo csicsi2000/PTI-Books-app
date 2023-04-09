@@ -90,9 +90,11 @@ Vendég jogai:
 + Az oldal alapvető használatához regisztráció nem szükséges. 
 + Az oldal extra funkcióinak eléréséhez regisztráció szükséges.
 # Képernyőtervek
-![Main page](/doc/img/main_page.png "Main page")
-![Logged in](/doc/img/logged_in.png "Logged in")
-![Book page](/doc/img/book_page.png "Book page")
+![Main page](/doc/img/wireframes/main_page.PNG "Main page")
+![Logged in](/doc/img/wireframes/logged_in.PNG "Logged in")
+![Book page](/doc/img/wireframes/book_page.PNG "Book page")
+![Login page](/doc/img/wireframes/Bejelentkez%C3%A9s.png "Login page")
+![Registration page](/doc/img/wireframes/Regisztr%C3%A1ci%C3%B3.png "Registration page")
 
 # Forgatókönyvek
 
