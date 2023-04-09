@@ -51,6 +51,28 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 A weboldal célja, hogy a felhasználóknak egyszerű és kényelmes megoldást kínáljon az új könyvek felfedezésére és megvásárlására. Az oldal készítői alaposan kutatták a piacon elérhető könyvgyűjtő weboldalakat, azonban hiányolták azokat a funkciókat, amelyek segítenek az olvasóknak a könyvek megválasztásában és vásárlásában. Ezért úgy döntöttek, hogy létrehoznak egy saját weboldalt, amely az olvasók igényeit szem előtt tartva biztosítja a legfrissebb és legérdekesebb könyvek bemutatását, valamint az olvasói vélemények megosztását és a könyvek megvásárlást is.
 
 # Igényelt üzleti folyamatok modellje:
+A rendszerünk kettő szerepkört különböztet meg: ügyfelet és vendéget. Alkalmazásunk a követelmény listában feltüntetett funkcionális és nem funkcionális követelményeknek megfelelően fog elkészülni. Az  ügyfeleknek biztosítunk egy regisztrációs felületet. A felhasználókat szerepkörük alapján csoportosítjuk.  
+  
+  
+Ügyfél jogai:
+  
+- Könyvek keresése
+- Könyvek adatlpaján lévő kommentek elolvasása  
+- Könyvek adatlpaján lévő értékelések megtekintése   
+- Könyvek listázása  
+- Könyvek értékelése  
+- Új Könyv hozzáadása  
+- Saját Lista adatainak módosítása  
+- Saját értékelés adatainak módosítása  
+- Saját komment adatainak módosítása  
+- Profil adataianak módosítása  
+- Profil törlése
+  
+Vendég jogai:  
+  
+- Könyvek keresése
+- Könyvek adatlpaján lévő kommentek elolvasása  
+- Könyvek adatlpaján lévő értékelések megtekintése
 
 # Követelmény lista
 
