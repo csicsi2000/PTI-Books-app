@@ -15,18 +15,33 @@ A könyvpiacon az utóbbi években jelentős változások történtek. A fizikai
 Célunk egy könyveket bemutató oldal készítése, amely a Svelte keretrendszer segítségével készült, és amit  Node.js szerver szolgál ki. A weboldalnak a New York Times Book API szolgaltatja az adatokat. Két szerepkört különböztetünk meg: a vendégeket és a regisztrált felhasználókat. A vendégek csak kereshetnek a könyvek között, illetve a hozzászólásokat olvashatják, míg a regisztrált felhasználók számára lehetoseg van, hogy elmenthessék kedvenc könyveiket és velemenyeket, hozzaszolassokat irhatnak az adott konyvrol. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva. A program az adatbazisból adatokat kér le, módosít és töröl.
 
 Az adatbázisban tárolt adatok a felhasználókról:
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
+- Név
+- Email
+- Jelszó
 
-Az adatbázisban tárolt adatok a könyvekről:
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
+Az adatbázisban tárolt főbb adatok a könyvekről:
+- Cím
+- Borító
+- Leírás
+- Ár
+- Kiadó
+
+Az adatbázisban tárolt linkek a könyvek vásárlásához:
+- Könyv id
+- Név
+- Link
+
+Az adatbázisban tárolt vélemények:
+- Felasználó id
+- Könyv id
+- Szöveg
+- Értékelés
+- Idő
+
+az adatbázisban tárolt könyv lista:
+- Felhasználó id
+- Lista név
+- Létrehozási dátum
 
 # A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások leírása:
 
@@ -59,7 +74,54 @@ A weboldal célja, hogy a felhasználóknak egyszerű és kényelmes megoldást 
 + A funkciók a leírtaknak megfelelően működjenek.
 + Könnyen karbantartható és bővíthető forráskód
 
+## Egyéb követelmények
+
+Az oldalnak biztonságosnak és megbízhatónak kell lennie, és védelmet kell nyújtania a felhasználói adatoknak. Az alkalmazásnak meg kell felelnie az adatvédelmi törvényeknek, és biztosítania kell a felhasználói adatok biztonságos kezelését.
+
+Az oldal gyors és megbízható teljesítményt kell nyújtson, és biztosítania kell, hogy a felhasználók bármikor könnyedén hozzáférhessenek a könyvekhez. Az alkalmazásnak meg kell felelnie a legújabb webes szabványoknak, és optimalizáltnak kell lennie a gyors betöltés és a könnyű használat érdekében.
+
+Az oldalhoz tartozó forráskód könnyen karbantartható és bővíthető legyen a jövőbeni fejlesztések során. A fejlesztőknek egyértelműen dokumentálniuk kell a forráskódot, és biztosítaniuk kell, hogy a kód könnyen érthető és módosítható legyen.
+
+Az alkalmazás felhasználói felületének könnyen érthetőnek és használhatónak kell lennie, és a felhasználóknak egyértelmű útmutatást kell kapniuk az alkalmazás használatához. Az oldalhoz kapcsolódó összes tartalomnak érthetőnek és könnyen érhetőnek kell lennie a felhasználók számára.
+
 ## Riport az ügyféllel
+
+|   Projekt név    |                        Feuer Moodle                        |
+| :--------------: | :--------------------------------------------------------: |
+|  Dokumentum ID   |                         AFP2 2023                          |
+|   Riport célja   |            Követelmény specifikáció létrehozása            |
+| Riport formátuma |                             md                             |
+|     Helyszín     |         Eger, Eszterházy Károly Egyetem – C épület         |
+|      Dátum       |                         2023.03.10                         |
+|   Ügyfél neve    |                     Dr. Nagy Nándor                        |
+|    Ügyfél ID     |                            TUZ                             |
+| Fejlesztő csapat |                           ZKT                              |
+|      Tagok       | Tápai Árpád, Kis Sándor, Zheng Yuan Qi, Csik Patrik        |
+|     Másolat      |                  Ügyfél és tagok részére                   |
+
+_Bemutatkozás_
+
+**Ügyfél**: Nagy rajongója vagyok a fizikai könyveknek, de nem találtam még olyan oldalt ahol ezeket külön kéne kezelni. Jelenleg az amazon kívánság listáimban tárolom a dolgaimat, de kezdem megunni, hogy az elektromos rollerek, meg egyéb kütyüim között kell kutakodnom mindig ha meg akarok keresni egy könyvet amit lementettem. Sajnos nincs nagyon időm böngészni a különböző listákat, ezért a Top Seller könyvvekből szoktam választani, amikkel nem nagyon lehet félre lőni. Ami fontos nekem hogy amit lementek az mindig elérhető legyen.
+
+**Ekecluded**: Egy ilyen rendszer megvalósításához szükséges nagy mennyiségű adatok tárolására, mind a tananyagokról és a rendszert használó felhasználókról is. Mi ezzel kapcsolatban az elképzelése?
+
+**Ügyfél**: Azt szeretnénk, ha egy egy nyílt renddszert alkotnánk meg, hogy a többi könyv mániás is hozzátudjon jutni ehez a funkcióhoz. Jó lenne ha például megtudnánk osztani egymással a listáinkat, így egy tök jó közösséget be tudnánk vonni.
+
+**Ekecluded**: Hogyan érnék el azt, hogy egy adott felhasználó csak az őt érintő részeket érjék el a moodleből?
+
+**Ügyfél**: Rendszerünk a felhasználóinak be kell jelentkezniük, hogy a kedvencek listájukat elérjék.
+
+**Ekecluded**: Az felhasználók hogyan tudnak hozzáadni a kedvencekhez?
+
+**Ügyfél**: A rendszerünk egyszerűen egyből a főoldalt fogják mutatni a felhasználóknak, ahol egyszerűen egy ikonra rákattintva hozzátudják adni a kedvencek közé a kiszemelt könyvet. Ha rákattint akkor további részleteket is megtudnak tekinteni.
+
+**Ekecluded**: Ehhez szükséges egy jogosultsági rendszer a különböző felhasználók számára és nekik felületet is kell ehhez biztosítanunk.
+
+**Ekecluded**: Ezeket a kéréseket meg tudjuk valósítani. Miben tudunk még segíteni?
+
+**Ügyfél**: A weboldal kinézetéhez már volt korábban egy tervünk, amit egy designer állított össze, azonban nem vagyunk elégedettek a munkájával, és szeretnénk ezt Önökre bízni, hogy a legmodernebb, olvasóbarát felületet alakítsák ki számunkra.
+
+**Ekecluded**: Ha bármilyen egyéb igény merülne fel Önökben, kérem keresse bizalommal csapatunkat.
 
 # Fogalomszótár
 + Node.js: Node.js egy ingyenes és nyílt forráskódú, szerveroldali JavaScript futtatókörnyezet, amelyet gyakran használnak webszerverek és egyéb hálózati alkalmazások készítésére. Node.js lehetővé teszi a fejlesztők számára, hogy JavaScript nyelvet használjanak a szerveroldalon, amely korábban csak böngészőkben volt használatos. Node.js az aszinkron programozást támogatja, amely lehetővé teszi az alkalmazások számára, hogy hatékonyabban kezeljék az adatbázisokhoz, hálózati kommunikációhoz és más hosszabb ideig tartó műveletekhez kapcsolódó feladatokat. Emellett nagyon könnyű és hatékony az I/O-műveletek kezelése, amelyek nagyon fontosak a webszerverek és más hálózati alkalmazások számára. Node.js a Chrome V8 JavaScript motorján alapul, ami nagyon hatékony és gyors JavaScript futtatást biztosít. Node.js-ben rengeteg külső modul és csomag áll rendelkezésre a fejlesztőknek, amelyek jelentősen megkönnyítik az alkalmazások fejlesztését.
