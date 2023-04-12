@@ -11,26 +11,66 @@ A könyvpiacon az utóbbi években jelentős változások történtek. A fizikai
 Célunk egy könyveket bemutató oldal készítése, amely a Svelte keretrendszer segítségével készült, és amit  Node.js szerver szolgál ki. A weboldalnak a New York Times Book API szolgaltatja az adatokat. Két szerepkört különböztetünk meg: a vendégeket és a regisztrált felhasználókat. A vendégek csak kereshetnek a könyvek között, illetve a hozzászólásokat olvashatják, míg a regisztrált felhasználók számára lehetoseg van, hogy elmenthessék kedvenc könyveiket és velemenyeket, hozzaszolassokat irhatnak az adott konyvrol. A felhasználói fiókok a MySQL adatbázisban lesznek tárolva. A program az adatbazisból adatokat kér le, módosít és töröl.
 
 Az adatbázisban tárolt adatok a felhasználókról:
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
+- Név
+- Email
+- Jelszó
 
-Az adatbázisban tárolt adatok a könyvekről:
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
-+ Csicsi
-s
+Az adatbázisban tárolt főbb adatok a könyvekről:
+- Cím
+- Borító
+- Leírás
+- Ár
+- Kiadó
+
+Az adatbázisban tárolt linkek a könyvek vásárlásához:
+- Könyv id
+- Név
+- Link
+
+Az adatbázisban tárolt vélemények:
+- Felasználó id
+- Könyv id
+- Szöveg
+- Értékelés
+- Idő
+
+az adatbázisban tárolt könyv lista:
+- Felhasználó id
+- Lista név
+- Létrehozási dátum
+
 # A rendszerre vonatkozó pályázat, törvények, rendeletek, szabványok és ajánlások leírása:
 
 A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, nem lesznek át adva harmadik félnek. Ezekkel az adatokat a weblap készítői nem tudják felhasználni saját céljaikra. A felhasználó által nyújtott bizalommal nem fognak vissza élni. Sohasem fog kapni a felhasználó olyan email-t, amiben kérik őt arra, hogy a jelszavát adja meg. Az oldalon mindig az aktuális, friss információk lesznek megjelenítve. A felhasználó megfelelően lesz tájékoztatva, azaz az oldalon az összes olyan információ fenn lesz, amelyre szüksége van.
 
 # Jelenlegi üzleti folyamatok modellje:
+A weboldal célja, hogy a felhasználóknak egyszerű és kényelmes megoldást kínáljon az új könyvek felfedezésére és megvásárlására. Az oldal készítői alaposan kutatták a piacon elérhető könyvgyűjtő weboldalakat, azonban hiányolták azokat a funkciókat, amelyek segítenek az olvasóknak a könyvek megválasztásában és vásárlásában. Ezért úgy döntöttek, hogy létrehoznak egy saját weboldalt, amely az olvasók igényeit szem előtt tartva biztosítja a legfrissebb és legérdekesebb könyvek bemutatását, valamint az olvasói vélemények megosztását és a könyvek megvásárlást is.
 
 # Igényelt üzleti folyamatok modellje:
+
+A rendszerünk kettő szerepkört különböztet meg: ügyfelet és vendéget. Alkalmazásunk a követelmény listában feltüntetett funkcionális és nem funkcionális követelményeknek megfelelően fog elkészülni. Az  ügyfeleknek biztosítunk egy regisztrációs felületet. A felhasználókat szerepkörük alapján csoportosítjuk.  
+  
+  
+Ügyfél jogai:
+  
+- Könyvek keresése
+- Könyvek adatlpaján lévő kommentek elolvasása  
+- Könyvek adatlpaján lévő értékelések megtekintése   
+- Könyvek listázása  
+- Könyvek értékelése  
+- Új Könyv hozzáadása  
+- Saját Lista adatainak módosítása  
+- Saját értékelés adatainak módosítása  
+- Saját komment adatainak módosítása  
+- Profil adataianak módosítása  
+- Profil törlése
+  
+Vendég jogai:  
+  
+- Könyvek keresése
+- Könyvek adatlpaján lévő kommentek elolvasása  
+- Könyvek adatlpaján lévő értékelések megtekintése  
+  
 
 # Követelménylista:
 ## A rendszer felhasználói a következők:
@@ -50,8 +90,23 @@ A felhasználó által megadott személyes adatok bizalmasan lesznek kezelve, ne
 + Az oldal alapvető használatához regisztráció nem szükséges. 
 + Az oldal extra funkcióinak eléréséhez regisztráció szükséges.
 # Képernyőtervek
+![Main page](/doc/img/wireframes/main_page.PNG "Main page")
+![Logged in](/doc/img/wireframes/logged_in.PNG "Logged in")
+![Book page](/doc/img/wireframes/book_page.PNG "Book page")
+![Login page](/doc/img/wireframes/Bejelentkez%C3%A9s.png "Login page")
+![Registration page](/doc/img/wireframes/Regisztr%C3%A1ci%C3%B3.png "Registration page")
 
 # Forgatókönyvek
+
+A kezdőlap minden felhasználó számára az első oldal, ahol az összes könyv betöltődik. A kezdőlap tetején található a navigációs sáv. Bejelentkezés nélkül a navigációs sáv tartalmazza a Kezdőlap, Kategóriák, Bejelentkezés és a Regisztráció menüpontokat. Ezek a menüpontok mindig elérhetőek belépés előtt.
+
+Ha Bejelentkezésre kattintunk, a rendszerbe bejelentkezve már regisztrált felhasználóként használhatjuk a szolgáltatásokat. Ha hibás felhasználónév vagy jelszó kerül megadásra, újra meg kell adnunk az adatokat.
+
+Ha a Regisztráció gombra kattintunk, olyan oldalra lesz a felhasználó irányítva, ahol lehetőségünk van új felhasználói fiókot létrehozni. A regisztrációhoz szükséges egy e-mail cím, egy felhasználónév és jelszó kétszeres megadása. A regisztrációt követően a megadott e-mail címre egy visszaigazoló e-mailt küldünk. A fiók aktiválásához kövesd a visszaigazoló e-mailben lévő utasításokat.
+
+A belépést követően a navigációs sáv tartalma megváltozik, és a Bejelentkezés és Regisztráció helyett a Kedvenc könyvek, Olvasott könyvek, Profil és a Kijelentkezés menüpontok jelennek meg. Ha a Kezdőlap menüpontra kattintunk, az oldal visszairányul a kezdőoldalra. A profil gombra kattintva a felhasználó megtekinthetik és módosíthatják profiladataikat. Kilépés gombra kattintva pedig kijelentkezhetnek a rendszerből
+
+Az oldalon található könyvekre kattintva olyan oldalra lesz a felhasználó irányítva, ahol további információk jelennek meg az adott könyvről. Ezen az oldalon a regisztrált és bejelentkezett felhasználóknak lehetőségük lesz az adott könyvet értékelni, véleményt írni és hozzáadni a könyvet a kedvencek vagy az olvasott listához. Ezen az oldalon megjelennek azok a linkek is, ahol a felhasználó meg tudja vásárolni az adott könyvet.
 
 # Funkció - követelmény megfeleltetés
 ID|Verzió|Követelmény|Funkció
@@ -63,6 +118,7 @@ K04|V1.0|Bejelentkezés nélkül a honlap elérhető és kereshető lesz.
 K05,K08|V1.0|Platformfüggetlen, robosztus működés és költséghatékony üzemeltetés| Szabványos, elterjedt paltformfüggetlen technológiák használata.
 K06|V1.0|Bővíthetőség|Adatbáziskezelő rendszer használata, a tervezésnél figyelembe vesszük a későbbi bővítési igényeket.
 K07|V1.0|Rendszer migrálása|A rendszer rövid időn belül bevezethető más könyvtárakban is ha a kezelni kívánt könyvtári feladatok ugyanazok.
+
 # Fogalomszótár
 + Node.js: Node.js egy ingyenes és nyílt forráskódú, szerveroldali JavaScript futtatókörnyezet, amelyet gyakran használnak webszerverek és egyéb hálózati alkalmazások készítésére. Node.js lehetővé teszi a fejlesztők számára, hogy JavaScript nyelvet használjanak a szerveroldalon, amely korábban csak böngészőkben volt használatos. Node.js az aszinkron programozást támogatja, amely lehetővé teszi az alkalmazások számára, hogy hatékonyabban kezeljék az adatbázisokhoz, hálózati kommunikációhoz és más hosszabb ideig tartó műveletekhez kapcsolódó feladatokat. Emellett nagyon könnyű és hatékony az I/O-műveletek kezelése, amelyek nagyon fontosak a webszerverek és más hálózati alkalmazások számára. Node.js a Chrome V8 JavaScript motorján alapul, ami nagyon hatékony és gyors JavaScript futtatást biztosít. Node.js-ben rengeteg külső modul és csomag áll rendelkezésre a fejlesztőknek, amelyek jelentősen megkönnyítik az alkalmazások fejlesztését.
 + Svelte: Svelte egy ingyenes és nyílt forráskódú, komponens-alapú JavaScript keretrendszer, amely segít az interaktív webalkalmazások készítésében. A Svelte a Vue, az Angular és a React keretrendszerekhez hasonlóan segít a fejlesztőknek a hatékonyabb kódolásban és a felhasználói felület tervezésében, azonban a Svelte-ben a keretrendszer által generált kódmennyiség nagyon alacsony, ami azt jelenti, hogy a végtermék sokkal kisebb méretű és hatékonyabb, mint más keretrendszerekben. A Svelte-nek van saját sablonnyelve, amely lehetővé teszi a fejlesztők számára a HTML, a CSS és a JavaScript kód egyszerűbb és hatékonyabb kezelését. Emellett a Svelte a hagyományos keretrendszerekkel ellentétben a szerveroldali generálást is támogatja, amely lehetővé teszi a tartalom előzetes generálását a szerveren, és így a felhasználók számára gyorsabb oldalbetöltést biztosít.
