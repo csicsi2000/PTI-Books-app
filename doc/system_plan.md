@@ -38,6 +38,12 @@ Az ügyfél képes kedvenc könyvekhez kommentet írni. Bejelentkezés után egy
 
 # Követelmények
 
+## Funkcionális követelmények
+A felhasználóknak a regisztráció gombra kattintva lehetőségük lesz saját adataik megadásával regisztrálni oldalunkra. Bejelentkezés gombra kattintva felhasználónév és jelszó megadását követően bejelentkezhetnek a weboldalra. Profiljukra kattintva megjelennek személyes adataik és profilképük, melyeket meg tudnak változtatni az profil szerkesztése opciót választva. A főoldalon a könyvek listája jelennek meg amiket leszűrhetünk és kereshetünk. A felhasználóknak lehetőségük van megtekinteni a kívánt könyv értékeléseiket, és kommenteket hozzá.
+
+## Nem funkcionális követelmények
+A weboldal több eszközön is elérhető lesz különböző böngészőkön keresztül. Könnyen átlátható, modern felépítésű felhasználói felülettel. Naprakész információkkal, a leírt funkcókat ellátva, valamint mind a felhasználók, mind az oldal adminisztrátorainak könnyű kezelhetőséget biztosítva.
+
 # Funkcionális terv
 
 ## Funkcionális követelmények:
