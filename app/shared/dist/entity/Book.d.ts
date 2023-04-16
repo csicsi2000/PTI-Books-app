@@ -1,0 +1,33 @@
+import { BuyLink } from "./BuyLink";
+import { Review } from "./Review";
+import { BookList } from "./BookList";
+export declare class Book {
+    id: number;
+    book_lists: BookList[];
+    reviews: Review[];
+    buy_links: BuyLink[];
+    age_group: string;
+    amazon_product_url: string;
+    article_chapter_link: string;
+    author: string;
+    book_image: string;
+    book_image_width: number;
+    book_image_height: number;
+    book_review_link: string;
+    contributor: string;
+    contributor_note: string;
+    created_date: Date;
+    description: string;
+    first_chapter_link: string;
+    price: string;
+    primary_isbn10: string;
+    primary_isbn13: string;
+    book_uri: string;
+    publisher: string;
+    rank: number;
+    rank_last_week: number;
+    sunday_review_link: string;
+    title: string;
+    updated_date: Date;
+    weeks_on_list: number;
+}
