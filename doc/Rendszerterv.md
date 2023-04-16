@@ -48,3 +48,11 @@ Könyv kommentelése
 Az ügyfél képes kedvenc könyvekhez kommentet írni. Bejelentkezés után egy könyvre kattintva megjelenik a könyv profilja ahol a 'kommentek' menüpontra kattintva előjön az 'új komment írása' ahova megírhatja kommentjét majd az 'elküld' gomb megírásával hozzá adhatja kommentjét a könyvhöz.
 
 
+#Menühierarchiák
+A menürendszert egy navigációs sávban építetjük fel, a navigációs sáv alatt pedig a kiválasztott funckió/oldal jelenik meg.
+
+A rendszerbe való bejelentkezés előtt egy Belépés valamint Új fiók létrehozása gombok találhatók a navigációs sávban. További menüpontok és funckiók csak belépés után jelennek meg a felhasználók számára.
+
+Bármilyen felhasználóként regisztrációval nem rendelkező vendég felhasználó számára csak a bejelentkező felület elérhető illetve a keresés funkció.
+
+Ügyfélként belépve a rendszerbe a Kezdőlap, Keresés, Profil, Kedvencek menüpontok jelennek meg a navigációs sávban.
