@@ -5,7 +5,7 @@ A cél a Svelte frameworks  segítségével létrehozott backend-frontend és My
 # Projekt terv
 
 # Üzleti folyamatok modellje
-
+A projekt egy webes felülettel, ami a megrendelő igényeinek megfelelően fog elkészülni. A rendszer létrehozásánál a Svelte framework-öt használjuk backend és frontend részen egyaránt. Adatbázisnál a MySQL-t használjuk. Az rendszernek rendelkeznie kell egy regisztrációs és egy bejelentkezési felülettettel. Itt a felhasználók adataik megadásával tudnak regisztrálni. Mindezek után tudnak csak bejelentkezni. Csak a felhasználóval rendelkezett ügyfelek tudnak saját listát létrehozni, kommentelni, és értékelni.A könyveket egy api-n keresztül töltünk be az oldalba. Mindezek alapján a cél egy olyan felület létrehozása, amelyet bárhol, bármikor bárki el tud érni. Ehhez tulajdonképpen internet kapcsolat szükséges és mivel manapság egyre több eszközön lehet netezni, ezért fontos az is, hogy minden eszközön megfelelően jelenjen meg és jól működjön.
 # Követelmények
 
 # Funkcionális terv
