@@ -5,22 +5,24 @@ import { User } from 'shared-component/dist/entity/User';
 
 
 interface LoginRequestBody {
-  username: string;
+  email: string;
   password: string;
 }
 
 const secretKey = 'custom';
 
 export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Response) => {
-  const { loginEmail, password } = req.body;
+  const { email, password } = req.body;
 
   const userRepository = AppDataSource.getRepository(User);
-  const user = await userRepository.findOne({ where: { email: loginEmail } });
+  const user = await userRepository.findOne({ where: { email: email } });
 
   if (!user || user.password !== password) {
+  console.warn("Login Fail! User:"+user.email );
+
     return res.status(401).json({ message: 'Invalid username or password' });
   }
-
+console.log("Login successful! User:"+user.email );
   // TODO: generate a JWT token and return it in the response
   // Generate a JWT token
   const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '12h' });
@@ -32,8 +34,15 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
 export const register = async (req: Request, res: Response) => {
     const { email, password, firstName, lastName, age } = req.body;
   
+    console.log("Login attempt: " + email);
+    
     // Create a new user object
     const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOne({ where: { email: email } });
+    if(user != null){
+      console.log(user);
+      return res.status(401).json({ message: 'User already exists!' });
+    }
     const newUser = new User();
     newUser.password = password;
     newUser.firstName = firstName;
