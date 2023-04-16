@@ -1,14 +1,15 @@
 # Bevezető
 
 # A rendszer célja
-
-Egy Sveltekit frontend és mysql node js backend rendszer ami könyveket tud megjeleníteni és eltárolni a felhasználóknak. A felhasználók be tudnak jelentkezni, lekérni könyveket, és kedvenceket menteni.
+A cél a Svelte frameworks  segítségével létrehozott backend-frontend és MySQL adatbázissal plussz apival összekötött webes rendszer. Az oldal ügyfelekkel fog rendelkezni. Az felhasználók saját maguk hoznak létre profilt az adatbázisban. Ezen kívűl az adatbázisban tárolhatnak egy kedvenc listát a kedvenc könyvükről. Főoldalunkon a felhasználók kiválaszthatják a számukra szükséges menüpontokat, úgy mint keresés, kedvencek lista, illetve profilbeállítások. A könyvek kategóriák szerint vannak rendezve. Regisztráció nélkül csak a könyvek keresése elérhető a saját lista, akönyvek értékelése, kommentelése nem. A felhasználókról nevüket, email címüket, jelszavukat opcionálisan képet tárolunk, ezeknek megváltoztatására lehetőségük lesz a profil zerkesztése menüpont alatt.
 
 # Projekt terv
 
 A csapat 4 fős. 1 ember a backendet csinálja, 2-en a frontendet, és 1 emeber pedig ellenőrzi a folyamatokat, és támogatást nyújt kérdéses esetekben. A csapatból mindenki felelősséggel tartozik azért, hogy a projekt időben elkészüljön és hogy az általuk elvállalt feladatok, melyek az oldal működését biztosítják jól, megfelelően működjenek. A projekt menedzserek leellenőrzik a tagok által elkészített feladatokat, hogy azok tényleg ellátják-e a funkcióikat, ha nem, akkor annak a csapattagnak a figyelmét felhívják arra, hogy nem az elvárt módon működik az adott feladat. Ezen kívül még tanáccsal látják el a tagokat, valamint újabb feladatokat adnak ki.
 
 # Üzleti folyamatok modellje
+
+A projekt egy webes felülettel, ami a megrendelő igényeinek megfelelően fog elkészülni. A rendszer létrehozásánál a Svelte framework-öt használjuk backend és frontend részen egyaránt. Adatbázisnál a MySQL-t használjuk. Az rendszernek rendelkeznie kell egy regisztrációs és egy bejelentkezési felülettettel. Itt a felhasználók adataik megadásával tudnak regisztrálni. Mindezek után tudnak csak bejelentkezni. Csak a felhasználóval rendelkezett ügyfelek tudnak saját listát létrehozni, kommentelni, és értékelni.A könyveket egy api-n keresztül töltünk be az oldalba. Mindezek alapján a cél egy olyan felület létrehozása, amelyet bárhol, bármikor bárki el tud érni. Ehhez tulajdonképpen internet kapcsolat szükséges és mivel manapság egyre több eszközön lehet netezni, ezért fontos az is, hogy minden eszközön megfelelően jelenjen meg és jól működjön.
 
 A projekt egy könyv rendszerező alkalmazás lesz, ahol rendszerezni tudják a kedvenc könyveiket a felhasználók.
 Üzleti szereplők
@@ -93,6 +94,11 @@ A tesztelés során az üzleti folyamatokhoz tartozó különböző forgatókön
 
 A rendszer alábbiakban leírt tesztelésének előfeltétele, hogy az adatbázisban phpMyAdmin segítségével felvegyünk egy első adminisztrátori jogosultsággal rendelkező felhasználót a felhasználók táblába. Felhasználónév: admin, a további adatok a fejlesztő-tesztelő személyes adatai lesznek. Ezzel belépve tudjuk tesztelni az adminisztrátori jogosultsággal rendelkező felhasználók kivételes funkcióit.
 
-## 5. Üzleti folyamatok modellje
+# Menühierarchiák
+A menürendszert egy navigációs sávban építetjük fel, a navigációs sáv alatt pedig a kiválasztott funckió/oldal jelenik meg.
 
+A rendszerbe való bejelentkezés előtt egy Belépés valamint Új fiók létrehozása gombok találhatók a navigációs sávban. További menüpontok és funckiók csak belépés után jelennek meg a felhasználók számára.
 
+Bármilyen felhasználóként regisztrációval nem rendelkező vendég felhasználó számára csak a bejelentkező felület elérhető illetve a keresés funkció.
+
+Ügyfélként belépve a rendszerbe a Kezdőlap, Keresés, Profil, Kedvencek menüpontok jelennek meg a navigációs sávban.
