@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from "../data-source";
-import * as jwt from 'jsonwebtoken';
 import { Book } from 'shared-component/dist/entity/Book';
 
 export const book = async (req: Request, res: Response) => {

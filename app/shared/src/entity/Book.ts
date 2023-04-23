@@ -1,5 +1,5 @@
 import { BuyLink } from "./BuyLink";
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm";
 import { Review } from "./Review";
 import { BookList } from "./BookList";
 
@@ -12,9 +12,11 @@ export class Book {
   book_lists: BookList[];
   
   @OneToMany(() => Review, review => review.book)
+  @JoinTable()
   reviews: Review[];
 
   @OneToMany(() => BuyLink, buyLink => buyLink.book)
+  @JoinTable()
   buy_links: BuyLink[];
   
   @Column()

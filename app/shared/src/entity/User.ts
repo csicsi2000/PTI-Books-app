@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from "typeorm"
 import { Review } from "./Review"
 import { BookList } from "./BookList"
 
@@ -27,5 +27,6 @@ export class User {
     reviews: Review[];
 
     @ManyToMany(() => BookList, bookList => bookList.user)
+    @JoinTable()
     bookLists: BookList[];
 }

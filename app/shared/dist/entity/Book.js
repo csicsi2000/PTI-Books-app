@@ -27,10 +27,12 @@ var Book = exports.Book = /** @class */ (function () {
     ], Book.prototype, "book_lists", void 0);
     __decorate([
         (0, typeorm_1.OneToMany)(function () { return Review_1.Review; }, function (review) { return review.book; }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", Array)
     ], Book.prototype, "reviews", void 0);
     __decorate([
         (0, typeorm_1.OneToMany)(function () { return BuyLink_1.BuyLink; }, function (buyLink) { return buyLink.book; }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", Array)
     ], Book.prototype, "buy_links", void 0);
     __decorate([

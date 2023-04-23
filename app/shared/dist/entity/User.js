@@ -46,6 +46,7 @@ var User = exports.User = /** @class */ (function () {
     ], User.prototype, "reviews", void 0);
     __decorate([
         (0, typeorm_1.ManyToMany)(function () { return BookList_1.BookList; }, function (bookList) { return bookList.user; }),
+        (0, typeorm_1.JoinTable)(),
         __metadata("design:type", Array)
     ], User.prototype, "bookLists", void 0);
     User = __decorate([
