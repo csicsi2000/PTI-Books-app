@@ -26,7 +26,7 @@ export class User {
     @OneToMany(() => Review, review => review.user)
     reviews: Review[];
 
-    @ManyToMany(() => BookList, bookList => bookList.user)
+    @OneToMany(() => BookList, bookList => bookList.user)
     @JoinTable()
     bookLists: BookList[];
 }

@@ -6,6 +6,7 @@ import { BuyLink } from "shared-component/dist/entity/BuyLink"
 import { Review } from "shared-component/dist/entity/Review"
 import { User } from "shared-component"
 import * as dotenv from "dotenv";
+import { Session } from "./entity/Session"
 
 dotenv.config({path:__dirname+'/.env'});
 
@@ -21,11 +22,12 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 3306,
     username: process.env.MYSQL_USER, // e.g. "testORM"
-    password: process.env.MYSQL_PASSWORD, // e.g. "test" ""
+    password: process.env.MYSQL_PASSWORD, // e.g. "test"
     database: process.env.MYSQL_DATABASE, // e.g. "book_typescript_ORM"
+    // Első alkalommal true-ra kell állítani
     synchronize: false,
     logging: true,
-    entities: [User, Book, BookList, BuyLink, Review],
+    entities: [User, Book, BookList, BuyLink, Review,Session],
     migrations: [],
     subscribers: [],
 })

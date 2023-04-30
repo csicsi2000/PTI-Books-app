@@ -9,11 +9,11 @@ export class BookList {
     id: number
 
     @ManyToOne(() => User, user => user.bookLists)
-    user: User;
+    user?: User;
 
     @ManyToMany(() => Book, book => book.book_lists)
     @JoinTable()
-    books: Book[];
+    books?: Book[];
     
     @Column()
     name: string

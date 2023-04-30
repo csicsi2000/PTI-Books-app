@@ -10,7 +10,6 @@ export function startExpress() {
   app.post("/login", login);
   app.post("/register", register);
   app.post("/book", book);
-  app.get("/book-list");
   
   new BookListCalls(app);
 
