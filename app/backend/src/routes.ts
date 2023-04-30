@@ -1,7 +1,7 @@
 import express from "express";
 import { login, register } from "./controllers/auth-controller";
-import { book } from "./controllers/book-controller";
 import { BookListCalls } from "./controllers/bookList-controller";
+import { BookCalls } from "./controllers/book-controller";
 
 export function startExpress() {
   const app: express.Application = express();
@@ -9,8 +9,8 @@ export function startExpress() {
 
   app.post("/login", login);
   app.post("/register", register);
-  app.post("/book", book);
   
+  new BookCalls(app);
   new BookListCalls(app);
 
   app.listen(3000, () => {

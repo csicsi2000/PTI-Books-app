@@ -4,7 +4,6 @@ import express from "express";
 import { User } from "shared-component";
 import { BookList } from "shared-component/dist/entity/BookList";
 import { Book } from "shared-component/dist/entity/Book";
-import { book } from "./book-controller";
 import { verify } from "./auth-controller";
 
 export class BookListCalls {
@@ -144,10 +143,15 @@ export class BookListCalls {
       where: { title: insertedBook.title },
     });
 
+    // If book not found in database, insert a new book
     if (!book) {
-      insertedBook.book_lists.push(booklist);
-      await bookRepository.save(insertedBook);
+      book = bookRepository.create(insertedBook);
+      await bookRepository.save(book);
     }
+  
+    // Insert the relationship between book and booklist
+    booklist.books.push(book);
+    await bookListRepository.save(booklist);
 
     const existingBookListBook = booklist.books.find(
       (blb) => blb.title === book.title
@@ -191,14 +195,12 @@ export class BookListCalls {
       booklist.books.splice(index, 1);
     }
 
-    await AppDataSource.createQueryBuilder()
-      .update(BookList)
-      .where({
-        id: booklist.id,
-      })
-      .set({
-        books: booklist.books,
-      }).execute();
+    await bookListRepository
+    .createQueryBuilder()
+    .relation(BookList, "books")
+    .of(booklist.id)
+    .remove(foundBook.id);
+  
 
     return res.send("Book removed from booklist");
   };
