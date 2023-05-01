@@ -9,49 +9,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Review = void 0;
 var typeorm_1 = require("typeorm");
-var Review_1 = require("./Review");
-var BookList_1 = require("./BookList");
-var User = exports.User = /** @class */ (function () {
-    function User() {
+var User_1 = require("./User");
+var Book_1 = require("./Book");
+var Review = exports.Review = /** @class */ (function () {
+    function Review() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
+    ], Review.prototype, "id", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }),
+        (0, typeorm_1.JoinColumn)({ name: "userId" }),
+        __metadata("design:type", User_1.User)
+    ], Review.prototype, "user", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Book_1.Book; }),
+        (0, typeorm_1.JoinColumn)({ name: "bookId" }),
+        __metadata("design:type", Book_1.Book)
+    ], Review.prototype, "book", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "firstName", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "lastName", void 0);
-    __decorate([
-        (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "email", void 0);
+    ], Review.prototype, "comment", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", Number)
-    ], User.prototype, "age", void 0);
+    ], Review.prototype, "rating", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
-        __metadata("design:type", String)
-    ], User.prototype, "password", void 0);
-    __decorate([
-        (0, typeorm_1.OneToMany)(function () { return Review_1.Review; }, function (review) { return review.user; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "reviews", void 0);
-    __decorate([
-        (0, typeorm_1.OneToMany)(function () { return BookList_1.BookList; }, function (bookList) { return bookList.user; }),
-        (0, typeorm_1.JoinTable)(),
-        __metadata("design:type", Array)
-    ], User.prototype, "bookLists", void 0);
-    User = __decorate([
+        __metadata("design:type", Date)
+    ], Review.prototype, "date", void 0);
+    Review = __decorate([
         (0, typeorm_1.Entity)()
-    ], User);
-    return User;
+    ], Review);
+    return Review;
 }());
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=Review.js.map
