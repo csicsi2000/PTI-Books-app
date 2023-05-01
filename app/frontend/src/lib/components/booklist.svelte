@@ -1,14 +1,11 @@
 <script lang="ts">
-	import StarSvg from '$lib/img/star.svg';
+	import StarSvg from '$lib/img/star4.svg';
 	import { selectedBook } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
 
-
 	// Initialize an empty array of Book objects
 	export let books: Book[] = [];
-	let clickedBook:Book;
 	
-
 </script>
 
 
@@ -20,9 +17,8 @@
 			<a href="/book">
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<img on:click={()=>{
-				clickedBook = book;
-				console.log(clickedBook);
-				selectedBook.set(clickedBook);
+				console.log(book);
+				selectedBook.set(book);
 			}}
 				class="card-img-top"
 				style="width: 16rem; height: 362px"
