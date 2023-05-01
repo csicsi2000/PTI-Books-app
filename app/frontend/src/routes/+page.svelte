@@ -4,9 +4,10 @@
 	// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 	//import booklist component
 	import Booklist from '$lib/components/booklist.svelte';
-	import type { Book, List } from '$lib/types/new-york-times-book/fullOverview';
+	import type { List } from '$lib/types/new-york-times-book/fullOverview';
 
 	import type { PageData } from './$types';
+	import type { Book } from 'shared-component/dist/entity/Book';
 	export let data: PageData;
 
 	function flatenPageData(data: PageData): Book[] {

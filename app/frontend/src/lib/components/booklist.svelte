@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Book } from '$lib/types/new-york-times-book/fullOverview';
 	import StarSvg from '$lib/img/star.svg';
 	import { selectedBook } from '$lib/utils/stores';
+	import type { Book } from 'shared-component/dist/entity/Book';
 
 
 	// Initialize an empty array of Book objects
