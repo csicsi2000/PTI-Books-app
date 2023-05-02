@@ -18,3 +18,7 @@ https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716?fbclid=IwAR2
 |frontend specifikus adattípusok   | ```app/frontend/src/lib/types``` | Adattypust definiáló osztályok helye.  |
 | backend kód  | ```app/backend```   | Szerveren futó alkalmazás kódja, ami kezeli az adatbázist |
 | közösen használt kód  | ```app/shared```   | olyan kódok amik közösen vannak használva. Főleg adat típus kódok|
+
+# Postman
+
+https://speeding-come.postman.co/workspace/New-Team-Workspace~7f0610a7-5f0d-45a1-87ce-4799b35f7b90/collection/26934628-ba581c3c-91e5-4a58-bd7a-ca0bcef4d4fb?action=share&creator=26934628 

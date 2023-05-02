@@ -9,33 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BookList = void 0;
+exports.BuyLink = void 0;
 var typeorm_1 = require("typeorm");
 var Book_1 = require("./Book");
-var User_1 = require("./User");
-var BookList = exports.BookList = /** @class */ (function () {
-    function BookList() {
+var BuyLink = exports.BuyLink = /** @class */ (function () {
+    function BuyLink() {
     }
     __decorate([
         (0, typeorm_1.PrimaryGeneratedColumn)(),
         __metadata("design:type", Number)
-    ], BookList.prototype, "id", void 0);
+    ], BuyLink.prototype, "id", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return User_1.User; }, function (user) { return user.bookLists; }),
-        __metadata("design:type", User_1.User)
-    ], BookList.prototype, "user", void 0);
-    __decorate([
-        (0, typeorm_1.ManyToMany)(function () { return Book_1.Book; }, function (book) { return book.book_lists; }),
-        (0, typeorm_1.JoinTable)(),
-        __metadata("design:type", Array)
-    ], BookList.prototype, "books", void 0);
+        (0, typeorm_1.ManyToOne)(function () { return Book_1.Book; }, function (book) { return book.buy_links; }),
+        __metadata("design:type", Book_1.Book)
+    ], BuyLink.prototype, "book", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], BookList.prototype, "name", void 0);
-    BookList = __decorate([
+    ], BuyLink.prototype, "name", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], BuyLink.prototype, "url", void 0);
+    BuyLink = __decorate([
         (0, typeorm_1.Entity)()
-    ], BookList);
-    return BookList;
+    ], BuyLink);
+    return BuyLink;
 }());
-//# sourceMappingURL=BookList.js.map
+//# sourceMappingURL=BuyLink.js.map

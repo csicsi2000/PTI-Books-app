@@ -5,9 +5,14 @@
   },
   "scripts": {
     "build:shared": "cd shared && npm run build && npm link",
+    
     "start:backend": "cd backend && npm link shared-component && npm run build && npm start",
     "start:frontend": "cd frontend && npm link shared-component && npm run dev",
     "dev": "npm-run-all -p build:shared start:frontend start:backend",
+
+    "sync:backend": "cd backend && npm link shared-component && npm run build",
+    "sync:frontend": "cd frontend && npm link shared-component",
+    "sync": "npm-run-all -p build:shared sync:backend sync:frontend",
 
     "install:shared": "cd shared && npm install",
     "install:backend": "cd backend && npm install",
