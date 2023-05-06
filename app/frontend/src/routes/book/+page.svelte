@@ -14,7 +14,7 @@
 {#if book}
 <div class="container mt-5 bg-light">
 	<div class="row">
-		<div class="col-lg-4 border">
+		<div class="col-lg-4">
 			<div class="card d-flex flex-column position-relative" style="width: 16rem;">
 				<img
 					data-bs-toggle="modal"
@@ -32,21 +32,23 @@
 				</small>
 			</div>
 		</div>
-		<div class="col-lg-8 border">
+		<div class="col-lg-8">
 			<h2 class="title">{book.title[0]}{book.title.substring(1).toLowerCase()}</h2>
 			<p class="md-2"> <span class="text-gold">{book.author}</span> (author) </p>
-			<p>
+			<p class="links">
 				{#if book.reviews && book.reviews.length>1}
 				<a href="" class="link-dark md-3">{book.reviews.length} Reviews </a>
 				{:else}
 				<a href="" class="link-dark md-3">0 Review </a>
 				{/if}
 				<a href="" class="link-dark md-3"> Sign in to write a review </a>
-
-
 			</p>
-			<p>{book.description}</p>
+			<p><strong>Description:</strong> {book.description}</p>
 		</div>
+	</div>
+	<div class="form-floating mt-3	">
+		<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+		<label for="floatingTextarea">Review</label>
 	</div>
 </div>
 {/if}
@@ -82,9 +84,6 @@
 		cursor: pointer;
 	}
 
-	.border{
-		border:1px solid black;
-	}
 	.text-gold {
     	color: #9e866b;
 		font-weight: bold;
@@ -96,5 +95,9 @@
     font-weight: 500;
     color: #000;
     font-size:3em
-}
+	}
+
+	.links a{
+		margin-right: 10px;
+	}
 </style>
