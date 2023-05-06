@@ -1,11 +1,16 @@
 <script lang="ts">
 	import StarSvg from '$lib/img/star4.svg';
-	import { selectedBook } from '$lib/utils/stores';
+	import { allBooks, selectedBook } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
 
 	// Initialize an empty array of Book objects
-	export let books: Book[] = [];
+	let books: Book[] = [];
 	
+	allBooks.subscribe((value: Book[]) => {
+		books = value;
+	});
+
+
 </script>
 
 

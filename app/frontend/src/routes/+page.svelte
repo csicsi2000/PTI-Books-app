@@ -5,10 +5,12 @@
 	//import booklist component
 	import Booklist from '$lib/components/booklist.svelte';
 	import Motto from '$lib/components/imagewithmotto.svelte';
-	import type { List } from '$lib/types/new-york-times-book/fullOverview';
 
 	import type { PageData } from './$types';
 	import type { Book } from 'shared-component/dist/entity/Book';
+	import { allBooks } from '$lib/utils/stores';
+	
+	
 	export let data: PageData;
 
 	function flatenPageData(data: PageData): Book[] {
@@ -28,7 +30,7 @@
 	}
 
 	let fullBookList = flatenPageData(data);
-    
+    allBooks.set(fullBookList);
 
 </script>
 
@@ -36,6 +38,6 @@
 <Motto />
 <div class="container mt-3 bg-light">
 	<div class="row">
-		<Booklist books={fullBookList} />
+		<Booklist />
 	</div>
 </div>

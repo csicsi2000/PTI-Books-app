@@ -8,7 +8,7 @@
     <div class="position-absolute top-0 start-0 w-100 h-100 text-white text-center">
         <div class="d-flex flex-column top-0 start-0 justify-content-center align-items-center h-50">
           <h2>Discover new worlds, gain knowledge <br>and expand your mind.</h2>
-          <h3 class="pt-3">Read a book every day!</h3>
+          <h1 class="pt-3">Read every day!</h1>
         </div>
       </div>
 </div>

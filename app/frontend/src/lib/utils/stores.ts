@@ -9,3 +9,5 @@ type NullableBook = Book | null;
 export const count = writable<NullableUser>(null);
 
 export const selectedBook = writable<Book>();
+
+export const allBooks = writable<Book[]>();
