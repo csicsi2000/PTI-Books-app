@@ -4,6 +4,7 @@
 	// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 	//import booklist component
 	import Booklist from '$lib/components/booklist.svelte';
+	import Motto from '$lib/components/imagewithmotto.svelte';
 	import type { List } from '$lib/types/new-york-times-book/fullOverview';
 
 	import type { PageData } from './$types';
@@ -32,6 +33,7 @@
 </script>
 
 <!-- main container-->
+<Motto />
 <div class="container mt-3 bg-light">
 	<div class="row">
 		<Booklist books={fullBookList} />
