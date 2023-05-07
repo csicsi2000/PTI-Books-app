@@ -2,6 +2,9 @@
 	import { selectedBook } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
 	import star2 from '$lib/img/star4.svg';
+	import Review from '$lib/components/review.svelte';
+	import Rating from '$lib/components/rating.svelte';
+
 
 	let book: Book;
 	selectedBook.subscribe((value: Book) => {
@@ -36,9 +39,11 @@
 			<h2 class="title">{book.title[0]}{book.title.substring(1).toLowerCase()}</h2>
 			<p class="md-2"> <span class="text-gold">{book.author}</span> (author) </p>
 			<p class="links">
-				{#if book.reviews && book.reviews.length>1}
+				{#if book.reviews && book.reviews.length>1} 
+				<Rating rating=3/>
 				<a href="" class="link-dark md-3">{book.reviews.length} Reviews </a>
 				{:else}
+				<Rating rating=3/>
 				<a href="" class="link-dark md-3">0 Review </a>
 				{/if}
 				<a href="" class="link-dark md-3"> Sign in to write a review </a>
@@ -46,13 +51,7 @@
 			<p><strong>Description:</strong> {book.description}</p>
 		</div>
 	</div>
-	<div class="form-floating mt-3 mb-3 col-12">
-		<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 80px"></textarea>
-		<label for="floatingTextarea">Review</label>
-	</div>
-	<div class="col-12">
-		<button class="btn btn-danger" type="submit">Submit review</button>
-	  </div>
+	<Review />
 </div>
 {/if}
 <!-- Modal -->
