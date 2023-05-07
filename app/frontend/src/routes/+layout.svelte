@@ -6,7 +6,7 @@
 </script>
 
 <div class="layout">
-	<NavBar/>
-
+	
+	<NavBar />	
 	<slot />
 </div>

@@ -10,9 +10,9 @@
 	}
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-danger sticky-top p-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-0">
 	<div class="container-fluid">
-		<a class="navbar-brand text-white bg-danger" href="/">
+		<a class="navbar-brand text-white bg-dark" href="/">
 			<img src={Logo} alt="Logo" class="navbar-logo mx-md-4" width="50px" />
 			<span class="navbar-text text-white fs-3"> Book Haven </span>
 		</a>
