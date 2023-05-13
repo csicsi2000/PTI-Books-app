@@ -57,6 +57,9 @@
 					<li class="nav-item">
 						<a class="nav-link text-white" href="#"> Registration </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="/testLogin"> Test </a>
+					</li>
 				{/if}
 				{#if user.loggedIn}
 				<li class="nav-item mx-md-4">
