@@ -1,6 +1,22 @@
 import { login, register } from '$lib/api/backend/authApi';
 import { authResp } from '$lib/utils/stores';	
 
+
+export function passwordMatch(value : any, form: any) {
+	if (value !== form.values.password) {
+			return { passwordMatch: true };
+	}
+}
+
+export function containNumbers(numbers: any) {
+	return function(value: any) {
+		if (value.replace(/[^0-9]/g,"").length < numbers) {
+			return { containNumbers: numbers };
+		}
+	}
+}                     
+
+
 export function loginToMyAccount(email: string, password: string ) {
     const loginRequestBody = {
         email:email,

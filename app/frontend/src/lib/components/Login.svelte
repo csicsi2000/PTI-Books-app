@@ -1,6 +1,7 @@
 <script>
+	import { containNumbers, passwordMatch } from "$lib/utils/function";
 	import { useForm, Hint, HintGroup, validators, required, minLength, email } from "svelte-use-form";
-	import { passwordMatch, containNumbers } from "./customValidators.ts";
+	
 	import { add_styles } from "svelte/internal";
 	import { authResponse } from "\/utils/stores.js";
 	
@@ -134,6 +135,22 @@
 					<h1>
 						Registration
 					</h1>
+
+					<div class="form__group field">
+						<input type="input" class="form__field" placeholder="Name" required="">
+						<label for="name" class="form__label">Name</label>
+					</div>	
+
+
+
+
+
+
+
+
+
+
+
 					<label class="label" for="name">Name</label>
 					
 					<input class="input" bind:value={name} 	on:change={visibile}>
@@ -231,57 +248,54 @@
 		grid-template-columns:auto auto;
 	}*/
 	
-	.container {
-  display: flex;
-  flex-direction: column;
 
+/*input field*/
+.input-container {
   position: relative;
+  margin: 50px auto;
+  width: 200px;
 }
 
-.container .label {
-  font-size: 15px;
-  padding-left: 10px;
+.input-container input[type="text"] {
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.input-container .label {
   position: absolute;
-  top: 13px;
-  transition: 0.3s;
+  top: 0;
+  left: 0;
+  color: #ccc;
+  transition: all 0.3s ease;
   pointer-events: none;
 }
 
-.input {
- 
-  border: none;
-  outline: none;
-  padding: 0px 7px;
-  border-radius: 6px;
-  color:black;
-  font-size: 15px;
-  background-color: transparent;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4);
+.input-container input[type="text"]:focus ~ .label,
+.input-container input[type="text"]:valid ~ .label {
+  top: -20px;
+  font-size: 16px;
+  color: #333;
 }
 
-.input:focus {
-  border: 2px solid transparent;
-  color: #fff;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+.input-container .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #333;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
 }
 
-.container .input:valid ~ .label,
-.container .input:focus ~ .label {
-  transition: 0.3s;
-  padding-left: 2px;
-  transform: translateY(-35px);
-}
-
-.container .input:valid,
-.container .input:focus {
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+.input-container input[type="text"]:focus ~ .underline,
+.input-container input[type="text"]:valid ~ .underline {
+  transform: scaleX(1);
 }
 
 

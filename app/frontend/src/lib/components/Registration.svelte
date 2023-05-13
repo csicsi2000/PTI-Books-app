@@ -1,47 +1,26 @@
 <script>
+	import { containNumbers, passwordMatch, registerMyAccount } from "$lib/utils/function";
 	import { useForm, Hint, HintGroup, validators, required, minLength, email } from "svelte-use-form";
-	import { passwordMatch, containNumbers } from "./customValidators.ts";
+	import { authResp } from '$lib/utils/stores';	
 	import { add_styles } from "svelte/internal";
 	
-	const form = useForm();
+	
 	
 	const requiredMessage = "This field is required";
 
-	let first_name = 'world';
-	let last_name = 'world';
-	let age = 'world';
+	let first_name = '';
+	let last_name = '';
+	let age=0;
+	let password = '';
+	let emailaddress='';
 	let visible = false;
 
 	function visibile(){ visible = true;}
 
 
+	const form =useForm(); 
 
-	function typewriter(node, { speed = 1 }) {
-		const valid = (
-			node.childNodes.length === 1 &&
-			node.childNodes[0].nodeType === Node.TEXT_NODE
-		);
-
-		if (!valid) {
-			throw new Error(`This transition only works on elements with a single text node child`);
-		}
-
-		const text = node.textContent;
-		const duration = text.length / (speed * 0.01);
-
-		return {
-			duration,
-			tick: t => {
-				const i = ~~(text.length * t);
-				node.textContent = text.slice(0, i);
-			}
-		};
-	}
-
-
-
-
-
+	
 </script>
 
 <div>
@@ -57,11 +36,20 @@
 		 
 		 
 		{#if visible}
-		<p class="book-reg-title" style="color:black;"  transition:typewriter>
-			Author:{first_name}{last_name}{age}
+		<div class="book-cover-title">
+		<p>Author:</p>
+		<br/>
+		<p >
+			{first_name} {last_name} 
 		</p>
+		<br/>
+		<p  >
+			{age}
+		</p>
+		<br/>
+		</div>
 		{/if}
-		<img class="cover-img"  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/193203/1111.jpg" alt="">
+		<img class="cover-img "  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/193203/1111.jpg" alt="">
 		</label>
 		
 		<label for="page-2" class="book__page book__page--4">
@@ -91,51 +79,60 @@
 		<label class="book__page book__page--2">
 		  <div class="book__page-front">
 			<div class="page__content">
-			  <h1 class="page__content-book-title">Author</h1>
+			 
 			  
 			  
-				<form use:form>
+				<form use:form on:submit|preventDefault={registerMyAccount(emailaddress, password, first_name, last_name, age)}>
 					<card class="container">
 					<h1>
 						Registration
 					</h1>
-					<label class="label" for="first-name">Name</label>
+					<label class="label" for="first-name">first-Name</label>
 					
 					<input class="input" bind:value={first_name} 	on:change={visibile}>
 
-					<label class="label" for="last-name">Name</label>
+					<label class="label" for="last-name">last-name</label>
 					
 					<input class="input" bind:value={last_name} 	on:change={visibile}>
 
 					<label  class="label" for="age">Age</label>
 					<input class="input"  type="number" name="age"  />
 					<label class="label"for="email">Email</label>
-					<input class="input" type="email" name="email" use:validators={[required, email]} />
-					<HintGroup for="email">
+					<input class="input" type="email" name="email"  bind:value={emailaddress} use:validators={[required, email]} />
+					<span class="hintgroup">
+					<HintGroup   for="email">
 						<Hint on="required">{requiredMessage}</Hint>
 						<Hint on="email" hideWhenRequired>This must be a valid email</Hint>	
 					</HintGroup>
+					</span>
 					<label class="label"for="password">Password</label>
 					<input class="input" type="password" name="password" use:validators={[required, minLength(5), containNumbers(2)]} />
+					<span class="hintgroup">
 					<HintGroup for="password">
 						<Hint on="required">{requiredMessage}</Hint>
 						<Hint on="minLength" hideWhenRequired let:value>This field must have at least {value} characters.</Hint>	
 						<Hint on="containNumbers" hideWhen="minLength" let:value>
+							
 						This field must contain at least {value} numbers.
 						</Hint>	
 					</HintGroup>
+				</span>
+				
 					<label class="label" for="passwordConfirmation">Password Confirmation</label>
 					<input class="input" type="password" name="passwordConfirmation" use:validators={[required, passwordMatch]} />
+					<span class="hintgroup">
 					<HintGroup for="passwordConfirmation">
 						<Hint on="required">{requiredMessage}</Hint>
 						<Hint on="passwordMatch" hideWhenRequired>Passwords do not match</Hint>	
-					</HintGroup><br />
-					<button disabled={!$form.valid} on:click|preventDefault>
-						Submit
+					</HintGroup>
+				</span><br />
+					<button type="submit" disabled={!$form.valid} >
+						<span class="button_top"> Submit
+						</span>
 					</button>
 					</card>
 					</form>
-					
+					   
 			
 				
 			</div>
@@ -179,6 +176,76 @@
 	
 
 <style>
+
+.hintgroup{
+	z-index: 20;
+
+
+  color:red;
+
+  
+}
+
+/*button*/
+button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #e8e8e8;
+  --button_outline_color: #000000;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+/*button*/
+
+/*input*/
+.input {
+
+  outline: none;
+  border-radius: 15px;
+padding-left: 3%;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+.input:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696,
+             -13px -13px 100px #ffffff;
+}
+
+/*input*/
+
+
+
+
 	:global(.touched:invalid) {
 		border-color: red;
 		outline-color: red;
@@ -195,68 +262,22 @@
 		overflow:hidden;
 		flex-wrap:wrap;	
 	}
-	/*.container {
-		display:grid;
-		grid-template-columns:auto auto;
-	}*/
-	
 	.container {
-  display: flex;
-  flex-direction: column;
-
-  position: relative;
-}
-
-.container .label {
-  font-size: 15px;
-  padding-left: 10px;
-  position: absolute;
-  top: 13px;
-  transition: 0.3s;
-  pointer-events: none;
-}
-
-.input {
- 
-  border: none;
-  outline: none;
-  padding: 0px 7px;
-  border-radius: 6px;
-  color:black;
-  font-size: 15px;
-  background-color: transparent;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
-
-.input:focus {
-  border: 2px solid transparent;
-  color: #fff;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
-
-.container .input:valid ~ .label,
-.container .input:focus ~ .label {
-  transition: 0.3s;
-  padding-left: 2px;
-  transform: translateY(-35px);
-}
-
-.container .input:valid,
-.container .input:focus {
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
-
-
-
-	.book-reg-title{
-		color:white;
+		
+	
+		display:flex;
+		flex-direction:column;
+		height:100%;
+		justify-content:center;
+		align-items:center;
+		position:relative;
+		overflow: hidden;
+		flex-wrap:wrap;	
+		
+	}
+	.book-cover-title{
+		padding:5px;
+		color:rgb(73, 73, 73);
 		display:flex;
 		flex-direction:column;
 		height:100%;
@@ -266,8 +287,26 @@
 		overflow:hidden;
 		flex-wrap:wrap;	
 		position: absolute;
-		z-index: 99;
+	
+		font-family: "Brush Script MT", cursive; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+	}
 
+
+
+
+
+	.book-reg-title{
+		color:white;
+		display:flex;
+		flex-direction:column;
+		height:50%;
+		justify-content:center;
+		align-items:center;
+		position:relative;
+		overflow:hidden;
+		flex-wrap:wrap;	
+		position: absolute;
+	
 		font-family: "Brush Script MT", cursive; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
 	}
 	.cover-img{
@@ -294,18 +333,11 @@
  * {
 	 box-sizing: border-box;
 }
- body {
-	 background-color: var(--body-bg);
-	 height: 100vh;
-	 display: flex;
-	 flex-direction: column;
-	 align-items: center;
-	 justify-content: center;
-}
+
  .cover {
-	margin: calc(var(--baseline) *2);;
+	margin: calc(var(--baseline) *2);
 	 width: calc(var(--baseline) * 60);
-	 height: calc(var(--baseline) * 42.6);
+	 height: calc(var(--baseline) * 50);
 	 box-shadow: 0 0 100px rgba(0, 0, 0, .3);
 }
  .book {
@@ -358,10 +390,13 @@
 	 transform: rotateY(180deg) translateZ(1px);
 }
  .book__page .page__content {
-	 
+
+	overflow: hidden;
 	 height: 100%;
 	 position: relative;
 	 text-align: center;
+	
+ 
 }
  .book__page .page__content-book-title {
 	 font-family: var(--book-title);
