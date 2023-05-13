@@ -3,6 +3,7 @@ import { AppDataSource } from "../data-source";
 import * as jwt from 'jsonwebtoken';
 import { User } from 'shared-component/dist/entity/User';
 import { Session } from '../entity/Session';
+import * as bcrypt from 'bcryptjs';
 
 
 interface LoginRequestBody {
@@ -18,7 +19,10 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
 
-  if (!user || user.password !== password) {
+  let result:boolean = bcrypt.compare(password, user.password)
+
+  console.log(user.password);
+  if (!user || !result) {
     console.warn("Login Fail! User:"+user.email );
 
     return res.status(401).json({ message: 'Invalid username or password' });
@@ -54,10 +58,11 @@ export const register = async (req: Request, res: Response) => {
     console.log(user);
     return res.status(401).json({ message: 'User already exists!' });
   }
+  const hashedPassword:string  = await bcrypt.hash(password,10);
 
   // Create a new user object
   const newUser = new User();
-  newUser.password = password;
+  newUser.password = hashedPassword;
   newUser.firstName = firstName;
   newUser.lastName = lastName;
   newUser.email = email;
@@ -76,7 +81,9 @@ export const register = async (req: Request, res: Response) => {
   session.user = newUser;
   await sessionRepository.save(session);
 
-  let id = user.id;
+  const createdUser = await userRepository.findOne({ where: { email: email } });
+
+  let id = createdUser.id;
 
   // Send the token back to the client
   res.send({ token,id });
