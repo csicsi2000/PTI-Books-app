@@ -43,7 +43,7 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
   let id = user.id;
 
   // Send the token back to the client
-  res.send({ token,id });
+  res.send({ token,user });
 };
 
 export const register = async (req: Request, res: Response) => {
@@ -86,7 +86,7 @@ export const register = async (req: Request, res: Response) => {
   let id = createdUser.id;
 
   // Send the token back to the client
-  res.send({ token,id });
+  res.send({ token,user });
 }
 
 export const verify =async (token: string) => {
