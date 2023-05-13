@@ -29,10 +29,7 @@ export class BookCalls {
     const bookRepository = AppDataSource.getRepository(Book);
     const book = await bookRepository.findOne({
       where: { id: bookId },
-      relations: {
-        reviews:true,
-        buy_links: true
-      },
+      relations: ["reviews","reviews.user","buy_links"]
     });
   
     if (!book) {
