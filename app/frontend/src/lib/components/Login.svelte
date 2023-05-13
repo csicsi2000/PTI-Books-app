@@ -2,15 +2,17 @@
 	import { useForm, Hint, HintGroup, validators, required, minLength, email } from "svelte-use-form";
 	import { passwordMatch, containNumbers } from "./customValidators.ts";
 	import { add_styles } from "svelte/internal";
+	import { authResponse } from "\/utils/stores.js";
 	
 	const form = useForm();
 	
 	const requiredMessage = "This field is required";
 
-	let first_name = 'world';
-	let last_name = 'world';
-	let age = 'world';
+	
 	let visible = false;
+
+
+
 
 	function visibile(){ visible = true;}
 
@@ -40,6 +42,39 @@
 
 
 
+	function loginAccount(){
+		const loginRequestBody={
+			email:email,
+			password:password
+		};
+	}
+
+	
+	let email = '';
+	let password = '';
+
+
+	function loginToMyAccount() {
+		const loginRequestBody = {
+			email: email,
+			password: password
+		};
+
+		login(loginRequestBody)
+			.then((authResponse) => {
+				authResp.set(authResponse);
+				navigate("/test");
+				alert(Logged in with token ${authResponse.token} and user ID ${authResponse.id}.);
+			})
+			.catch((error) => {
+				alert(Error logging in: ${loginRequestBody.email});
+			});
+	};
+
+
+
+
+
 
 
 </script>
@@ -58,7 +93,7 @@
 		 
 		{#if visible}
 		<p class="book-reg-title" style="color:black;"  transition:typewriter>
-			Author:{first_name}{last_name}{age}
+			Author:{name}{age}
 		</p>
 		{/if}
 		<img class="cover-img"  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/193203/1111.jpg" alt="">
@@ -99,18 +134,14 @@
 					<h1>
 						Registration
 					</h1>
-					<label class="label" for="first-name">Name</label>
+					<label class="label" for="name">Name</label>
 					
-					<input class="input" bind:value={first_name} 	on:change={visibile}>
-
-					<label class="label" for="last-name">Name</label>
-					
-					<input class="input" bind:value={last_name} 	on:change={visibile}>
+					<input class="input" bind:value={name} 	on:change={visibile}>
 
 					<label  class="label" for="age">Age</label>
 					<input class="input"  type="number" name="age"  />
-					<label class="label"for="email">Email</label>
-					<input class="input" type="email" name="email" use:validators={[required, email]} />
+					<label class="label"for="email" >Email</label>
+					<input class="input" type="email" name="email" bind:value={email} />
 					<HintGroup for="email">
 						<Hint on="required">{requiredMessage}</Hint>
 						<Hint on="email" hideWhenRequired>This must be a valid email</Hint>	
@@ -255,6 +286,10 @@
 
 
 
+
+
+
+	
 	.book-reg-title{
 		color:white;
 		display:flex;

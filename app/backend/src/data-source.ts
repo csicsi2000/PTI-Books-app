@@ -4,9 +4,9 @@ import { Book } from "shared-component/dist/entity/Book"
 import { BookList } from "shared-component/dist/entity/BookList"
 import { BuyLink } from "shared-component/dist/entity/BuyLink"
 import { Review } from "shared-component/dist/entity/Review"
-import { User } from "shared-component"
 import * as dotenv from "dotenv";
 import { Session } from "./entity/Session"
+import { User } from "shared-component/dist/entity/User"
 
 dotenv.config({path:__dirname+'/.env'});
 

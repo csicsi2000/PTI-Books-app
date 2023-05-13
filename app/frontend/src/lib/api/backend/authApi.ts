@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-interface AuthResponse {
+export interface AuthResponse {
   token: string;
   id: number;
 }
