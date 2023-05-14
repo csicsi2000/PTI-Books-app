@@ -13,7 +13,7 @@
 				<div class="row g-0">
 					<div class=" d-flex align-items-center">
 						<div class="card-body p-4 p-lg-5 text-black">
-							<form>
+							<form action="/">
 								<h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
 									Sign into your account
 								</h5>
@@ -41,7 +41,7 @@
 								<div class="pt-1 mb-4">
 									<button
 										class="btn btn-dark btn-lg btn-block"
-										type="button"
+										type="submit"
 										on:click={()=>{
 											loginToMyAccount(email, password);
 										}}

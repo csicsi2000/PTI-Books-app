@@ -1,9 +1,14 @@
 <script lang="ts">
-	import { selectedBook } from '$lib/utils/stores';
+	import { authResp, selectedBook } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
-	import Review from '$lib/components/review.svelte';
+	import ReviewForm from '$lib/components/reviewForm.svelte';
 	import Rating from '$lib/components/rating.svelte';
-
+	import type { AuthResponse } from '$lib/api/backend/authApi';
+	
+	let resp: AuthResponse;
+	authResp.subscribe((value:AuthResponse) => {
+		resp = value;
+	})
 
 	let book: Book;
 	selectedBook.subscribe((value: Book) => {
@@ -69,7 +74,7 @@
 			<a href={book.buy_links[4].url} class="buyLink">{book.buy_links[4].name}</a>
 		</div>
 	</div>
-	<Review />
+	<ReviewForm bookId={book.primary_isbn10}/>
 </div>
 {/if}
 <!-- Modal -->

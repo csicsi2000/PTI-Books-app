@@ -1,4 +1,5 @@
 import { login, register } from '$lib/api/backend/authApi';
+import { postReview } from '$lib/api/backend/bookApi';
 import { authResp } from '$lib/utils/stores';	
 
 export function loginToMyAccount(email: string, password: string ) {
@@ -10,7 +11,6 @@ export function loginToMyAccount(email: string, password: string ) {
     login(loginRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.id}.`);
         })
         .catch((error) => {
             alert(`Error logging in: ${loginRequestBody.email}`);
@@ -30,7 +30,7 @@ export function registerMyAccount(email: string, password: string, firstName: st
     register(registerRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.id}.`);
+            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
         })
         .catch((error) => {
             alert(`Error logging in: ${error.message}`);

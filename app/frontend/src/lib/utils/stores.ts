@@ -13,4 +13,4 @@ export const selectedBook = writable<Book>();
 
 export const allBooks = writable<Book[]>();
 
-export const authResp = writable<NullableRespons>();
+export const authResp = writable<AuthResponse>();
