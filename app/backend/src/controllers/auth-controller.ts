@@ -70,6 +70,7 @@ export const register = async (req: Request, res: Response) => {
 
   // Save the user to the database
   await userRepository.save(newUser);
+  console.log(newUser);
 
   // Generate a JWT token
   const token = jwt.sign({ userId: newUser.id }, secretKey, { expiresIn: '12h' });
@@ -83,10 +84,8 @@ export const register = async (req: Request, res: Response) => {
 
   const createdUser = await userRepository.findOne({ where: { email: email } });
 
-  let id = createdUser.id;
-
   // Send the token back to the client
-  res.send({ token,user });
+  res.send({ token,createdUser });
 }
 
 export const verify =async (token: string) => {
