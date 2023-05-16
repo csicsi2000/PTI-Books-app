@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
     database: process.env.MYSQL_DATABASE, // e.g. "book_typescript_ORM"
     // Első alkalommal true-ra kell állítani
     synchronize: false,
-    logging: true,
+    logging: false,
     entities: [User, Book, BookList, BuyLink, Review,Session],
     migrations: [],
     subscribers: [],

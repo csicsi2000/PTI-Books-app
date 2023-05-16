@@ -28,7 +28,7 @@ export class BookCalls {
   
     const bookRepository = AppDataSource.getRepository(Book);
     const book = await bookRepository.findOne({
-      where: { id: bookId },
+      where: { primary_isbn13: bookId },
       relations: ["reviews","reviews.user","buy_links"]
     });
   
@@ -49,30 +49,36 @@ export class BookCalls {
     verify(token);
   
     const { userId } = req.params;
-    const { bookId, comment, rating } = req.body;
+    const { book, comment, rating } = req.body;
+    console.log(req.body);
+    console.log("comment: " +comment)
+    let reviewedBook: Book = book;
   
     const userRepository = AppDataSource.getRepository(User);
     const bookRepository = AppDataSource.getRepository(Book);
     const reviewRepository = AppDataSource.getRepository(Review);
   
     const user = await userRepository.findOne({where: {id: userId}});
-    const book = await bookRepository.findOne({where: {id: bookId}});
+    let existingBook = await bookRepository.findOne({where: {primary_isbn13: reviewedBook.primary_isbn13}});
   
     if (!user) {
       return res.status(404).send('User not found');
     }
   
-    if (!book) {
-      return res.status(404).send('Book not found');
+    if(!existingBook){
+      console.log("Book does not exist");
+      existingBook = reviewedBook;
+      bookRepository.save(existingBook);
     }
-  
+
     const review = new Review();
     review.user = user;
-    review.book = book;
+    review.book = existingBook;
     review.comment = comment;
     review.rating = rating;
     review.date = new Date();
   
+    console.log(review);
     await reviewRepository.save(review);
   
     return res.send('Review added successfully');

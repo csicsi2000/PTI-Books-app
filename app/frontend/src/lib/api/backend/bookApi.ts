@@ -5,8 +5,8 @@ import { BASE_URL, getToken } from "./authApi";
 
 const apiUrl = BASE_URL;
 
-export const getBook = async (bookId: string): Promise<Book> => {
-  const response: AxiosResponse<Book> = await axios.get(`${apiUrl}/books/${bookId}`, {
+export const getBook = async (isbn13bookId: string): Promise<Book> => {
+  const response: AxiosResponse<Book> = await axios.get(`${apiUrl}/books/${isbn13bookId}`, {
     headers: { Authorization: `Bearer ${getToken()}` },
   });
   return response.data;
@@ -14,13 +14,13 @@ export const getBook = async (bookId: string): Promise<Book> => {
 
 export const postReview = async (
   userId: string,
-  bookId: string,
+  book: Book,
   comment: string,
   rating: number
 ): Promise<string> => {
   const response: AxiosResponse<string> = await axios.post(
     `${apiUrl}/books/${userId}/reviews`,
-    { bookId, comment, rating },
+    { book, comment, rating },
     { headers: { Authorization: `Bearer ${getToken()}` } }
   );
   return response.data;
