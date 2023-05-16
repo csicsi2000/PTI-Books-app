@@ -1,97 +1,105 @@
 
 <script>
+	import { authResp } from '$lib/utils/stores';
+
+	
     import Profil_visual from './Profil_visual.svelte';
-	//pelda
-	let people = [
-		{ first: 'Hans', last: 'Emil' },
-		{ first: 'Max', last: 'Mustermann' },
-		{ first: 'Roman', last: 'Tisch' }
-	];
+	
+	let FavBooks = [{}];
+	
+	let user=authResp;
 
 	let prefix = '';
 	let first = '';
 	let last = '';
-	let i = 0;
+	let age = 0;
 
 
 
 
-    
-	$: filteredPeople = prefix
-		? people.filter(person => {
-			const name = `${person.last}, ${person.first}`;
-			return name.toLowerCase().startsWith(prefix.toLowerCase());
-		})
-		: people;
+  
 
-	$: selected = filteredPeople[i];
+	
 
-	$: reset_inputs(selected);
-
-	function create() {
-		people = people.concat({ first, last });
-		i = people.length - 1;
-		first = last = '';
-	}
+	
 
 	function update() {
-		selected.first = first;
-		selected.last = last;
-		people = people;
+		first = "authResp."
+		last = "user.last_name;"
+		
 	}
 
 	function remove() {
-		// Remove selected person from the source array (people), not the filtered array
-		const index = people.indexOf(selected);
-		people = [...people.slice(0, index), ...people.slice(index + 1)];
-
-		first = last = '';
-		i = Math.min(i, filteredPeople.length - 2);
+		
 	}
 
-	function reset_inputs(person) {
-		first = person ? person.first : '';
-		last = person ? person.last : '';
-	}
+
 </script>
+
+
+
+
+
 
 <input placeholder="filter prefix" bind:value={prefix}>
 
-<select bind:value={i} size={5}>
-	{#each filteredPeople as person, i}
-		<option value={i}>{person.last}, {person.first}</option>
-	{/each}
-</select>
 
-<label><input bind:value={first} placeholder="first"></label>
-<label><input bind:value={last} placeholder="last"></label>
+<label class="label"for="password">Name</label>
+<label><input class="input" bind:value={first} placeholder="first"></label>
+<label><input class="input" bind:value={last} placeholder="last"></label>
 
 <div class='buttons'>
-	<button on:click={create} disabled="{!first || !last}">create</button>
-	<button on:click={update} disabled="{!first || !last || !selected}">update</button>
-	<button on:click={remove} disabled="{!selected}">delete</button>
+	
+	<button class="btn" on:click={update} >Edit</button>
+	<button class="btn" on:click={remove} >delete</button>
 </div>
 
 <style>
-	* {
-		font-family: inherit;
-		font-size: inherit;
-	}
+	
 
-	input {
-		display: block;
-		margin: 0 0 0.5em 0;
-	}
 
-	select {
-		float: left;
-		margin: 0 1em 1em 0;
-		width: 14em;
-	}
 
-	.buttons {
-		clear: both;
-	}
+
+	.btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  font-size: 18px;
+  background-color: rgba(13, 13, 13, 0.3);
+  padding: 0.4em 1.2em;
+  border-style: dashed;
+  border-radius: 0.25em;
+  border-width: 2px;
+  border-color: rgba(13, 13, 13, 0.75);
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background-color: rgb(255, 255, 255);
+  color: #0d0d0d;
+  border-color: #0d0d0d;
+}
+.input {
+  max-width: 190px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+  color: #555;
+  padding: 15px 5px 10px 20px;
+  box-shadow: inset 8px 8px 8px #cbced1,
+              inset -8px -8px 8px #ffffff;
+  border-radius: 25px;
+}
+
+.input::placeholder {
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.input:focus::placeholder {
+  color: #999;
+}
+
 </style>
 
 

@@ -51,8 +51,11 @@
 			</ul>
 			<ul class="navbar-nav mx-md-4">
 				{#if !user.loggedIn}
+				<li class="nav-item mx-md-4">
+					<a class="nav-link text-white btns" href="/SignSites" on:click={toggle}> sign Sites </a>
+				</li>
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="#" on:click={toggle}> Login </a>
+						<a class="nav-link text-white btns" href="/Login" on:click={toggle}> Login </a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
@@ -63,7 +66,7 @@
 					<a class="nav-link text-white btns" href="#"> Favourite Books </a>
 				</li>
 				<li class="nav-item mx-md-4">
-					<a class="nav-link text-white btns" href="Profile"> Profile </a>
+					<a class="nav-link text-white btns" href="/Profile"> Profile </a>
 				</li>
 					<li class="nav-item mx-md-4">
 						<a class="nav-link text-white btns" href="#" on:click={toggle}> Logout </a>

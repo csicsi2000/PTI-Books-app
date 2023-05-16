@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { User } from 'shared-component';
+import type { User } from 'shared-component/dist/entity/User';
 
 export interface AuthResponse {
   token: string;
@@ -25,7 +25,7 @@ export const login = async (data: LoginRequestBody): Promise<AuthResponse> => {
   const response = await axios.post<AuthResponse>(`${BASE_URL}/login`, data);
   const { token, user } = response.data;
   localStorage.setItem('token', token);
-  localStorage.setItem('userId', String(user));
+  localStorage.setItem('user', String(user));
   return { token, user };
 };
 
@@ -46,7 +46,7 @@ export const getToken = () => {
   return localStorage.getItem('token');
 };
 
-export const getuserId = () => {
+export const getUserId = () => {
   return parseInt(localStorage.getItem('userId') || '0');
 };
 

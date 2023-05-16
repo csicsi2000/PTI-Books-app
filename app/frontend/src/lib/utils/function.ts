@@ -26,10 +26,14 @@ export function loginToMyAccount(email: string, password: string ) {
     login(loginRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.id}.`);
+            console.log(authResponse);
+            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
         })
         .catch((error) => {
+            console.log(loginRequestBody);
+          
             alert(`Error logging in: ${loginRequestBody.email}`);
+            console.log({message: error.message});
         });
 };
 
@@ -46,7 +50,7 @@ export function registerMyAccount(email: string, password: string, firstName: st
     register(registerRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.id}.`);
+            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
         })
         .catch((error) => {
             alert(`Error logging in: ${error.message}`);

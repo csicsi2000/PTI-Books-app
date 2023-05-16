@@ -13,6 +13,7 @@
 	let age=0;
 	let password = '';
 	let emailaddress='';
+	
 	let visible = false;
 
 	function visibile(){ visible = true;}
@@ -25,7 +26,7 @@
 
 <div>
 
-	<div class="cover">
+	<!-- <div class="cover">
 		<div class="book">
 
 
@@ -53,7 +54,7 @@
 		</label>
 		
 		<label for="page-2" class="book__page book__page--4">
-		 <!-- <div class="page__content">
+		<div class="page__content">
 			<h1 class="page__content-title">I</h1>
 			<div class="page__content-blockquote">
 			  <p class="page__content-blockquote-text">HARI SELDON — . . . born in the 11,988th year of the Galactic Era; died 12,069. The dates are more commonly given in terms of the current Foundational Era as -79 to the year 1 F.E. Born to middle-class parents on Helicon, Arcturus sector (where his father, in a legend of doubtful authenticity, was a tobacco grower in the hydroponic plants of the planet), he early showed amazing ability in mathematics. Anecdotes concerning his ability are innumerable, and some are contradictory. At the age of two, he is said to have. . . </p>
@@ -68,17 +69,17 @@
 			  <p>To Gaal, this trip was the undoubted climax of his young, scholarly life. He had been in space before so that the trip, as a voyage and nothing more, meant little to him. To be sure, he had traveled previously only as far as Synnax's only satellite in order to get the data on the mechanics of meteor driftage which he needed for his dissertation, but space-travel was all one whether one travelled half a million miles, or as many light years. </p>
 			</div>
 			<div class="page__number">3</div>
-		  </div> -->
+		  </div> 
 		</label>
 		  
 		
 		  
-		<!-- Goes to the second page -->
+	 Goes to the second page 
 		
 
 		<label class="book__page book__page--2">
 		  <div class="book__page-front">
-			<div class="page__content">
+			<div class="page__content"> -->
 			 
 			  
 			  
@@ -96,8 +97,10 @@
 					<input class="input" bind:value={last_name} 	on:change={visibile}>
 
 					<label  class="label" for="age">Age</label>
-					<input class="input"  type="number" name="age"  />
-					<label class="label"for="email">Email</label>
+					<input class="input"  type="number" name="age" bind:value={age} />
+
+
+					<label class="label" for="email">Email</label>
 					<input class="input" type="email" name="email"  bind:value={emailaddress} use:validators={[required, email]} />
 					<span class="hintgroup">
 					<HintGroup   for="email">
@@ -135,40 +138,17 @@
 					   
 			
 				
-			</div>
-		  </div>
+			<!-- </div>
+		  </div> -->
 
 
 
 
 
-		<!--  <div class="book__page-back">
-			<div class="page__content">
-			  <h1 class="page__content-title">Contents</h1>
-			  <table class="page__content-table">
-				<tr>
-				  <td align="left">Part I</td><td align="left">The Psycohistorians</td><td align="right">3</td>
-				</tr>
-				<tr>
-				  <td align="left">Part II</td><td align="left">The Encyclopedists</td><td align="right">43</td>
-				</tr>
-				<tr>
-				  <td align="left">Part III</td><td align="left">The Mayors</td><td align="right">87</td>
-				</tr>
-				<tr>
-				  <td align="left">Part IV</td><td align="left">The Traders</td><td align="right">147</td>
-				</tr>
-				<tr>
-				  <td align="left">Part V</td><td align="left">The Merchant Princes</td><td align="right">173</td>
-				</tr>
-			  </table>
-			  
-			  <div class="page__number">2</div>
-			</div>
-		  </div>-->
-		</label>
-	  </div>
-	  </div>
+	
+		<!-- </label> -->
+	  <!-- </div>
+	  </div> -->
 	  
 
 	
