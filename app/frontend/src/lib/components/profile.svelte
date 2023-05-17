@@ -2,13 +2,12 @@
 <script>
 	import { authResp } from '$lib/utils/stores';
 
-	
-    import Profil_visual from './Profil_visual.svelte';
+
 	
 	let FavBooks = [{}];
 	
 	let user=authResp;
-
+  alert(`Logged in with  ${authResp}`);
 	let prefix = '';
 	let first = '';
 	let last = '';
@@ -40,19 +39,24 @@
 
 
 
-
-<input placeholder="filter prefix" bind:value={prefix}>
+<div>
 
 
 <label class="label"for="password">Name</label>
-<label><input class="input" bind:value={first} placeholder="first"></label>
-<label><input class="input" bind:value={last} placeholder="last"></label>
+<label><input class="input" bind:value={first} placeholder={first}></label>
+
+
+
+<label><input class="input" bind:value={last} placeholder={last}></label>
 
 <div class='buttons'>
 	
 	<button class="btn" on:click={update} >Edit</button>
 	<button class="btn" on:click={remove} >delete</button>
 </div>
+
+</div>
+
 
 <style>
 	
@@ -100,20 +104,24 @@
   color: #999;
 }
 
+
+div{
+	
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  flex-wrap:wrap;	
+}
+
+
+
+
+
 </style>
 
 
 
-
-
-<Profil_visual>
-	<span slot="name">
-		{first} {last}
-		T. Árpád
-	</span>
-
-	<span slot="email">
-		Dune<br>
-		Dune2
-	</span>
-</Profil_visual>

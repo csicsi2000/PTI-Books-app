@@ -1,13 +1,22 @@
 <script>
-	import { containNumbers, loginToMyAccount } from "$lib/utils/function";
-	import { useForm,  validators, required, minLength, email } from "svelte-use-form";
+	import { containNumbers, loginToMyAccount,relocation } from "$lib/utils/function";
+	import { useForm,  validators, required, minLength, email, HintGroup, Hint } from "svelte-use-form";
 	import { authResp } from '$lib/utils/stores';	
 	import { add_styles } from "svelte/internal";
 	
 	
-	
-	
 
+
+
+	 function submitCall(){
+		console.log('egyből');
+		loginToMyAccount(emailaddress, password);
+		relocation("/Profile");
+	}
+	function handleSubmit() {
+        // console.log('this logs with every submit')
+        // this prevents default submit behaviour
+    }
 
 	let password = '';
 	let emailaddress='';
@@ -33,7 +42,7 @@
 			 
 			  
 			  
-				<form use:form on:submit|preventDefault={loginToMyAccount(emailaddress, password)}>
+				<form use:form on:submit|preventDefault={submitCall} >
 					<card class="container">
 					<h1>
 						LogIn
@@ -42,12 +51,15 @@
 					<label class="label"for="email">Email</label>
 					<input class="input" type="email" name="email"  bind:value={emailaddress} use:validators={[required, email]} />
 					<span class="hintgroup">
-					
+						<HintGroup for="email">
+							<Hint on="required">This is a mandatory field</Hint>
+							<Hint on="email" hideWhenRequired>Email is not valid</Hint>
+						  </HintGroup>
 					</span>
 					<label class="label"for="password">Password</label>
 					<input class="input" type="password" name="password" use:validators={[required, minLength(5), containNumbers(2)]} />
 					<span class="hintgroup">
-					
+						<Hint for="password" on="required">This is a mandatory field</Hint>
 				</span>
 				
 					<br />
