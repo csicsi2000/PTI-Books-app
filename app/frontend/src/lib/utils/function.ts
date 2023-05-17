@@ -56,3 +56,9 @@ export function registerMyAccount(email: string, password: string, firstName: st
             alert(`Error logging in: ${error.message}`);
         });
 };
+
+
+
+export function relocation (direction: string) {
+    window.location.replace(direction);
+};
