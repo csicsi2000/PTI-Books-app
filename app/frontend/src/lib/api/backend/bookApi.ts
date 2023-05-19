@@ -14,13 +14,13 @@ export const getBook = async (isbn13bookId: string): Promise<Book> => {
 
 export const postReview = async (
   userId: string,
-  bookId: string,
+  book: Book,
   comment: string,
   rating: number
 ): Promise<string> => {
   const response: AxiosResponse<string> = await axios.post(
     `${apiUrl}/books/${userId}/reviews`,
-    { bookId, comment, rating },
+    { book, comment, rating },
     { headers: { Authorization: `Bearer ${getToken()}` } }
   );
   return response.data;
