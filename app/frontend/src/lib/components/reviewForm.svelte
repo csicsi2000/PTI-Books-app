@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { AuthResponse } from '$lib/api/backend/authApi';
-	import { authResp } from '$lib/utils/stores';
+	import { authResp, selectedBook } from '$lib/utils/stores';
 	import Rating from './rating.svelte';
 	import Review from './review.svelte';
 	import { postReview } from '$lib/api/backend/bookApi';
+	import type { Book } from 'shared-component/dist/entity/Book';
+
 
     let reviewTitle:string;
     let review:string;
@@ -16,14 +18,21 @@
 		}
 	});
 
-    export let bookId: string;
+	let bookToReview: Book;
+	selectedBook.subscribe((value: Book) => {
+		if(value != null)
+		{
+			bookToReview = value;
+		}
+	});
+
     let rating = 0;
 
 	function submitMyReview() {
         let reviewToPost = 
             "<h5 class='card-title'>" + reviewTitle + "</h5>" + 
             "<p class='card-text'>" + review + "</p>";
-		postReview("1", "1", reviewToPost, 5)
+		postReview(userId.toString(), bookToReview, reviewToPost, 5)
 			.then((string) => {
 				
 			})
@@ -31,12 +40,9 @@
 				alert(`Error submitting review`);
 			});
 	}
-
-	
-	
 </script>
 
-<Review {bookId} />
+<Review bookisbn13={bookToReview.primary_isbn13} />
 {#if Number(userId) >0}
 <form class="row g-3 mt-3 mb-3" action="/book">
 	<div class="col-4">

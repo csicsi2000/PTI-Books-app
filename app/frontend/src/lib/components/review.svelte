@@ -3,12 +3,12 @@
 	import Rating from "./rating.svelte";
 	import { getBook } from "$lib/api/backend/bookApi";
 	import type { Review } from "shared-component/dist/entity/Review";
-    export let bookId:string;
+    export let bookisbn13:string;
 
     let bookReviews: Review[] = [];
 
 
-    getBook("1")
+    getBook(bookisbn13)
         .then((book) => {
             bookReviews = book.reviews;
         })

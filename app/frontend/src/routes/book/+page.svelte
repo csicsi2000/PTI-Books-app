@@ -74,7 +74,7 @@
 			<a href={book.buy_links[4].url} class="buyLink">{book.buy_links[4].name}</a>
 		</div>
 	</div>
-	<ReviewForm bookId={book.primary_isbn10}/>
+	<ReviewForm />
 </div>
 {/if}
 <!-- Modal -->
