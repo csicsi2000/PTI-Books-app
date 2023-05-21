@@ -1,5 +1,5 @@
-<script>
-	import { containNumbers, passwordMatch, registerMyAccount } from "$lib/utils/function";
+<script lang="ts">
+	import { containNumbers, passwordMatch, registerMyAccount, relocation } from "$lib/utils/function";
 	import { useForm, Hint, HintGroup, validators, required, minLength, email } from "svelte-use-form";
 	import { authResp } from '$lib/utils/stores';	
 	import { add_styles } from "svelte/internal";
@@ -20,7 +20,11 @@
 
 
 	const form =useForm(); 
-
+	function submitCall() {
+		//console.log('egyből');
+		registerMyAccount(emailaddress, password, first_name, last_name, age)
+		relocation("/Profile");
+	}
 	
 </script>
 
@@ -83,7 +87,7 @@
 			 
 			  
 			  
-				<form use:form on:submit|preventDefault={registerMyAccount(emailaddress, password, first_name, last_name, age)} action="/Profile">
+				<form use:form on:submit|preventDefault={submitCall()} >
 					<card class="container">
 					<h1>
 						Registration

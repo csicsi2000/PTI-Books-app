@@ -17,6 +17,7 @@
 	function submitCall() {
 		//console.log('egyből');
 		loginToMyAccount(emailaddress, password);
+		relocation("/Profile");
 	}
 	function handleSubmit() {
 		// console.log('this logs with every submit')
@@ -36,7 +37,7 @@
 
 <div>
 	<div>
-		<form use:form on:submit|preventDefault={submitCall} action="/Profile">
+		<form use:form on:submit|preventDefault={submitCall} >
 			<card class="container">
 				<h1>LogIn</h1>
 

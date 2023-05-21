@@ -10,9 +10,33 @@
 
 	let user: User;
 
-  authResp.subscribe((value: AuthResponse)=>{
-  user=value.user;
-  })
+//   authResp.subscribe((value: AuthResponse)=>{
+//   user=value.user;
+//   })
+
+let first_name = ""
+			let last_name =  ""
+			let age= 0
+			let emailaddress= ""
+			let password =  ""
+		 try {
+			
+			let first_name = get(authResp).user.firstName;
+			let last_name =  get(authResp).user.lastName;
+			let age= get(authResp).user.age;
+			let emailaddress= get(authResp).user.email;
+			let password =  get(authResp).user.firstName;
+		 } catch (error) {
+			alert(error);
+
+		 }
+      
+
+
+
+
+
+
 
   let example = get(authResp)
 
@@ -22,11 +46,10 @@
 
 	//let user=authResp;
  // alert(`Logged in with  ${authResp}`);
-	let first_name = get(authResp).user.firstName;
-	let last_name =  get(authResp).user.lastName;
-	let age= get(authResp).user.age;
-	let emailaddress= get(authResp).user.email;
-	let password =  get(authResp).user.firstName;
+
+
+
+
 
 	const form =useForm(); 
  
@@ -127,11 +150,27 @@
   
 		  <div class="card" style="border-radius: 15px;">
 			<div class="card-body text-center">
-			  <div class="mt-3 mb-4">
-				<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-				  class="rounded-circle img-fluid" style="width: 100px;" />
-			  </div>
-			  <input class="mb-2" bind:value={first_name} />
+				<h4 class="mb-2">name</h4>
+				<div class=".col-4">
+					<label  class="mb-2" for="first-name">{first_name}</label>
+				</div>
+				<div class=".col-4">
+					<input  class="mb-2" bind:value={first_name} />
+				</div>
+				<div class=".col-4">
+					<label class="mb-2"for="last-name">{last_name}</label>
+				</div>	
+				<div class=".col-4">
+					<input  class="mb-2" bind:value={last_name} />
+				</div>
+				<h4 class="mb-2">age</h4>
+				<div class=".col-4">
+					<label class="mb-2"for="age">{age}</label>
+				</div>	
+				<div class=".col-4">
+					<input  class="mb-2" bind:value={age} />
+				</div>
+
 			  <h4 class="mb-2">Julie L. Arsenault</h4>
 			  <p class="text-muted mb-4">@Programmer <span class="mx-2">|</span> <a
 				  href="#!">mdbootstrap.com</a></p>
