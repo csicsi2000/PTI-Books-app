@@ -21,7 +21,7 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
 
   let result:boolean = bcrypt.compare(password, user.password)
 
-  console.log(user.password);
+  console.log(user.password); 
   if (!user || !result) {
     console.warn("Login Fail! User:"+user.email );
 

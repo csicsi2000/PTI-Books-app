@@ -1,5 +1,6 @@
 import { login, register } from '$lib/api/backend/authApi';
-import { authResp } from '$lib/utils/stores';	
+import { createBookList } from '$lib/api/backend/booklistApi';
+import { authResp, booklist_name } from '$lib/utils/stores';	
 
 
 export function passwordMatch(value : any, form: any) {
@@ -45,13 +46,28 @@ export function registerMyAccount(email: string, password: string, firstName: st
         firstName: firstName,
         lastName: lastName,
         age: age
+        
+       
+        
     };
 
     register(registerRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
             alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
-        })
+            console.table(authResponse)
+            createBookList(authResponse.user.id, booklist_name)}
+          )
+
+            // })
+            
+            // .then((authResponse)=>{createBookList(authResponse.user.id, booklist_name)})
+            // .catch((error) => {
+            //     alert(`Error logging in: ${error.message}`);
+            // });
+
+
+        // })
         .catch((error) => {
             alert(`Error logging in: ${error.message}`);
         });
@@ -62,3 +78,9 @@ export function registerMyAccount(email: string, password: string, firstName: st
 export function relocation (direction: string) {
     window.location.replace(direction);
 };
+
+
+
+// function update() {
+     
+// }

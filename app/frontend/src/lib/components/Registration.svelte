@@ -83,7 +83,7 @@
 			 
 			  
 			  
-				<form use:form on:submit|preventDefault={registerMyAccount(emailaddress, password, first_name, last_name, age)}>
+				<form use:form on:submit|preventDefault={registerMyAccount(emailaddress, password, first_name, last_name, age)} action="/Profile">
 					<card class="container">
 					<h1>
 						Registration
