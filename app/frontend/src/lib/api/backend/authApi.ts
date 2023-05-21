@@ -1,8 +1,9 @@
 import axios from 'axios';
+import type { User } from 'shared-component/dist/entity/User';
 
-interface AuthResponse {
+export interface AuthResponse {
   token: string;
-  id: number;
+  user: User;
 }
 
 interface LoginRequestBody {
@@ -22,18 +23,18 @@ export const BASE_URL = 'http://localhost:3000';
 
 export const login = async (data: LoginRequestBody): Promise<AuthResponse> => {
   const response = await axios.post<AuthResponse>(`${BASE_URL}/login`, data);
-  const { token, id } = response.data;
+  const { token, user } = response.data;
   localStorage.setItem('token', token);
-  localStorage.setItem('userId', String(id));
-  return { token, id };
+  localStorage.setItem('user', String(user));
+  return { token, user };
 };
 
 export const register = async (data: RegisterRequestBody): Promise<AuthResponse> => {
   const response = await axios.post<AuthResponse>(`${BASE_URL}/register`, data);
-  const { token, id } = response.data;
+  const { token, user } = response.data;
   localStorage.setItem('token', token);
-  localStorage.setItem('userId', String(id));
-  return { token, id };
+  localStorage.setItem('userId', String(user));
+  return { token, user };
 };
 
 export const logout = () => {
