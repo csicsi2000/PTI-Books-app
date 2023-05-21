@@ -35,11 +35,12 @@ export async function getBookList(userId: number, booklistId: number): Promise<B
 
 export async function createBookList(userId: number, name: string): Promise<void> {
   try {
-    await axios.post(`${BASE_URL}/users/${userId}/booklists`, { name }, {
+    let res = await axios.post(`${BASE_URL}/users/${userId}/booklists`, { name }, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+    console.log(res);
   } catch (error) {
     console.error(error);
     throw new Error("Failed to create booklist");

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import express from "express";
-import { User } from "shared-component";
 import { BookList } from "shared-component/dist/entity/BookList";
 import { Book } from "shared-component/dist/entity/Book";
 import { verify } from "./auth-controller";
+import { User } from "shared-component/dist/entity/User";
 
 export class BookListCalls {
   constructor(app: express.Application) {
@@ -109,8 +109,9 @@ export class BookListCalls {
     bookListObj.user = userId;
 
     // Save the new booklist
+    console.log(bookListObj);
     await bookListRepository.save(bookListObj);
-
+    console.log("Booklist created successfully");
     return res.send("Booklist created successfully");
   };
 
