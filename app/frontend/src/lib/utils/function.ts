@@ -55,7 +55,7 @@ export function registerMyAccount(email: string, password: string, firstName: st
         .then((authResponse) => {
             authResp.set(authResponse);
             alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
-            console.table(authResponse)
+            console.log(authResponse)
             createBookList(authResponse.user.id, booklist_name)}
           )
 

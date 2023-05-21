@@ -49,11 +49,11 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
 export const register = async (req: Request, res: Response) => {
   const { email, password, firstName, lastName, age } = req.body;
 
-  console.log("Login attempt: " + email);
+  console.log("Register attempt: " + email);
 
   // Check if the user already exists
   const userRepository = AppDataSource.getRepository(User);
-  const user = await userRepository.findOne({ where: { email: email } });
+  let user = await userRepository.findOne({ where: { email: email } });
   if(user != null){
     console.log(user);
     return res.status(401).json({ message: 'User already exists!' });
@@ -82,10 +82,11 @@ export const register = async (req: Request, res: Response) => {
   session.user = newUser;
   await sessionRepository.save(session);
 
-  const createdUser = await userRepository.findOne({ where: { email: email } });
-
+  user = await userRepository.findOne({ where: { email: email } });
+  console.log("Successful: ")
+  console.log(user)
   // Send the token back to the client
-  res.send({ token,createdUser });
+  res.send({ token, user });
 }
 
 export const verify =async (token: string) => {
