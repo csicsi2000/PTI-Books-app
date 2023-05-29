@@ -17,13 +17,15 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
   const { email, password } = req.body;
   console.log(req.body);
   if(password == null){
-    return res.status(401).json({ message: 'Invalid username or password' });
+    return res.status(401).json({ message: 'Invalid password' });
  }
 
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
-  if (!user) {
-    console.warn("Login Fail! User:"+user.email );
+  console.log("test" + user)
+  if (user == null) {
+    console.warn("Login Fail! User:"+email );
+    return res.status(401).json({ message: 'Invalid username' });
   }
 
   let result:boolean = await bcrypt.compare(password, user.password)
