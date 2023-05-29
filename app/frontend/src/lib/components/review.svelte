@@ -3,13 +3,10 @@
 	import { getBook } from '$lib/api/backend/bookApi';
 	import type { Review } from 'shared-component/dist/entity/Review';
 	import { bookFromDatabase } from '$lib/utils/stores';
-	import type { Book } from 'shared-component/dist/entity/Book';
-
+	
 	export let bookisbn13: string;
 
-	let bookReviews: Review[] = [];
-	
-    
+	export let bookReviews: Review[] = [];
     
 	getBook(bookisbn13)
 		.then((book) => {

@@ -13,7 +13,7 @@
 	let book: Book;
 	selectedBook.subscribe((value: Book) => {
 		book = value;
-		console.log(book);
+		
 	});
 
 
@@ -26,7 +26,7 @@
 			value.reviews.forEach(review =>{
 				rating += review.rating;
 			})
-			rating = Math.ceil(rating / bookReviewNumber);
+			bind:rating = Math.ceil(rating / bookReviewNumber);
 			
 		} catch (error: any) {
 			bookReviewNumber = 0;
@@ -79,10 +79,10 @@
 				<p class="md-2"><span class="text-gold">{book.author}</span> (author)</p>
 				<p class="links">
 					{#if bookReviewNumber > 1}
-						<Rating rating={rating} />
+						<Rating bind:rating={rating} />
 						<a href="" class="link-dark md-3">{bookReviewNumber} reviews </a>
 					{:else}
-						<Rating rating={rating} />
+						<Rating bind:rating={rating} />
 						<a href="" class="link-dark md-3">{bookReviewNumber} review </a>
 					{/if}
 					<a href="" class="link-dark md-3"> Sign in to write a review </a>
