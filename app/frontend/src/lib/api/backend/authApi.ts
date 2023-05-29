@@ -51,5 +51,9 @@ export const getUserId = () => {
 };
 
 export const isLoggedIn = () => {
-  return !!getToken();
+  let res = getToken();
+  if(res == null){
+    return false;
+  }
+  return true;
 };

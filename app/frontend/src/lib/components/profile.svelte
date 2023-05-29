@@ -27,7 +27,8 @@ let first_name = ""
 			let emailaddress= get(authResp).user.email;
 			let password =  get(authResp).user.firstName;
 		 } catch (error) {
-			alert(error);
+			console.error(error);
+			//alert(error);
 
 		 }
       
