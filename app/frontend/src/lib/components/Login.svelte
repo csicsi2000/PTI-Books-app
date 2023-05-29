@@ -74,7 +74,7 @@
 		</form>
 	</div>
 </div>
-
+<!-- 
 <style>
 	.hintgroup {
 		z-index: 20;
@@ -371,4 +371,4 @@
 		-ms-transform: rotatey(-80deg);
 		transform: rotatey(-80deg);
 	}
-</style>
+</style> -->

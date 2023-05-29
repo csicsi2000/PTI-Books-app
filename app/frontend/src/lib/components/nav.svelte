@@ -53,7 +53,7 @@
 
 				{#if {isUserLoggedIn}}
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="#"> Login </a>
+						<a class="nav-link text-white btns" href="/Login"> Login </a>
 
 					</li>
 					<li class="nav-item">
