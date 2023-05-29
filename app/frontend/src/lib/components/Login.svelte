@@ -11,13 +11,23 @@
 	} from 'svelte-use-form';
 	import { authResp } from '$lib/utils/stores';
 	import { add_styles } from 'svelte/internal';
+	import { isLoggedIn } from '$lib/api/backend/authApi';
 
 	//relocation("/Profile");
 
 	function submitCall() {
 		//console.log('egyből');
-		loginToMyAccount(emailaddress, password);
-		relocation("/Profile");
+		loginToMyAccount(emailaddress, password)
+
+		if(isLoggedIn()){
+			
+			relocation("/Profile");
+		}
+	
+
+
+
+		
 	}
 	function handleSubmit() {
 		// console.log('this logs with every submit')

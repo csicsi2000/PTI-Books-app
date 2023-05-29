@@ -51,7 +51,13 @@
 			</ul>
 			<ul class="navbar-nav mx-md-4">
 
+				
 				{#if {isUserLoggedIn}}
+				<li class="nav-item mx-md-4">
+					<a class="nav-link text-white btns" href="/Login"on:click={()=>{logout()
+					}}> logut </a>
+
+				</li>
 					<li class="nav-item mx-md-4">
 						<a class="nav-link text-white btns" href="/Login"> Login </a>
 

@@ -52,12 +52,6 @@ let first_name = ""
 
 
 	const form =useForm(); 
- 
-  
-
-	
-
-	
 
 	function update() {
 		first_name = "authResp."
