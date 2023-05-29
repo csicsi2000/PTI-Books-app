@@ -1,0 +1,134 @@
+<script lang="ts">
+	import type { AuthResponse } from '$lib/api/backend/authApi';
+	import { authResp, selectedBook } from '$lib/utils/stores';
+	import Review from './review.svelte';
+	import type { Book } from 'shared-component/dist/entity/Book';
+	import { submitMyReview } from '$lib/utils/functions';
+
+	let reviewTitle: string;
+	let review: string;
+	let reviewRating = 0;
+
+	let bookRating = 0;
+
+	let userId: string;
+	authResp.subscribe((value: AuthResponse) => {
+		if (value != null) {
+			userId = value.user.id.toString();
+		}
+	});
+
+	let bookToReview: Book;
+	selectedBook.subscribe((value: Book) => {
+		if (value != null) {
+			bookToReview = value;
+		}
+	});
+
+	function setRating(id: number) {
+		for (let index = 1; index <= id; index++) {
+			let element = document.getElementById(index.toString());
+			if (element) {
+				element.style.color = 'rgb(255, 102, 0)';
+			}
+		}
+
+		if (id < 5) {
+			for (let index = id + 1; index <= 5; index++) {
+				let element = document.getElementById(index.toString());
+				if (element) {
+					element.style.color = 'rgb(33, 37, 41)';
+				}
+			}
+		}
+
+		reviewRating = id;
+	}
+</script>
+
+<Review bookisbn13={bookToReview.primary_isbn13} />
+{#if Number(userId) > 0}
+	<form class="row g-3 mt-3 mb-3" action="/book">
+		<div class="col-4">
+			<label for="inputReviewTitle" />
+			<input
+				type="text"
+				class="form-control"
+				id="inputReviewTitle"
+				placeholder="Review title"
+				bind:value={reviewTitle}
+			/>
+		</div>
+		<div class="form-floating col-12">
+			<textarea
+				class="form-control"
+				placeholder="Leave a comment here"
+				id="floatingTextarea"
+				style="height: 80px"
+				bind:value={review}
+			/>
+			<label for="floatingTextarea">Review</label>
+		</div>
+		<spam>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<i
+				class="fa fa-star rating"
+				id="1"
+				on:click={() => {
+					setRating(1);
+				}}
+			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<i
+				class="fa fa-star rating"
+				id="2"
+				on:click={() => {
+					setRating(2);
+				}}
+			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<i
+				class="fa fa-star rating"
+				id="3"
+				on:click={() => {
+					setRating(3);
+				}}
+			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<i
+				class="fa fa-star rating"
+				id="4"
+				on:click={() => {
+					setRating(4);
+				}}
+			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<i
+				class="fa fa-star rating"
+				id="5"
+				on:click={() => {
+					setRating(5);
+				}}
+			/>
+		</spam>
+		<div class="col-12">
+			<button
+				class="btn btn-danger"
+				id="reviewSubmit"
+				type="submit"
+				on:click={() => {
+					submitMyReview(reviewTitle, review, userId, bookToReview, reviewRating);
+					reviewTitle = '';
+					review = '';
+					reviewRating = 0;
+				}}>Submit review</button
+			>
+		</div>
+	</form>
+{/if}
+
+<style>
+	.rating {
+		cursor: pointer;
+	}
+</style>

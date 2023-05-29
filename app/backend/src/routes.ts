@@ -7,7 +7,12 @@ import cors from "cors";
 export function startExpress() {
   const app: express.Application = express();
   app.use(express.json());
+
   app.use(cors( {credentials: true,origin: true}));
+
+
+
+
   app.post("/login", login);
   app.post("/register", register);
   

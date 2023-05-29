@@ -1,13 +1,13 @@
 <script lang="ts">
 	import Logo from '$lib/img/book_heaven_logo.png';
+	import { logout, type AuthResponse, isLoggedIn } from '$lib/api/backend/authApi';
+	import { authResp } from '$lib/utils/stores';
 
-	let user = {
-		loggedIn: false
-	};
+	let userId = 0;
 
-	function toggle() {
-		user.loggedIn = !user.loggedIn;
-	}
+	let isUserLoggedIn:boolean;
+
+
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top p-0">
@@ -50,18 +50,20 @@
 				</li>
 			</ul>
 			<ul class="navbar-nav mx-md-4">
-				{#if !user.loggedIn}
-				<li class="nav-item mx-md-4">
-					<a class="nav-link text-white btns" href="/SignSites" on:click={toggle}> sign Sites </a>
-				</li>
+
+				{#if {isUserLoggedIn}}
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="/Login" on:click={toggle}> Login </a>
+						<a class="nav-link text-white btns" href="#"> Login </a>
+
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link text-white" href="/testLogin"> Test </a>
+					</li>
 				{/if}
-				{#if user.loggedIn}
+				{#if !{isUserLoggedIn}}
 				<li class="nav-item mx-md-4">
 					<a class="nav-link text-white btns" href="#"> Favourite Books </a>
 				</li>
@@ -69,8 +71,12 @@
 					<a class="nav-link text-white btns" href="/Profile"> Profile </a>
 				</li>
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="#" on:click={toggle}> Logout </a>
-				</li>
+
+						<a class="nav-link text-white btns" href="#" on:click={()=>{
+							logout
+						}}> Logout </a>
+					</li>
+
 				{/if}
 			</ul>
 		</div>

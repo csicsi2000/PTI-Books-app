@@ -1,12 +1,35 @@
 <script lang="ts">
-	import { selectedBook } from "$lib/utils/stores";
+	import Rating from './rating.svelte';
+	import { getBook } from '$lib/api/backend/bookApi';
+	import type { Review } from 'shared-component/dist/entity/Review';
+	import { bookFromDatabase } from '$lib/utils/stores';
+	import type { Book } from 'shared-component/dist/entity/Book';
+
+	export let bookisbn13: string;
+
+	let bookReviews: Review[] = [];
+	
+    
+    
+	getBook(bookisbn13)
+		.then((book) => {
+			bookReviews = book.reviews;
+			bookFromDatabase.set(book);
+		})
+		.catch((error) => {
+			console.error(`Error getting book review: ${error.message}`);
+		});
+
 </script>
 
-
-<div class="form-floating mt-3 mb-3 col-12">
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 80px"></textarea>
-    <label for="floatingTextarea">Review</label>
-</div>
-<div class="col-12">
-    <button class="btn btn-danger" type="submit">Submit review</button>
-</div>
+{#each bookReviews as breview}
+	<div class="card mt-4">
+		<div class="card-body">
+			{@html breview.comment}
+			<h6 class="card-subtitle mb-2 text-muted">
+				{breview.user.email}<span class="ms-4">{breview.date}</span>
+			</h6>
+			<Rating rating={breview.rating} />
+		</div>
+	</div>
+{/each}
