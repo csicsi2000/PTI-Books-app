@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let rating;
+	export let rating:number;
     
-    console.log("rating = ", rating);    
+        
 	let loopCount = 5;
 	let loopArray = Array.from({ length: loopCount - rating }, (_, i) => i);
 	let ratingArray = Array.from({ length: rating }, (_, i) => i);

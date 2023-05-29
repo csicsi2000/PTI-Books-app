@@ -13,13 +13,24 @@
 	let book: Book;
 	selectedBook.subscribe((value: Book) => {
 		book = value;
+		
 	});
+
+
+	let rating : number = 0;
 
 	let bookReviewNumber : number;
 	bookFromDatabase.subscribe((value: Book)=>{
 		try {
 			bookReviewNumber = value.reviews.length;
+			value.reviews.forEach(review =>{
+				rating += review.rating;
+			})
+			bind:rating = Math.ceil(rating / bookReviewNumber);
+			
 		} catch (error: any) {
+			bookReviewNumber = 0;
+			rating = 0;
 			console.log(error.message)
 		}
 	})
@@ -67,12 +78,12 @@
 				<h2 class="title">{book.title[0]}{book.title.substring(1).toLowerCase()}</h2>
 				<p class="md-2"><span class="text-gold">{book.author}</span> (author)</p>
 				<p class="links">
-					{#if book.reviews && book.reviews.length > 1}
-						<Rating rating="3" />
-						<a href="" class="link-dark md-3">{bookReviewNumber} Reviews </a>
+					{#if bookReviewNumber > 1}
+						<Rating bind:rating={rating} />
+						<a href="" class="link-dark md-3">{bookReviewNumber} reviews </a>
 					{:else}
-						<Rating rating="3" />
-						<a href="" class="link-dark md-3">{bookReviewNumber} Review </a>
+						<Rating bind:rating={rating} />
+						<a href="" class="link-dark md-3">{bookReviewNumber} review </a>
 					{/if}
 					<a href="" class="link-dark md-3"> Sign in to write a review </a>
 				</p>
