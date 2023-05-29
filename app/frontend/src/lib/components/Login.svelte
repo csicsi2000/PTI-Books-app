@@ -70,6 +70,7 @@
 					class="input"
 					type="password"
 					name="password"
+					bind:value={password}
 					use:validators={[required, minLength(5), containNumbers(2)]}
 				/>
 				<span class="hintgroup">

@@ -15,13 +15,22 @@ const secretKey = 'custom';
 
 export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Response) => {
   const { email, password } = req.body;
+  console.log(req.body);
+  if(password == null){
+    return res.status(401).json({ message: 'Invalid username or password' });
+ }
 
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
+  if (!user) {
+    console.warn("Login Fail! User:"+user.email );
+  }
 
-  let result:boolean = bcrypt.compare(password, user.password)
-
+  let result:boolean = await bcrypt.compare(password, user.password)
+  
+  console.log("Incoming password: " + password);
   console.log(user.password); 
+  console.log(result);
   if (!user || !result) {
     console.warn("Login Fail! User:"+user.email );
 

@@ -24,6 +24,7 @@ export function loginToMyAccount(email: string, password: string ) {
         email:email,
         password: password
     };
+    console.log(loginRequestBody);
 
     login(loginRequestBody)
         .then((authResponse) => {
