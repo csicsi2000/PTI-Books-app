@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { containNumbers, passwordMatch, registerMyAccount, relocation } from "$lib/utils/function";
+	import { containNumbers, passwordMatch, registerMyAccount, relocation } from "$lib/utils/functions";
 	import { useForm, Hint, HintGroup, validators, required, minLength, email } from "svelte-use-form";
 	import { authResp } from '$lib/utils/stores';	
 	import { add_styles } from "svelte/internal";

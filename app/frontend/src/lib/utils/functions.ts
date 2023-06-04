@@ -39,6 +39,30 @@ export function registerMyAccount(email: string, password: string, firstName: st
         });
 };
 
+export function updateMyAccount( firstName: string, lastName: string, age: number) {
+    const registerRequestBody = {
+        firstName: firstName,
+        lastName: lastName,
+        age: age
+    };
+
+    register(updateMyAccount)
+        .then((authResponse) => {
+            authResp.set(authResponse);
+            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
+        })
+        .catch((error) => {
+            alert(`Error logging in: ${error.message}`);
+        });
+};
+
+export function deletMyAccount( User: user) {
+    const registerRequestBody = {
+       
+    };
+
+
+
 export function submitMyReview(reviewTitle: string, review: string, userId: string, bookToReview: Book, rating: number) {
     if (reviewTitle.length < 1 || review.length < 1) {
         alert('Wrong review!');
@@ -58,3 +82,22 @@ export function submitMyReview(reviewTitle: string, review: string, userId: stri
     }
 }
 
+
+export function relocation (direction: string) {
+    window.location.replace(direction);
+};
+
+
+export function passwordMatch(value : any, form: any) {
+	if (value !== form.values.password) {
+			return { passwordMatch: true };
+	}
+}
+
+export function containNumbers(numbers: any) {
+	return function(value: any) {
+		if (value.replace(/[^0-9]/g,"").length < numbers) {
+			return { containNumbers: numbers };
+		}
+	}
+}                     

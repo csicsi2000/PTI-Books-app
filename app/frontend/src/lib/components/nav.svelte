@@ -56,11 +56,14 @@
 				<li class="nav-item mx-md-4">
 					<a class="nav-link text-white btns" href="/Login"on:click={()=>{logout()
 					}}> logut </a>
+					
 
+				</li>
+				<li class="nav-item mx-md-4">
+					<a class="nav-link text-white btns" href="/Profile"> Profile </a>
 				</li>
 					<li class="nav-item mx-md-4">
 						<a class="nav-link text-white btns" href="/Login"> Login </a>
-
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
@@ -79,7 +82,7 @@
 					<li class="nav-item mx-md-4">
 
 						<a class="nav-link text-white btns" href="#" on:click={()=>{
-							logout
+							logout()
 						}}> Logout </a>
 					</li>
 
