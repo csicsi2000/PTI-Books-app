@@ -24,7 +24,7 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
   const user = await userRepository.findOne({ where: { email: email } });
   console.log("test" + user)
   if (user == null) {
-    console.warn("Login Fail! User:"+email );
+    console.warn("Login Fail! User not found:"+email );
     return res.status(401).json({ message: 'Invalid username' });
   }
 
@@ -34,7 +34,7 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
   console.log(user.password); 
   console.log(result);
   if (!user || !result) {
-    console.warn("Login Fail! User:"+user.email );
+    console.warn("Login Fail! User password wrong:"+user.email );
 
     return res.status(401).json({ message: 'Invalid username or password' });
   }
@@ -91,14 +91,36 @@ export const register = async (req: Request, res: Response) => {
   const session = new Session();
   session.token = token;
   session.user = newUser;
+  console.log(session);
   await sessionRepository.save(session);
 
   user = await userRepository.findOne({ where: { email: email } });
+  if(user == null){
+
+  }
   console.log("Successful: ")
   console.log(user)
   // Send the token back to the client
   res.send({ token, user });
 }
+
+export const getUserBySession = async (req: Request, res: Response) => {
+  const { sessionToken } = req.body;
+
+  // Find the session based on the provided session token
+  const sessionRepository = AppDataSource.getRepository(Session);
+  const session = await sessionRepository.findOne({ where: { token: sessionToken }, relations: ['user'] });
+
+  if (!session) {
+    return res.status(401).json({ message: 'Invalid session token!' });
+  }
+
+  const user = session.user;
+  console.log("User found:", user);
+
+  // Return the user object
+  res.send(user);
+};
 
 export const verify =async (token: string) => {
     try {

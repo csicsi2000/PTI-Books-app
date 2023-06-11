@@ -1,9 +1,10 @@
 import axios from "axios";
 import  type { AxiosResponse } from "axios";
 import type { Book } from 'shared-component/dist/entity/Book';
-import { BASE_URL, getToken } from "./authApi";
+import { getToken } from "./authApi";
 
-const apiUrl = BASE_URL;
+//const apiUrl = BASE_URL;
+export const apiUrl = 'http://localhost:3000';
 
 export const getBook = async (isbn13bookId: string): Promise<Book> => {
   const response: AxiosResponse<Book> = await axios.get(`${apiUrl}/books/${isbn13bookId}`, {

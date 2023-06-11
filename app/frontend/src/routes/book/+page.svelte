@@ -100,6 +100,7 @@
 	</div>
 {/if}
 <!-- Modal -->
+{#if book && book.book_image}
 <div
 	class="modal fade"
 	id="staticBackdrop"
@@ -109,6 +110,8 @@
 	aria-labelledby="staticBackdropLabel"
 	aria-hidden="true"
 >
+
+
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -125,7 +128,7 @@
 		</div>
 	</div>
 </div>
-
+{/if}
 <style>
 	a {
 		box-sizing: border-box;

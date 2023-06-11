@@ -3,6 +3,7 @@ import { postReview } from '$lib/api/backend/bookApi';
 import { authResp } from '$lib/utils/stores';	
 import type { Book } from 'shared-component/dist/entity/Book';
 import type { Review } from 'shared-component/dist/entity/Review';
+import { goto } from '$app/navigation';
 
 export function loginToMyAccount(email: string, password: string ) {
     const loginRequestBody = {
@@ -12,6 +13,7 @@ export function loginToMyAccount(email: string, password: string ) {
 
     login(loginRequestBody)
         .then((authResponse) => {
+            console.log(authResponse);
             authResp.set(authResponse);
         })
         .catch((error) => {
@@ -32,13 +34,13 @@ export function registerMyAccount(email: string, password: string, firstName: st
     register(registerRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
+            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user.email}.`);
         })
         .catch((error) => {
             alert(`Error logging in: ${error.message}`);
         });
 };
-
+/*
 export function updateMyAccount( firstName: string, lastName: string, age: number) {
     const registerRequestBody = {
         firstName: firstName,
@@ -46,7 +48,7 @@ export function updateMyAccount( firstName: string, lastName: string, age: numbe
         age: age
     };
 
-    register(updateMyAccount)
+    register(registerRequestBody)
         .then((authResponse) => {
             authResp.set(authResponse);
             alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
@@ -61,7 +63,7 @@ export function deletMyAccount( User: user) {
        
     };
 
-
+*/
 
 export function submitMyReview(reviewTitle: string, review: string, userId: string, bookToReview: Book, rating: number) {
     if (reviewTitle.length < 1 || review.length < 1) {
@@ -84,7 +86,8 @@ export function submitMyReview(reviewTitle: string, review: string, userId: stri
 
 
 export function relocation (direction: string) {
-    window.location.replace(direction);
+    //window.location.replace(direction);
+    goto(direction);
 };
 
 
