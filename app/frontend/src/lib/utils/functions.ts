@@ -40,30 +40,30 @@ export function registerMyAccount(email: string, password: string, firstName: st
             alert(`Error logging in: ${error.message}`);
         });
 };
-/*
-export function updateMyAccount( firstName: string, lastName: string, age: number) {
-    const registerRequestBody = {
-        firstName: firstName,
-        lastName: lastName,
-        age: age
-    };
 
-    register(registerRequestBody)
-        .then((authResponse) => {
-            authResp.set(authResponse);
-            alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
-        })
-        .catch((error) => {
-            alert(`Error logging in: ${error.message}`);
-        });
-};
+// export function updateMyAccount( firstName: string, lastName: string, age: number) {
+//     const registerRequestBody = {
+//         firstName: firstName,
+//         lastName: lastName,
+//         age: age
+//     };
 
-export function deletMyAccount( User: user) {
-    const registerRequestBody = {
+//     update(registerRequestBody)
+//         .then((authResponse) => {
+//             authResp.set(authResponse);
+//             alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
+//         })
+//         .catch((error) => {
+//             alert(`Error logging in: ${error.message}`);
+//         });
+// };
+
+// export function removeMyAccount( User: user) {
+//     const registerRequestBody = {
        
-    };
+//     };
 
-*/
+
 
 export function submitMyReview(reviewTitle: string, review: string, userId: string, bookToReview: Book, rating: number) {
     if (reviewTitle.length < 1 || review.length < 1) {

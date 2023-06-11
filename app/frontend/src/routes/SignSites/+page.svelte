@@ -1,9 +1,48 @@
+
+
 <script>
 	import Login from '$lib/components/Login.svelte';
 	import Registration from '$lib/components/Registration.svelte';
+	import { fade } from 'svelte/transition'
+
+
+
+	export let profile_show = false;
+	export let reg_show = false;
+
+
+	const views = [Login, Registration]
+
+	let viewportComponent = null
+	let currentView = 0
+	
+	function toggleView() {
+		currentView = currentView == 0 ? 1 : 0
+	}
+
+	function updateViewportComponent() {
+		viewportComponent = views[currentView]
+	}
+	updateViewportComponent()
 </script>
 
-<div class="cover">
+
+
+<button on:click={toggleView}>Toggle view</button>
+{#if viewportComponent == views[currentView]}
+	<div id="viewport" on:outroend={updateViewportComponent} transition:fade>
+		<svelte:component this={viewportComponent}></svelte:component>
+	</div>
+{/if}
+
+
+<!-- <button on:click={() => sidebar_show = !sidebar_show}>Toggle Sidebar</button>
+
+<Sidebar bind:show={sidebar_show} /> -->
+
+	
+
+<!-- <div class="cover">
 	<div class="book">
 		<label for="page-1" class="book__page book__page--1">
 			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/193203/1111.jpg" alt="" />
@@ -15,12 +54,7 @@
 			</div>
 		</label>
 
-		<!-- Resets the page -->
-		<input type="radio" name="page" id="page-1" />
-
-		<!-- Goes to the second page -->
-		<input type="radio" name="page" id="page-2" />
-		<label class="book__page book__page--2">
+	<label class="book__page book__page--2">
 			<div class="book__page-front">
 				<div class="page__content">
 					<Login />
@@ -31,7 +65,7 @@
 			</div>
 		</label>
 
-		<!-- <label for="page-3" class="book__page book__page--6">
+		<label for="page-3" class="book__page book__page--6">
 		<div class="page__content">
 		  <Registration/>
 		  
@@ -53,10 +87,10 @@
 		<div class="page__content"> 
 		</div>
 	  </div>
-	</label> -->
+	</label> 
 	</div>
-</div>
-
+</div> -->
+<!-- 
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,400,600|Tulpen+One&display=swap');
 	:root {
@@ -278,8 +312,5 @@
 		display: none;
 	} */
 
-	.book input[type='radio']:checked + .book__page {
-		transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
-		transform: rotateY(-180deg);
-	}
-</style>
+	
+</style> --> 

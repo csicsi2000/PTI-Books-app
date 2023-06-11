@@ -18,5 +18,6 @@ export const allBooks = writable<Book[]>();
 
 export const authResp = writable<AuthResponse>();
 
-export const bookFromDatabase = writable<Book>();
+export const bookFromDatabase = writable<Book>();                      
+
 

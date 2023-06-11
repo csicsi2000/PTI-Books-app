@@ -31,16 +31,16 @@
 	let emailaddress = '';
 	let password = '';
 
-	window.onload = () => {
-		alert('get(authResp).user.lastName');
-		if (authResp != null) {
-			let first_name = authRespValue.user.firstName;
-			last_name = authRespValue.user.lastName;
-			age = authRespValue.user.age;
-			emailaddress = authRespValue.user.email;
-			password = authRespValue.user.firstName;
-		}
-	};
+	// window.onload = () => {
+	// 	alert('get(authResp).user.lastName');
+	// 	if (authResp != null) {
+	// 		let first_name = authRespValue.user.firstName;
+	// 		last_name = authRespValue.user.lastName;
+	// 		age = authRespValue.user.age;
+	// 		emailaddress = authRespValue.user.email;
+	// 		password = authRespValue.user.firstName;
+	// 	}
+	// };
 
 	let reload = true;
 	let reload2 = false;
@@ -50,7 +50,7 @@
 	let EditButtonName = 'edit';
 
 	let CheckButtonClass = 'btn btn-outline-success btn-floating';
-	let CheckButtonIClass = 'fa-solid fa-x';
+	let CheckButtonIClass = 'fa-sharp fa-solid fa-check';
 	let CHeckButtonName = 'Check';
 
 	let ButtonClass = EditButtonClass;
@@ -81,13 +81,13 @@
 	const form = useForm();
 
 	function update() {
-		//update profile
-		//updateMyAccount(first_name, last_name, age);
+		
+	// 	updateMyAccount(first_name, last_name, age);
 	}
 
 	function remove() {
-		//delet profile
-		//removeMyAccount(get(authResp).user);
+		
+	// 	removeMyAccount(get(authResp).user);
 	}
 </script>
 
@@ -102,9 +102,7 @@
 								<h4 class="mb-2">name</h4>
 								<div class=".col-4">
 									<label class="mb-2" for="first-name">{first_name}</label>
-								</div>
-
-								<div class=".col-4">
+							
 									<label class="mb-2" for="last-name">{last_name}</label>
 								</div>
 
@@ -120,8 +118,7 @@
 								<h4 class="mb-2">name</h4>
 								<div class=".col-4">
 									<input class="mb-2" bind:value={first_name} />
-								</div>
-								<div class=".col-4">
+							
 									<input class="mb-2" bind:value={last_name} />
 								</div>
 								<h4 class="mb-2">age</h4>
@@ -132,37 +129,52 @@
 						{/if}
 
 						{#if ButtonName == EditButtonName}
+						
 							<button
 								in:fade
 								type="button"
 								class={ButtonClass}
 								data-mdb-ripple-color="dark"
 								name={ButtonName}
-								on:click={() => buttonCHanger()}
-							>
-								<i class={ButtonIClass} />
-							</button>
-						{:else if ButtonName == CHeckButtonName}
-							<button
-								in:fade
-								type="submit"
-								class={ButtonClass}
-								data-mdb-ripple-color="dark"
-								name={ButtonName}
 								on:click={() => {
 									buttonCHanger();
-									update();
+									remove();
 								}}
 							>
 								<i class={ButtonIClass} />
 							</button>
+						{:else if ButtonName == CHeckButtonName}
+						
+							<button
+								in:fade
+								type="submit"
+								class="btn btn-outline-danger btn-floating"
+								data-mdb-ripple-color="dark"
+								name="back"
+								on:click={() => {
+									buttonCHanger();
+									
+								}}
+							>
+							<i class="fa-sharp fa-solid fa-x"></i>
+							</button>
+							<button
+								in:fade
+								type="button"
+								class="btn btn-outline-danger btn-floating"
+								data-mdb-ripple-color="dark"
+								name={ButtonName}
+								on:click={() => buttonCHanger()}
+							>
+								<i  >Delete your account</i>
+							</button>
 							<button
 								in:fade
 								type="submit"
 								class={ButtonClass}
 								data-mdb-ripple-color="dark"
 								name={ButtonName}
-								on:click={() => remove()}
+								on:click={() => update()}
 							>
 								<i class={ButtonIClass} />
 							</button>
