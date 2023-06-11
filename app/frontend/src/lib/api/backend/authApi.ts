@@ -11,7 +11,7 @@ interface LoginRequestBody {
   password: string;
 }
 
-interface RegisterRequestBody {
+interface UserDataRequestBody {
   email: string;
   password: string;
   firstName: string;
@@ -29,13 +29,28 @@ export const login = async (data: LoginRequestBody): Promise<AuthResponse> => {
   return { token, user };
 };
 
-export const register = async (data: RegisterRequestBody): Promise<AuthResponse> => {
+export const register = async (data: UserDataRequestBody): Promise<AuthResponse> => {
   const response = await axios.post<AuthResponse>(`${BASE_URL}/register`, data);
   const { token, user } = response.data;
   localStorage.setItem('token', token);
   localStorage.setItem('userId', String(user));
   return { token, user };
 };
+
+export const updateUser = async (userId: string, data: UserDataRequestBody): Promise<User> => {
+  const response = await axios.put<User>(`${BASE_URL}/users/${userId}`, data, {
+    headers: { Authorization: `Bearer ${getToken()}` }
+  });
+  const updatedUser = response.data;
+  return updatedUser;
+};
+
+export const deleteUser = async (userId: string): Promise<void> => {
+  await axios.delete(`${BASE_URL}/users/${userId}`, {
+    headers: { Authorization: `Bearer ${getToken()}` }
+  });
+};
+
 
 export const logout = () => {
   localStorage.removeItem('token');

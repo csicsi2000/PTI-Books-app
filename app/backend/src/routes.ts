@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register } from "./controllers/auth-controller";
+import { login, register, updateUser, deleteUser } from "./controllers/auth-controller";
 import { BookListCalls } from "./controllers/bookList-controller";
 import { BookCalls } from "./controllers/book-controller";
 
@@ -18,6 +18,9 @@ export function startExpress() {
 
   app.post("/login", login);
   app.post("/register", register);
+  app.put("/users/:id", updateUser);
+  app.delete("/users/:id", deleteUser);
+
   
   new BookCalls(app);
   new BookListCalls(app);
