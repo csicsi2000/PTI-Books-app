@@ -1,4 +1,4 @@
-import { login, register } from '$lib/api/backend/authApi';
+import { deleteUser, login, register, updateUser } from '$lib/api/backend/authApi';
 import { postReview } from '$lib/api/backend/bookApi';
 import { authResp } from '$lib/utils/stores';	
 import type { Book } from 'shared-component/dist/entity/Book';
@@ -41,28 +41,42 @@ export function registerMyAccount(email: string, password: string, firstName: st
         });
 };
 
-// export function updateMyAccount( firstName: string, lastName: string, age: number) {
-//     const registerRequestBody = {
-//         firstName: firstName,
-//         lastName: lastName,
-//         age: age
-//     };
+export function updateMyAccount( user: string, firstName: string, lastName: string, age: number,email: string, password: string) {
+    const userId = user;
 
-//     update(registerRequestBody)
-//         .then((authResponse) => {
-//             authResp.set(authResponse);
-//             alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user}.`);
-//         })
-//         .catch((error) => {
-//             alert(`Error logging in: ${error.message}`);
-//         });
-// };
+    const updaterRequestBody = {
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        email: email,
+        password: password
+    };
 
-// export function removeMyAccount( User: user) {
-//     const registerRequestBody = {
-       
-//     };
+    updateUser(userId, updaterRequestBody)
+        .then((updaterRequestBody) => {
+            console.log('Felhasználó frissítve:');
+        })
+        .catch((error) => {
+            console.error('Hiba történt a felhasználó frissítése közben:', error);
+ 
+        });
+        
+};
 
+
+export function removeMyAccount( User: string) {
+    const userId = User;
+
+
+    deleteUser(userId)
+    .then((userId) => {
+        console.log('Felhasználó törölve:');
+    })
+    .catch((error) => {
+        console.error('Hiba történt a felhasználó törlése közben:', error);
+
+    });
+};
 
 
 export function submitMyReview(reviewTitle: string, review: string, userId: string, bookToReview: Book, rating: number) {
@@ -82,7 +96,7 @@ export function submitMyReview(reviewTitle: string, review: string, userId: stri
                 alert(`Error submitting review`);
             });
     }
-}
+};
 
 
 export function relocation (direction: string) {

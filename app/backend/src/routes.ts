@@ -1,10 +1,5 @@
 import express from "express";
-import {
-  login,
-  register,
-  getUserBySession,
-} from "./controllers/auth-controller";
-import { login, register, updateUser, deleteUser } from "./controllers/auth-controller";
+import { login, register, updateUser, deleteUser,getUserBySession } from "./controllers/auth-controller";
 import { BookListCalls } from "./controllers/bookList-controller";
 import { BookCalls } from "./controllers/book-controller";
 import cors from "cors";

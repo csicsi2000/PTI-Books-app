@@ -82,12 +82,13 @@
 
 	function update() {
 		
-	 	updateMyAccount(first_name, last_name, age);
+	 	updateMyAccount(authRespValue.user.id, first_name, last_name, age,authRespValue.user.email,authRespValue.user.password);
 	}
 
 	function remove() {
 		
-	 	removeMyAccount(get(authResp).user);
+	 	removeMyAccount(authRespValue.user.id);
+		relocation('/');
 	}
 </script>
 
@@ -150,8 +151,9 @@
 							name={ButtonName}
 							
 							on:click={() => {
-								buttonCHanger();
+								
 								remove();
+								buttonCHanger();
 							}}
 						>
 							<i>Delete your account</i>
