@@ -26,8 +26,8 @@
 	console.log("test");
 	console.log(authRespValue);
 	let first_name = authRespValue.user.firstName;
-	let last_name = 'asd';
-	let age = 1;
+	let last_name = authRespValue.user.lastName;
+	let age = authRespValue.user.age;
 	let emailaddress = '';
 	let password = '';
 
@@ -82,12 +82,12 @@
 
 	function update() {
 		
-	// 	updateMyAccount(first_name, last_name, age);
+	 	updateMyAccount(first_name, last_name, age);
 	}
 
 	function remove() {
 		
-	// 	removeMyAccount(get(authResp).user);
+	 	removeMyAccount(get(authResp).user);
 	}
 </script>
 
@@ -136,48 +136,52 @@
 								class={ButtonClass}
 								data-mdb-ripple-color="dark"
 								name={ButtonName}
-								on:click={() => {
-									buttonCHanger();
-									remove();
-								}}
+								on:click={() => buttonCHanger()}
 							>
 								<i class={ButtonIClass} />
 							</button>
 						{:else if ButtonName == CHeckButtonName}
-						
+						<div class=" mb-2">
 							<button
-								in:fade
-								type="submit"
-								class="btn btn-outline-danger btn-floating"
-								data-mdb-ripple-color="dark"
-								name="back"
-								on:click={() => {
-									buttonCHanger();
-									
-								}}
-							>
-							<i class="fa-sharp fa-solid fa-x"></i>
-							</button>
-							<button
-								in:fade
-								type="button"
-								class="btn btn-outline-danger btn-floating"
-								data-mdb-ripple-color="dark"
-								name={ButtonName}
-								on:click={() => buttonCHanger()}
-							>
-								<i  >Delete your account</i>
-							</button>
-							<button
-								in:fade
-								type="submit"
-								class={ButtonClass}
-								data-mdb-ripple-color="dark"
-								name={ButtonName}
-								on:click={() => update()}
-							>
-								<i class={ButtonIClass} />
-							</button>
+							in:fade
+							type="button"
+							class="btn btn-outline-danger btn-floating"
+							data-mdb-ripple-color="dark"
+							name={ButtonName}
+							
+							on:click={() => {
+								buttonCHanger();
+								remove();
+							}}
+						>
+							<i>Delete your account</i>
+						</button>
+						</div>
+						<div class="mb-2"><button
+							in:fade
+							type="submit"
+							class="btn btn-outline-danger btn-floating"
+							data-mdb-ripple-color="dark"
+							name="back"
+							on:click={() => {
+								buttonCHanger();
+								
+							}}
+						>
+						<i class="fa-sharp fa-solid fa-x"></i>
+						</button>
+					
+						<button
+							in:fade
+							type="submit"
+							class={ButtonClass}
+							data-mdb-ripple-color="dark"
+							name={ButtonName}
+							on:click={() => update()}
+						>
+							<i class={ButtonIClass} />
+						</button></div>
+							
 						{/if}
 					</div>
 				</div>

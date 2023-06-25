@@ -22,14 +22,9 @@ import { containNumbers, loginToMyAccount, relocation,  } from '$lib/utils/funct
 
 		let a = true;
 
-
-
-
-
-
-		// if (isLoggedIn()) {
-		// 	relocation('/Profile');
-		// }
+		 if (isLoggedIn()) {
+		 	relocation('/Profile');
+		 }
 		console.log($authResp);
 	}
 	function handleSubmit() {
