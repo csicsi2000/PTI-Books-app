@@ -89,7 +89,7 @@ import { containNumbers, loginToMyAccount, relocation,  } from '$lib/utils/funct
 											type="password"
 											name="password"
 											bind:value={password}
-											use:validators={[required, minLength(5), containNumbers(2)]}
+											use:validators={[required]}
 											id="form2Example22"
 											class="form-control"
 										/>

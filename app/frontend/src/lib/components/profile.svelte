@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { authResp } from '$lib/utils/stores';
 
-	import { containNumbers, passwordMatch, registerMyAccount } from '$lib/utils/functions';
+	import { containNumbers, passwordMatch, registerMyAccount, relocation, removeMyAccount, updateMyAccount } from '$lib/utils/functions';
 	import {
 		useForm,
 		Hint,
@@ -82,12 +82,12 @@
 
 	function update() {
 		
-	 	updateMyAccount(authRespValue.user.id, first_name, last_name, age,authRespValue.user.email,authRespValue.user.password);
+	 	updateMyAccount(authRespValue.user.id.toString(), first_name, last_name, age,authRespValue.user.email,authRespValue.user.password);
 	}
 
 	function remove() {
 		
-	 	removeMyAccount(authRespValue.user.id);
+	 	removeMyAccount(authRespValue.user.id.toString());
 		relocation('/');
 	}
 </script>
