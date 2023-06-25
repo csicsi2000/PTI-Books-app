@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { authResp } from '$lib/utils/stores';
 
-	import { containNumbers, passwordMatch, registerMyAccount, relocation, removeMyAccount, updateMyAccount } from '$lib/utils/functions';
+	import {
+		containNumbers,
+		passwordMatch,
+		registerMyAccount,
+		relocation,
+		removeMyAccount,
+		updateMyAccount
+	} from '$lib/utils/functions';
 	import {
 		useForm,
 		Hint,
@@ -18,32 +25,27 @@
 	import { get } from 'svelte/store';
 
 	let showWarning = false;
-	let authRespValue = "";
-	let first_name = "";
-	let last_name = "";
+	let first_name = '';
+	let last_name = '';
 	let age = 0;
 	let emailaddress = '';
 	let password = '';
 	let id = '';
 
-
-
-	if (get(authResp) == null) {
+	let authRespRawValue = get(authResp);
+	if (authRespRawValue == null || authRespRawValue == undefined) {
 		showWarning = true;
-		
-	}else{
-		let authRespValue = get(authResp);
-	console.log("test");
-	console.log(authRespValue);
-	 first_name = authRespValue.user.firstName;
-	 last_name = authRespValue.user.lastName;
-	 age = authRespValue.user.age;
-	id = authRespValue.user.id.toString();
-	emailaddress=authRespValue.user.email
-	password=authRespValue.user.password
-}
-
-	
+	} else {
+		let authRespValue = authRespRawValue as AuthResponse;
+		console.log('test');
+		console.log(authRespValue);
+		first_name = authRespValue.user.firstName;
+		last_name = authRespValue.user.lastName;
+		age = authRespValue.user.age;
+		id = authRespValue.user.id.toString();
+		emailaddress = authRespValue.user.email;
+		password = authRespValue.user.password;
+	}
 
 	// window.onload = () => {
 	// 	alert('get(authResp).user.lastName');
@@ -72,6 +74,9 @@
 	let ButtonName = EditButtonName;
 
 	let example = get(authResp);
+	$: authResp.subscribe((value) => {
+		example = get(authResp);
+	});
 
 	let FavBooks = [{}];
 
@@ -95,139 +100,123 @@
 	const form = useForm();
 
 	function update() {
-		
-	 	updateMyAccount(id, first_name, last_name, age,emailaddress,password);
+		updateMyAccount(id, first_name, last_name, age, emailaddress, password);
 	}
 
 	function remove() {
-		
-	 	removeMyAccount(id);
+		removeMyAccount(id);
 		relocation('/');
 	}
 </script>
 
-
-	{#if showWarning}
+{#if showWarning}
 	<div class="container py-5 justify-content-center align-items-center h-100 col-md-12 col-xl-4">
-	  <div class="alert alert-danger mb-2 text-center">
-		NINCS ILYEN FELHASZNÁLÓ!!
-	  </div>
-	
- 	 <div class="mb-2 text-center " >
-	<button class="btn btn-outline-danger btn-floating" on:click={() => relocation('/')}>
-	Vissza a főoldalra
-	</button>
+		<div class="alert alert-danger mb-2 text-center">NINCS ILYEN FELHASZNÁLÓ!!</div>
+
+		<div class="mb-2 text-center">
+			<button class="btn btn-outline-danger btn-floating" on:click={() => relocation('/')}>
+				Vissza a főoldalra
+			</button>
+		</div>
 	</div>
-	</div>
-	{/if}
+{:else}
+	<section class="vh-100" style="background-color: #eee;">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-md-12 col-xl-4">
+					<div class="card" style="border-radius: 15px;">
+						<div class="card-body text-center">
+							{#if ButtonName == EditButtonName}
+								<div in:fade>
+									<h4 class="mb-2">name</h4>
+									<div class=".col-4">
+										<label class="mb-2" for="first-name">{first_name}</label>
 
+										<label class="mb-2" for="last-name">{last_name}</label>
+									</div>
 
-
-
-
-  {#if !showWarning}
-<section class="vh-100" style="background-color: #eee;">
-	<div class="container py-5 h-100">
-		<div class="row d-flex justify-content-center align-items-center h-100">
-			<div class="col-md-12 col-xl-4">
-				<div class="card" style="border-radius: 15px;">
-					<div class="card-body text-center">
-						{#if ButtonName == EditButtonName}
-							<div in:fade>
-								<h4 class="mb-2">name</h4>
-								<div class=".col-4">
-									<label class="mb-2" for="first-name">{first_name}</label>
-							
-									<label class="mb-2" for="last-name">{last_name}</label>
+									<h4 class="mb-2">age</h4>
+									<div class=".col-4">
+										<label class="mb-2" for="age">{age}</label>
+									</div>
 								</div>
+							{/if}
 
-								<h4 class="mb-2">age</h4>
-								<div class=".col-4">
-									<label class="mb-2" for="age">{age}</label>
-								</div>
-							</div>
-						{/if}
+							{#if ButtonName == CHeckButtonName}
+								<div in:fade>
+									<h4 class="mb-2">name</h4>
+									<div class=".col-4">
+										<input class="mb-2" bind:value={first_name} />
 
-						{#if ButtonName == CHeckButtonName}
-							<div in:fade>
-								<h4 class="mb-2">name</h4>
-								<div class=".col-4">
-									<input class="mb-2" bind:value={first_name} />
-							
-									<input class="mb-2" bind:value={last_name} />
+										<input class="mb-2" bind:value={last_name} />
+									</div>
+									<h4 class="mb-2">age</h4>
+									<div class=".col-4">
+										<input class="mb-2" bind:value={age} />
+									</div>
 								</div>
-								<h4 class="mb-2">age</h4>
-								<div class=".col-4">
-									<input class="mb-2" bind:value={age} />
-								</div>
-							</div>
-						{/if}
+							{/if}
 
-						{#if ButtonName == EditButtonName}
-						
-							<button
-								in:fade
-								type="button"
-								class={ButtonClass}
-								data-mdb-ripple-color="dark"
-								name={ButtonName}
-								on:click={() => buttonCHanger()}
-							>
-								<i class={ButtonIClass} />
-							</button>
-						{:else if ButtonName == CHeckButtonName}
-						<div class=" mb-2">
-							<button
-							in:fade
-							type="button"
-							class="btn btn-outline-danger btn-floating"
-							data-mdb-ripple-color="dark"
-							name={ButtonName}
-							
-							on:click={() => {
-								
-								remove();
-								buttonCHanger();
-							}}
-						>
-							<i>Delete your account</i>
-						</button>
+							{#if ButtonName == EditButtonName}
+								<button
+									in:fade
+									type="button"
+									class={ButtonClass}
+									data-mdb-ripple-color="dark"
+									name={ButtonName}
+									on:click={() => buttonCHanger()}
+								>
+									<i class={ButtonIClass} />
+								</button>
+							{:else if ButtonName == CHeckButtonName}
+								<div class=" mb-2">
+									<button
+										in:fade
+										type="button"
+										class="btn btn-outline-danger btn-floating"
+										data-mdb-ripple-color="dark"
+										name={ButtonName}
+										on:click={() => {
+											remove();
+											buttonCHanger();
+										}}
+									>
+										<i>Delete your account</i>
+									</button>
+								</div>
+								<div class="mb-2">
+									<button
+										in:fade
+										type="submit"
+										class="btn btn-outline-danger btn-floating"
+										data-mdb-ripple-color="dark"
+										name="back"
+										on:click={() => {
+											buttonCHanger();
+										}}
+									>
+										<i class="fa-sharp fa-solid fa-x" />
+									</button>
+
+									<button
+										in:fade
+										type="submit"
+										class={ButtonClass}
+										data-mdb-ripple-color="dark"
+										name={ButtonName}
+										on:click={() => {
+											update();
+											buttonCHanger();
+										}}
+									>
+										<i class={ButtonIClass} />
+									</button>
+								</div>
+							{/if}
 						</div>
-						<div class="mb-2"><button
-							in:fade
-							type="submit"
-							class="btn btn-outline-danger btn-floating"
-							data-mdb-ripple-color="dark"
-							name="back"
-							on:click={() => {
-								buttonCHanger();
-								
-							}}
-						>
-						<i class="fa-sharp fa-solid fa-x"></i>
-						</button>
-					
-						<button
-							in:fade
-							type="submit"
-							class={ButtonClass}
-							data-mdb-ripple-color="dark"
-							name={ButtonName}
-							on:click={() => {
-								update();
-								buttonCHanger();
-								
-							}}
-							
-						>
-							<i class={ButtonIClass} />
-						</button></div>
-							
-						{/if}
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 {/if}

@@ -12,7 +12,7 @@
 	let reviewRating = 0;
 
 	let userId: string;
-	authResp.subscribe((value: AuthResponse) => {
+	authResp.subscribe((value) => {
 		if (value != null) {
 			userId = value.user.id.toString();
 		}

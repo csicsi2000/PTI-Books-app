@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { Book } from 'shared-component/dist/entity/Book';
 import type { User } from 'shared-component/dist/entity/User';
 import { getBook } from './bookApi';
+import { get } from 'svelte/store';
 
 export interface AuthResponse {
 	token: string;
@@ -22,11 +23,11 @@ interface RegisterRequestBody {
 	age: number;
 }
 interface UserDataRequestBody {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  age: number;
+	email: string;
+	password: string;
+	firstName: string;
+	lastName: string;
+	age: number;
 }
 
 export const BASE_URL = 'http://localhost:3000';
@@ -51,23 +52,24 @@ export const setSession = async () => {
 	try {
 		let book = JSON.parse(localStorage.getItem('selectedBook') || '') as Book;
 		if (book != null) {
-      console.log(book as Book);
+			console.log(book as Book);
 			selectedBook.set(book as Book);
-      getBook(book.primary_isbn13)
-							.then((book) => {
-								bookFromDatabase.set(book);
-							}).catch((error) => {
-								bookFromDatabase.set(book);
-								console.error(`Error getting book review: ${error.message}`);
-							});
-      console.log("Book set")
+			getBook(book.primary_isbn13)
+				.then((book) => {
+					bookFromDatabase.set(book);
+				})
+				.catch((error) => {
+					bookFromDatabase.set(book);
+					console.error(`Error getting book review: ${error.message}`);
+				});
+			console.log('Book set');
 		}
 	} catch {
 		console.log('No selected book found');
 	}
 
 	selectedBook.subscribe((value) => {
-    console.log("selectedBook changed: " + value.title);
+		console.log('selectedBook changed: ' + value.title);
 		localStorage.setItem('selectedBook', JSON.stringify(value));
 	});
 
@@ -87,29 +89,34 @@ export const setSession = async () => {
 		return user;
 	} catch (error) {
 		// Handle any error that occurred during the API call
+		localStorage.setItem('token', '');
+		authResp.set(null);
+
 		console.log('Error:', error);
 		return null;
-	}}
-
+	}
+};
 
 export const updateUser = async (userId: string, data: UserDataRequestBody): Promise<User> => {
-  const response = await axios.put<User>(`${BASE_URL}/users/${userId}`, data, {
-    headers: { Authorization: `Bearer ${getToken()}` }
-  });
-  const updatedUser = response.data;
-  return updatedUser;
+	const response = await axios.put<User>(`${BASE_URL}/users/${userId}`, data, {
+		headers: { Authorization: `Bearer ${getToken()}` }
+	});
+	const updatedUser = response.data;
+	return updatedUser;
 };
 
 export const deleteUser = async (userId: string): Promise<void> => {
-  await axios.delete(`${BASE_URL}/users/${userId}`, {
-    headers: { Authorization: `Bearer ${getToken()}` }
-  });
+	await axios.delete(`${BASE_URL}/users/${userId}`, {
+		headers: { Authorization: `Bearer ${getToken()}` }
+	});
 };
-
 
 export const logout = () => {
 	localStorage.removeItem('token');
 	localStorage.removeItem('userId');
+	let currentResp = get(authResp);
+	authResp.set(null);
+	console.log('Logout');
 };
 
 export const getToken = () => {
