@@ -17,19 +17,33 @@
 	import type { User } from 'shared-component/dist/entity/User';
 	import { get } from 'svelte/store';
 
-	//   authResp.subscribe((value: AuthResponse)=>{
-	//   user=value.user;
-
-	//   })let first_name = get(authResp).user.firstName;
-
-	let authRespValue = get(authResp);
-	console.log("test");
-	console.log(authRespValue);
-	let first_name = authRespValue.user.firstName;
-	let last_name = authRespValue.user.lastName;
-	let age = authRespValue.user.age;
+	let showWarning = false;
+	let authRespValue = "";
+	let first_name = "";
+	let last_name = "";
+	let age = 0;
 	let emailaddress = '';
 	let password = '';
+	let id = '';
+
+
+
+	if (get(authResp) == null) {
+		showWarning = true;
+		
+	}else{
+		let authRespValue = get(authResp);
+	console.log("test");
+	console.log(authRespValue);
+	 first_name = authRespValue.user.firstName;
+	 last_name = authRespValue.user.lastName;
+	 age = authRespValue.user.age;
+	id = authRespValue.user.id.toString();
+	emailaddress=authRespValue.user.email
+	password=authRespValue.user.password
+}
+
+	
 
 	// window.onload = () => {
 	// 	alert('get(authResp).user.lastName');
@@ -82,16 +96,36 @@
 
 	function update() {
 		
-	 	updateMyAccount(authRespValue.user.id.toString(), first_name, last_name, age,authRespValue.user.email,authRespValue.user.password);
+	 	updateMyAccount(id, first_name, last_name, age,emailaddress,password);
 	}
 
 	function remove() {
 		
-	 	removeMyAccount(authRespValue.user.id.toString());
+	 	removeMyAccount(id);
 		relocation('/');
 	}
 </script>
 
+
+	{#if showWarning}
+	<div class="container py-5 justify-content-center align-items-center h-100 col-md-12 col-xl-4">
+	  <div class="alert alert-danger mb-2 text-center">
+		NINCS ILYEN FELHASZNÁLÓ!!
+	  </div>
+	
+ 	 <div class="mb-2 text-center " >
+	<button class="btn btn-outline-danger btn-floating" on:click={() => relocation('/')}>
+	Vissza a főoldalra
+	</button>
+	</div>
+	</div>
+	{/if}
+
+
+
+
+
+  {#if !showWarning}
 <section class="vh-100" style="background-color: #eee;">
 	<div class="container py-5 h-100">
 		<div class="row d-flex justify-content-center align-items-center h-100">
@@ -179,7 +213,12 @@
 							class={ButtonClass}
 							data-mdb-ripple-color="dark"
 							name={ButtonName}
-							on:click={() => update()}
+							on:click={() => {
+								update();
+								buttonCHanger();
+								
+							}}
+							
 						>
 							<i class={ButtonIClass} />
 						</button></div>
@@ -191,3 +230,4 @@
 		</div>
 	</div>
 </section>
+{/if}
