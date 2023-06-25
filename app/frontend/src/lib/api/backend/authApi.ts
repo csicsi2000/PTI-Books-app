@@ -21,6 +21,13 @@ interface RegisterRequestBody {
 	lastName: string;
 	age: number;
 }
+interface UserDataRequestBody {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  age: number;
+}
 
 export const BASE_URL = 'http://localhost:3000';
 
@@ -82,8 +89,23 @@ export const setSession = async () => {
 		// Handle any error that occurred during the API call
 		console.log('Error:', error);
 		return null;
-	}
+	}}
+
+
+export const updateUser = async (userId: string, data: UserDataRequestBody): Promise<User> => {
+  const response = await axios.put<User>(`${BASE_URL}/users/${userId}`, data, {
+    headers: { Authorization: `Bearer ${getToken()}` }
+  });
+  const updatedUser = response.data;
+  return updatedUser;
 };
+
+export const deleteUser = async (userId: string): Promise<void> => {
+  await axios.delete(`${BASE_URL}/users/${userId}`, {
+    headers: { Authorization: `Bearer ${getToken()}` }
+  });
+};
+
 
 export const logout = () => {
 	localStorage.removeItem('token');

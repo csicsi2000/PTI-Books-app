@@ -122,6 +122,80 @@ export const getUserBySession = async (req: Request, res: Response) => {
   res.send(user);
 };
 
+
+export const deleteUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+
+  if (!token) {
+    return res.status(401).json({ message: "Authentication token missing" });
+  }
+  let verifiedUserID = await verify(token);
+
+  console.log(verifiedUserID + "  " +  userId)
+  if(userId != verifiedUserID){
+    return res.status(401).json({ message: "Unauthorized user deletion" });
+  }
+
+  const userRepository = AppDataSource.getRepository(User);
+  const user = await userRepository.findOne({ where: { id: userId } });
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  
+  const sessionRepository = AppDataSource.getRepository(Session);
+  await sessionRepository.delete({ user: user });
+  // Delete the user from the database
+  await userRepository.remove(user);
+
+  res.json({ message: 'User deleted successfully' });
+};
+
+
+export const updateUser = async (req: Request, res: Response) => {
+  const userId = req.params.id;
+
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+
+  if (!token) {
+    return res.status(401).json({ message: "Authentication token missing" });
+  }
+  let verifiedUserID = await verify(token);
+  console.log(verifiedUserID + "  " +  userId)
+
+  if(userId != verifiedUserID){
+    return res.status(401).json({ message: "Unauthorized user update" });
+  }
+  const { email, password, firstName, lastName, age } = req.body;
+
+  const userRepository = AppDataSource.getRepository(User);
+  const user = await userRepository.findOne({ where: { id: userId } });
+
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Update the user object with new values
+  user.email = email;
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.age = age;
+
+  if (password) {
+    // If a new password is provided, hash it and update the user's password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+  }
+
+  // Save the updated user to the database
+  await userRepository.save(user);
+
+  res.json({ message: 'User updated successfully', user });
+};
+
+
 export const verify =async (token: string) => {
     try {
     const sessionRepository = AppDataSource.getRepository(Session);

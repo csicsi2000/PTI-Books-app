@@ -81,7 +81,7 @@ export class BookListCalls {
     if (!token) {
       return res.status(401).json({ message: "Authentication token missing" });
     }
-    verify(token);
+    await verify(token);
 
     const { userId } = req.params;
     const listName = req.body.name;
@@ -121,7 +121,7 @@ export class BookListCalls {
     if (!token) {
       return res.status(401).json({ message: "Authentication token missing" });
     }
-    verify(token);
+    await verify(token);
 
     const { userId, booklistId } = req.params;
     const insertedBook = req.body.book as Book;
@@ -171,7 +171,7 @@ export class BookListCalls {
     if (!token) {
       return res.status(401).json({ message: "Authentication token missing" });
     }
-    verify(token);
+    await verify(token);
 
     const { userId, booklistId, bookId } = req.params;
     let bookListRepository = AppDataSource.getRepository(BookList);

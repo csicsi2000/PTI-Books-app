@@ -4,6 +4,7 @@ import {
   register,
   getUserBySession,
 } from "./controllers/auth-controller";
+import { login, register, updateUser, deleteUser } from "./controllers/auth-controller";
 import { BookListCalls } from "./controllers/bookList-controller";
 import { BookCalls } from "./controllers/book-controller";
 import cors from "cors";
@@ -26,6 +27,10 @@ export function startExpress() {
   //   next();
   // });
 
+  app.put("/users/:id", updateUser);
+  app.delete("/users/:id", deleteUser);
+
+  
   new BookCalls(app);
   new BookListCalls(app);
 
