@@ -1,9 +1,11 @@
-import { authResp, selectedBook, bookFromDatabase } from '$lib/utils/stores';
+import { authResp, selectedBook, bookFromDatabase, booklist_name, favoriteBooks } from '$lib/utils/stores';
 import axios from 'axios';
 import type { Book } from 'shared-component/dist/entity/Book';
 import type { User } from 'shared-component/dist/entity/User';
 import { getBook } from './bookApi';
 import { get } from 'svelte/store';
+import { createBookList, getBookList } from './booklistApi';
+import { updateFavoriteBooks } from '$lib/utils/functions';
 
 export interface AuthResponse {
 	token: string;
@@ -86,6 +88,7 @@ export const setSession = async () => {
 		const user = response.data as User;
 		authResp.set({ token: sessionToken, user: user });
 		console.log('User found: ' + user.email);
+		await updateFavoriteBooks();
 		return user;
 	} catch (error) {
 		// Handle any error that occurred during the API call
@@ -114,7 +117,6 @@ export const deleteUser = async (userId: string): Promise<void> => {
 export const logout = () => {
 	localStorage.removeItem('token');
 	localStorage.removeItem('userId');
-	let currentResp = get(authResp);
 	authResp.set(null);
 	console.log('Logout');
 };
