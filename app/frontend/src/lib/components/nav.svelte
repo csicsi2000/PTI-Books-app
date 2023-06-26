@@ -63,7 +63,7 @@
 				{#if isUserLoggedIn }
 					<li class="nav-item mx-md-4">
 						<a
-							href="#"
+							href="/"
 							class="nav-link text-white btns"
 							on:click={() => {
 								logout();

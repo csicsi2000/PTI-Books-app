@@ -5,13 +5,13 @@ import type { Book } from 'shared-component/dist/entity/Book';
 import type { Review } from 'shared-component/dist/entity/Review';
 import { goto } from '$app/navigation';
 
-export function loginToMyAccount(email: string, password: string ) {
+export async function loginToMyAccount(email: string, password: string ) {
     const loginRequestBody = {
         email:email,
         password: password
     };
 
-    login(loginRequestBody)
+    await login(loginRequestBody)
         .then((authResponse) => {
             console.log(authResponse);
             authResp.set(authResponse);
