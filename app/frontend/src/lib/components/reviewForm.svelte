@@ -59,8 +59,9 @@
 		reviewRating = id;
 	}
 </script>
-
-<Reviews bookisbn13={bookToReview.primary_isbn13} bind:bookReviews />
+{#key bookReviews}
+	<Reviews bookisbn13={bookToReview.primary_isbn13} bind:bookReviews />
+{/key}
 
 {#if Number(userId) > 0}
 	<form class="row g-3 mt-3 mb-3" action="/book">

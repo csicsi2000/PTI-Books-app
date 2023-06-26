@@ -49,11 +49,6 @@
 					>
 						Categories
 					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Action</a></li>
-						<li><a class="dropdown-item" href="#">Another action</a></li>
-						<li><a class="dropdown-item" href="#">Something else here</a></li>
-					</ul>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-white" href="/test">Test Call</a>
@@ -73,20 +68,20 @@
 							Logout
 						</a>
 					</li>
-					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="#"> Favourite Books </a>
+					<li class="nav-item mx-md-4 w-25">
+						<a class="nav-link text-white btns" href="/Favorites"> Favourites</a>
 					</li>
-					<li class="nav-item mx-md-4">
+					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white btns" href="/Profile"> Profile </a>
 					</li>
 				{:else if !isUserLoggedIn}
-					<li class="nav-item mx-md-4">
+					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white btns" href="/Login"> Login </a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white" href="/testLogin"> Test </a>
 					</li>
 				{/if}

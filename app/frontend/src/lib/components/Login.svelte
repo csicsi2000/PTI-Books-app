@@ -27,10 +27,6 @@
 		}
 		console.log($authResp);
 	}
-	function handleSubmit() {
-		// console.log('this logs with every submit')
-		// this prevents default submit behaviour
-	}
 
 	let password = '';
 	let emailaddress = '';

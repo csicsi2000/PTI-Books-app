@@ -140,9 +140,7 @@
 										<label class="mb-2" for="age">{age}</label>
 									</div>
 								</div>
-							{/if}
-
-							{#if ButtonName == CHeckButtonName}
+							{:else if ButtonName == CHeckButtonName}
 								<div in:fade>
 									<h4 class="mb-2">name</h4>
 									<div class=".col-4">
