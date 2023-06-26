@@ -13,8 +13,14 @@
 
 	import { add_styles } from 'svelte/internal';
 	import { isLoggedIn } from '$lib/api/backend/authApi';
-
+	import Logo from '$lib/img/book_heaven_logo.png';
 	//relocation("/Profile");
+
+
+	import { createEventDispatcher } from 'svelte';
+  
+  const dispatch = createEventDispatcher();
+
 
 	async function submitCall(event:Event) {
 		event.preventDefault();
@@ -22,15 +28,15 @@
 		await loginToMyAccount(emailaddress, password);
 
 		if (isLoggedIn()) {
-			console.log("Logged in")
-			relocation('/Profile');
+			console.log("Logged in");
+			dispatch('loginSuccessful');
+			//relocation('/Profile');
 		}
 		console.log($authResp);
 	}
-	function handleSubmit() {
-		// console.log('this logs with every submit')
-		// this prevents default submit behaviour
-	}
+	const navigateToRegistration = () => {
+    dispatch('navigateToRegistration');
+  };
 
 	let password = '';
 	let emailaddress = '';
@@ -43,17 +49,16 @@
 	const form = useForm();
 </script>
 
-<section class="h-100 gradient-form" style="background-color: #eee; ">
-	<div class="container py-5 h-100">
+
 		<div class="row d-flex justify-content-center align-items-center h-100">
 			<div class="col-xl-10">
-				<div class="card rounded-3 text-black">
+			
 					<div class="row g-0">
 						<div class="card-body p-md-5 mx-md-4">
 							<div class="text-center">
 								<img
-									src="https://w7.pngwing.com/pngs/425/805/png-transparent-computer-icons-book-book-cover-angle-recycling-logo.png"
-									style="width: 185px;"
+									src={Logo}
+									style="width: 100px;"
 									alt="logo"
 								/>
 								<h4 class="mt-1 mb-5 pb-1">BOOK Haven</h4>
@@ -102,20 +107,15 @@
 										disabled={!$form.valid}>Log in</button
 									>
 								</div>
-
-								<div class="d-flex align-items-center justify-content-center pb-4">
-									<p class="mb-0 me-2">Don't have an account?</p>
-									<button
-										type="button"
-										on:click={() => (reg_show = !reg_show)}
-										class="btn btn-outline-danger">Create new</button
-									>
-								</div>
 							</form>
+							<div class="d-flex align-items-center justify-content-center pb-4">
+								<p class="mb-0 me-2">Create new account</p>
+								<button class="btn btn-outline-danger" on:click={navigateToRegistration}>SignIn</button>
+							</div>
 						</div>
 					</div>
-				</div>
+				
 			</div>
 		</div>
-	</div>
-</section>
+
+
