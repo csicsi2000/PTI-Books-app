@@ -1,22 +1,36 @@
 <script lang="ts">
 	import type { AuthResponse } from '$lib/api/backend/authApi';
 	import { authResp, selectedBook } from '$lib/utils/stores';
-	import Review from './review.svelte';
+	import Reviews from './review.svelte';
+	import type { Review } from 'shared-component/dist/entity/Review';
 	import type { Book } from 'shared-component/dist/entity/Book';
 	import { submitMyReview } from '$lib/utils/functions';
+	import { getBook } from '$lib/api/backend/bookApi';
 
 	let reviewTitle: string;
 	let review: string;
 	let reviewRating = 0;
 
-	let bookRating = 0;
-
 	let userId: string;
-	authResp.subscribe((value: AuthResponse) => {
+	authResp.subscribe((value) => {
 		if (value != null) {
 			userId = value.user.id.toString();
 		}
 	});
+
+	let bookReviews: Review[] = [];
+
+	function updatedBookReviews(aBook: Book) {
+		if (aBook) {
+			getBook(aBook.primary_isbn13)
+				.then((book) => {
+					bookReviews = book.reviews;
+				})
+				.catch((error) => {
+					console.error(`Error getting book review: ${error.message}`);
+				});
+		}
+	}
 
 	let bookToReview: Book;
 	selectedBook.subscribe((value: Book) => {
@@ -46,7 +60,8 @@
 	}
 </script>
 
-<Review bookisbn13={bookToReview.primary_isbn13} />
+<Reviews bookisbn13={bookToReview.primary_isbn13} bind:bookReviews />
+
 {#if Number(userId) > 0}
 	<form class="row g-3 mt-3 mb-3" action="/book">
 		<div class="col-4">
@@ -117,10 +132,15 @@
 				id="reviewSubmit"
 				type="submit"
 				on:click={() => {
+					if (reviewRating < 1) {
+						reviewRating = 1;
+					}
 					submitMyReview(reviewTitle, review, userId, bookToReview, reviewRating);
 					reviewTitle = '';
 					review = '';
 					reviewRating = 0;
+					updatedBookReviews(bookToReview);
+					updatedBookReviews(bookToReview);
 				}}>Submit review</button
 			>
 		</div>

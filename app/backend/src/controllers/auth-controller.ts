@@ -15,15 +15,26 @@ const secretKey = 'custom';
 
 export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Response) => {
   const { email, password } = req.body;
+  console.log(req.body);
+  if(password == null){
+    return res.status(401).json({ message: 'Invalid password' });
+ }
 
   const userRepository = AppDataSource.getRepository(User);
   const user = await userRepository.findOne({ where: { email: email } });
+  console.log("test" + user)
+  if (user == null) {
+    console.warn("Login Fail! User not found:"+email );
+    return res.status(401).json({ message: 'Invalid username' });
+  }
 
-  let result:boolean = bcrypt.compare(password, user.password)
-
-  console.log(user.password);
+  let result:boolean = await bcrypt.compare(password, user.password)
+  
+  console.log("Incoming password: " + password);
+  console.log(user.password); 
+  console.log(result);
   if (!user || !result) {
-    console.warn("Login Fail! User:"+user.email );
+    console.warn("Login Fail! User password wrong:"+user.email );
 
     return res.status(401).json({ message: 'Invalid username or password' });
   }
@@ -49,11 +60,11 @@ export const login = async (req: Request<{}, {}, LoginRequestBody>, res: Respons
 export const register = async (req: Request, res: Response) => {
   const { email, password, firstName, lastName, age } = req.body;
 
-  console.log("Login attempt: " + email);
+  console.log("Register attempt: " + email);
 
   // Check if the user already exists
   const userRepository = AppDataSource.getRepository(User);
-  const user = await userRepository.findOne({ where: { email: email } });
+  let user = await userRepository.findOne({ where: { email: email } });
   if(user != null){
     console.log(user);
     return res.status(401).json({ message: 'User already exists!' });
@@ -80,13 +91,36 @@ export const register = async (req: Request, res: Response) => {
   const session = new Session();
   session.token = token;
   session.user = newUser;
+  console.log(session);
   await sessionRepository.save(session);
 
-  const createdUser = await userRepository.findOne({ where: { email: email } });
+  user = await userRepository.findOne({ where: { email: email } });
+  if(user == null){
 
+  }
+  console.log("Successful: ")
+  console.log(user)
   // Send the token back to the client
-  res.send({ token,createdUser });
+  res.send({ token, user });
 }
+
+export const getUserBySession = async (req: Request, res: Response) => {
+  const { sessionToken } = req.body;
+
+  // Find the session based on the provided session token
+  const sessionRepository = AppDataSource.getRepository(Session);
+  const session = await sessionRepository.findOne({ where: { token: sessionToken }, relations: ['user'] });
+
+  if (!session) {
+    return res.status(401).json({ message: 'Invalid session token!' });
+  }
+
+  const user = session.user;
+  console.log("User found:", user);
+
+  // Return the user object
+  res.send(user);
+};
 
 
 export const deleteUser = async (req: Request, res: Response) => {
