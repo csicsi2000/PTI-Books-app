@@ -7,10 +7,11 @@
 	import { submitMyReview } from '$lib/utils/functions';
 	import { getBook } from '$lib/api/backend/bookApi';
 
+	export let bookToReview: Book;
+
 	let reviewTitle: string;
 	let review: string;
 	let reviewRating = 0;
-
 	let userId: string;
 	authResp.subscribe((value) => {
 		if (value != null) {
@@ -19,25 +20,20 @@
 	});
 
 	let bookReviews: Review[] = [];
-
+	updatedBookReviews(bookToReview);
+	
 	function updatedBookReviews(aBook: Book) {
 		if (aBook) {
 			getBook(aBook.primary_isbn13)
 				.then((book) => {
-					bookReviews = book.reviews;
+					bookReviews = book.reviews ?? [];
+					console
 				})
 				.catch((error) => {
 					console.error(`Error getting book review: ${error.message}`);
 				});
 		}
 	}
-
-	let bookToReview: Book;
-	selectedBook.subscribe((value: Book) => {
-		if (value != null) {
-			bookToReview = value;
-		}
-	});
 
 	function setRating(id: number) {
 		for (let index = 1; index <= id; index++) {
@@ -58,12 +54,17 @@
 
 		reviewRating = id;
 	}
-</script>
 
-<Reviews bookisbn13={bookToReview.primary_isbn13} bind:bookReviews />
+	function handleSubmit(event: Event) {
+    	event.preventDefault();
+	}
+</script>
+{#key bookReviews}
+	<Reviews bookReviews={ bookReviews} />
+{/key}
 
 {#if Number(userId) > 0}
-	<form class="row g-3 mt-3 mb-3" action="/book">
+	<form class="row g-3 mt-3 mb-3" on:submit|preventDefault={handleSubmit}>
 		<div class="col-4">
 			<label for="inputReviewTitle" />
 			<input
@@ -139,7 +140,6 @@
 					reviewTitle = '';
 					review = '';
 					reviewRating = 0;
-					updatedBookReviews(bookToReview);
 					updatedBookReviews(bookToReview);
 				}}>Submit review</button
 			>

@@ -45,7 +45,6 @@ export class CacheApi {
       }
     }
     let callString = `${apiCall}?api-key=${API_KEY}`;
-    console.log(callString);
     const response = await fetch(callString);
     const data = await response.json();
 
