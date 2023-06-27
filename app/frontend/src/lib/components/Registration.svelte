@@ -143,6 +143,66 @@
 						<p class="mb-0 me-2">Already have one?</p>
 						<button class="btn btn-outline-danger" on:click={navigateToLogin}>LogIn</button>
 					</div>
+						
+					<div class="form-outline mb-4">
+						<label class="label" for="email">Email</label>
+					  <input type="email"
+					  name="email"
+					  bind:value={emailaddress}
+					  use:validators={[required, email]} id="user" class="form-control"
+						placeholder="email address" />
+						<HintGroup for="email">
+							<Hint on="required">This is a mandatory field</Hint>
+							<Hint on="email" hideWhenRequired>Email is not valid</Hint>
+						</HintGroup>
+					
+					</div>	<div class="form-outline mb-4">
+
+
+						<label  class="label" for="age">Age</label>
+						<input class="form-control"  type="number" name="age" bind:value={age} />
+	
+					</div>	
+
+
+					<div class="form-outline mb-4">
+					<label class="label"for="password">Password</label>
+					<input class="form-control" type="password" name="password" bind:value={password} use:validators={[required, minLength(5), containNumbers(2)]} />
+					<span class="hintgroup">
+					<HintGroup for="password">
+						<Hint on="required">{requiredMessage}</Hint>
+						<Hint on="minLength" hideWhenRequired let:value>This field must have at least {value} characters.</Hint>	
+						<Hint on="containNumbers" hideWhen="minLength" let:value>
+							
+						This field must contain at least {value} numbers.
+						</Hint>	
+					</HintGroup>
+				</span>
+			</div>	
+			<div class="form-outline mb-4">
+					<label class="label" for="passwordConfirmation">Password Confirmation</label>
+					<input class="form-control" type="password" name="passwordConfirmation" use:validators={[required, passwordMatch]} />
+					<span class="hintgroup">
+					<HintGroup for="passwordConfirmation">
+						<Hint on="required">{requiredMessage}</Hint>
+						<Hint on="passwordMatch" hideWhenRequired>Passwords do not match</Hint>	
+					</HintGroup>
+				</span>
+			</div>	
+  
+					<button class="btn btn-primary" type="submit" disabled={!$form.valid} >
+						<span > Submit
+						</span>
+					</button>
+
+					 </form>
+					 <br>
+				 
+				</div>
+				<div class="d-flex align-items-center justify-content-center pb-4">
+					<p class="mb-0 me-2">Already have one?</p>
+					<button class="btn btn-outline-danger" on:click={navigateToLogin}>LogIn</button>
+
 				</div>
 			</div>
 		</div>

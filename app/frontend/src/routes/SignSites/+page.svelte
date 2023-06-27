@@ -10,7 +10,8 @@
 	import { get } from 'svelte/store';
 	
 	
-	let currentPage = Login;
+	let currentPage: typeof Login | typeof Profile | typeof Registration = Login;
+
 
 	let authRespRawValue = get(authResp);
 	if (authRespRawValue != null || authRespRawValue != undefined) {
@@ -30,9 +31,8 @@
   </script>
   
 
-<!-- Section: Design Block -->
 <section class="">
-	<!-- Jumbotron -->
+	
 	<div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
 	  <div class="container">
 		<div class="row gx-lg-5 align-items-center">
@@ -64,7 +64,7 @@
 		</div>
 	  </div>
 	</div>
-	<!-- Jumbotron -->
+
   </section>
-  <!-- Section: Design Block -->
+
 
