@@ -21,6 +21,7 @@
 
 	let bookReviews: Review[] = [];
 	updatedBookReviews(bookToReview);
+	
 	function updatedBookReviews(aBook: Book) {
 		if (aBook) {
 			getBook(aBook.primary_isbn13)

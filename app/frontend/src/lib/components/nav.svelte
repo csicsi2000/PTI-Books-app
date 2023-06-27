@@ -66,9 +66,6 @@
 					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
 					</li>
-					<li class="nav-item mx-md-4 w-25">
-						<a class="nav-link text-white" href="/testLogin"> Test </a>
-					</li>
 				{/if}
 			</ul>
 		</div>
