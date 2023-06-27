@@ -77,11 +77,11 @@
 						<a class="nav-link text-white btns" href="#"> Favourite Books </a>
 					</li>
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="/Profile"> Profile </a>
+						<a class="nav-link text-white btns" href="/SignSites"> Profile </a>
 					</li>
 				{:else if !isUserLoggedIn}
 					<li class="nav-item mx-md-4">
-						<a class="nav-link text-white btns" href="/Login"> Login </a>
+						<a class="nav-link text-white btns" href="/SignSites"> Login </a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>

@@ -4,7 +4,9 @@
 	import { authResp } from '$lib/utils/stores';	
 	import { add_styles } from "svelte/internal";
 	
-	
+	import { createEventDispatcher } from 'svelte';
+	import Logo from '$lib/img/book_heaven_logo.png';
+
 	
 	const requiredMessage = "This field is required";
 
@@ -19,22 +21,28 @@
 	function visibile(){ visible = true;}
 
 
+  const dispatch = createEventDispatcher();
+
 	const form =useForm(); 
 
 	function submitCall() {
-		//console.log('egyből');
-		registerMyAccount(emailaddress, password, first_name, last_name, age)
-		relocation("/Profile");
+	
+		registerMyAccount(emailaddress, password, first_name, last_name, age);
+		dispatch('loginSuccessful');
+		
 	}
+
+	const navigateToLogin = () => {
+    dispatch('navigateToLogin');
+  };
 	
 </script>
 
 
-<section class="h-100 gradient-form " style="background-color: #eee; ">
 	<div class="container py-5 h-100 " >
 		<div class="row d-flex justify-content-center align-items-center h-100 ">
 			<div class="col-xl-10 ">
-				<div class="card rounded-3 text-black">
+			
 					<div class="row g-0">
 						
 
@@ -44,8 +52,11 @@
 							<div class="text-center">
 
 				  <div class="text-center justify-content-center align-items-center text-center">
-					<img src="https://w7.pngwing.com/pngs/425/805/png-transparent-computer-icons-book-book-cover-angle-recycling-logo.png"
-					  style="width: 185px;" alt="logo">
+					<img
+									src={Logo}
+									style="width: 100px;"
+									alt="logo"
+								/>
 					<h4 class="mt-1 mb-5 pb-1">BOOK Haven</h4>
 				  </div>
   
@@ -111,21 +122,19 @@
 					</HintGroup>
 				</span>
 			</div>	
-
-
-
-
-
-
-  
   
 					<button class="btn btn-primary" type="submit" disabled={!$form.valid} >
 						<span > Submit
 						</span>
 					</button>
-  
-				  </form>
-  
+
+					 </form>
+					 <br>
+				 
+				</div>
+				<div class="d-flex align-items-center justify-content-center pb-4">
+					<p class="mb-0 me-2">Already have one?</p>
+					<button class="btn btn-outline-danger" on:click={navigateToLogin}>LogIn</button>
 				</div>
 			  </div>
 
@@ -135,8 +144,6 @@
 		  </div>
 		</div>
 	  </div>
-	</div>
-  </section>
 
 			 
 		
