@@ -3,9 +3,12 @@
 	import NavBar from '$lib/components/nav.svelte';
 	import { onMount } from 'svelte';
 	import 'bootstrap/dist/css/bootstrap.min.css';
+	import { browser } from '$app/environment';
 
 	onMount(async () => {
-		setSession();
+		if (browser) {
+			setSession();
+		}
 	});
 </script>
 

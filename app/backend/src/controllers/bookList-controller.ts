@@ -117,7 +117,7 @@ export class BookListCalls {
 
   insertBookIntoList = async (req, res) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
-
+    console.log("Book insert started")
     if (!token) {
       return res.status(401).json({ message: "Authentication token missing" });
     }
@@ -135,6 +135,7 @@ export class BookListCalls {
     });
 
     if (!booklist || booklist.user.id !== Number(userId)) {
+      console.log("Book insert failed. Booklist not found.")
       return res.status(404).send("Booklist not found");
     }
 
@@ -159,10 +160,13 @@ export class BookListCalls {
     );
 
     if (existingBookListBook) {
+      console.log("Book insert failed. Book already exists in booklist.")
+
       return res.status(400).send("Book already exists in booklist");
     }
 
-    return res.send("Insert Successful");
+    console.log("Insert successfull");
+    return res.send("Insert Successfull");
   };
 
   deleteBookFromList = async (req, res) => {

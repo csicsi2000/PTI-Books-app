@@ -183,7 +183,7 @@ export const updateUser = async (req: Request, res: Response) => {
   user.lastName = lastName;
   user.age = age;
 
-  if (password) {
+  if (password != undefined && password != null && password != "") {
     // If a new password is provided, hash it and update the user's password
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;

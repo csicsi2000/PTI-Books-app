@@ -1,8 +1,8 @@
 <script lang="ts">
 	// import the Bootstrap style files
-	import 'bootstrap/dist/css/bootstrap.min.css';
+	// import 'bootstrap/dist/css/bootstrap.min.css';
   	import '@fortawesome/fontawesome-free/css/all.css';
-	
+	import autoAnimate from '@formkit/auto-animate';
 	// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 	//import booklist component
 	import Booklist from '$lib/components/booklist.svelte';
@@ -39,7 +39,7 @@
 <!-- main container-->
 <Motto />
 <div class="container mt-3 bg-light">
-	<div class="row">
+	<div class="row" use:autoAnimate>
 		<Booklist />
 	</div>
 </div>

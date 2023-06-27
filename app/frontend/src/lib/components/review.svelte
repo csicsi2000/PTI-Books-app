@@ -4,19 +4,7 @@
 	import type { Review } from 'shared-component/dist/entity/Review';
 	import { bookFromDatabase } from '$lib/utils/stores';
 	
-	export let bookisbn13: string;
-
 	export let bookReviews: Review[] = [];
-    
-	getBook(bookisbn13)
-		.then((book) => {
-			bookReviews = book.reviews;
-			bookFromDatabase.set(book);
-		})
-		.catch((error) => {
-			console.error(`Error getting book review: ${error.message}`);
-		});
-
 </script>
 
 {#each bookReviews as breview}
