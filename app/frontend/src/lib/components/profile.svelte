@@ -48,16 +48,7 @@
 		console.log(password);
 	}
 
-	// window.onload = () => {
-	// 	alert('get(authResp).user.lastName');
-	// 	if (authResp != null) {
-	// 		let first_name = authRespValue.user.firstName;
-	// 		last_name = authRespValue.user.lastName;
-	// 		age = authRespValue.user.age;
-	// 		emailaddress = authRespValue.user.email;
-	// 		password = authRespValue.user.firstName;
-	// 	}
-	// };
+
 
 	let reload = true;
 	let reload2 = false;
@@ -111,21 +102,19 @@
 </script>
 
 {#if showWarning}
-	<div class="container py-5 justify-content-center align-items-center h-100 col-md-12 col-xl-4">
-		<div class="alert alert-danger mb-2 text-center">NINCS ILYEN FELHASZNÁLÓ!!</div>
+	<div class="container justify-content-center align-items-center ">
+		<div class="alert alert-danger mb-2 text-center">Not existing account!!</div>
 
 		<div class="mb-2 text-center">
 			<button class="btn btn-outline-danger btn-floating" on:click={() => relocation('/')}>
-				Vissza a főoldalra
+				Back to the main Page!
 			</button>
 		</div>
 	</div>
 {:else}
-	<section class="vh-100" style="background-color: #eee;">
-		<div class="container py-5 h-100">
-			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-md-12 col-xl-4">
-					<div class="card" style="border-radius: 15px;">
+	
+	
+		
 						<div class="card-body text-center">
 							{#if ButtonName == EditButtonName}
 								<div in:fade>
@@ -165,7 +154,7 @@
 									name={ButtonName}
 									on:click={() => buttonCHanger()}
 								>
-									<i class={ButtonIClass} />
+									<i class={ButtonIClass} >     Edit</i>
 								</button>
 							{:else if ButtonName == CHeckButtonName}
 								<div class=" mb-2">
@@ -194,7 +183,7 @@
 											buttonCHanger();
 										}}
 									>
-										<i class="fa-sharp fa-solid fa-x" />
+										<i class="fa-sharp fa-solid fa-x" > Close</i>
 									</button>
 
 									<button
@@ -208,14 +197,11 @@
 											buttonCHanger();
 										}}
 									>
-										<i class={ButtonIClass} />
+										<i class={ButtonIClass} > Accept</i>
 									</button>
 								</div>
 							{/if}
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+				
+			
 {/if}

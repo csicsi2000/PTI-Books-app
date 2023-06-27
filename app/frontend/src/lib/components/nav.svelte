@@ -61,7 +61,7 @@
 					</li>
 				{:else if !isUserLoggedIn}
 					<li class="nav-item mx-md-4 w-25">
-						<a class="nav-link text-white btns" href="/Login"> Login </a>
+						<a class="nav-link text-white btns" href="/SignSites"> Login </a>
 					</li>
 					<li class="nav-item mx-md-4 w-25">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
