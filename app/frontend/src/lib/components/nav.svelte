@@ -86,9 +86,9 @@
 					<li class="nav-item">
 						<a class="nav-link text-white" href="/Registration"> Registration </a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link text-white" href="/testLogin"> Test </a>
-					</li>
+					</li> -->
 				{/if}
 			</ul>
 		</div>

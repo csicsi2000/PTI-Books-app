@@ -95,12 +95,10 @@
 	
 					</div>	
 
-				
-				
 
 					<div class="form-outline mb-4">
 					<label class="label"for="password">Password</label>
-					<input class="form-control" type="password" name="password" use:validators={[required, minLength(5), containNumbers(2)]} />
+					<input class="form-control" type="password" name="password" bind:value={password} use:validators={[required, minLength(5), containNumbers(2)]} />
 					<span class="hintgroup">
 					<HintGroup for="password">
 						<Hint on="required">{requiredMessage}</Hint>
