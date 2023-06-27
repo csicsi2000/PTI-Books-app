@@ -2,6 +2,7 @@
 	import { authResp, booklist_name, favoriteBooks } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
 	import ShowBook from '$lib/components/showBook.svelte';
+	import autoAnimate from '@formkit/auto-animate';
 
 	let favorites: Book[];
 
@@ -19,7 +20,7 @@
 	</div>
 {:else}
 	<div class="container mt-3 bg-light">
-		<div class="row">
+		<div class="row" use:autoAnimate>
 			{#key favorites}
 				{#each favorites as singleBook}
 					<ShowBook book={singleBook} />

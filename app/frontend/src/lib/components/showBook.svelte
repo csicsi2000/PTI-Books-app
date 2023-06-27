@@ -7,6 +7,7 @@
 	import { deleteBookFromList, insertBookIntoList } from '$lib/api/backend/booklistApi';
 	import type { AuthResponse } from '$lib/api/backend/authApi';
 	import { updateFavoriteBooks } from '$lib/utils/functions';
+	import autoAnimate from '@formkit/auto-animate';
 
 	export let book: Book;
 
@@ -82,7 +83,7 @@
 				<span class="lm-auto"><b>{book.author}</b> </span>
 				{#if respData}
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
-					<div on:click={TriggerFavorite}>
+					<div on:click={TriggerFavorite} use:autoAnimate>
 						<!-- svelte-ignore missing-declaration -->
 						{#key isfavorite}
 							{#if IsFavorite(book)}
