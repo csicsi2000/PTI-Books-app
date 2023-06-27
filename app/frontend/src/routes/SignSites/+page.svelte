@@ -10,7 +10,8 @@
 	import { get } from 'svelte/store';
 	
 	
-	let currentPage = Login;
+	let currentPage: typeof Login | typeof Profile | typeof Registration = Login;
+
 
 	let authRespRawValue = get(authResp);
 	if (authRespRawValue != null || authRespRawValue != undefined) {
