@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getBook } from '$lib/api/backend/bookApi';
-	import StarSvg from '$lib/img/star4.svg';
 	import { allBooks, bookFromDatabase, selectedBook } from '$lib/utils/stores';
 	import type { Book } from 'shared-component/dist/entity/Book';
 	import ShowBook from './showBook.svelte';

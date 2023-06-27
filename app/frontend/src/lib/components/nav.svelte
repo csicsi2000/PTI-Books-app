@@ -2,8 +2,6 @@
 	import Logo from '$lib/img/book_heaven_logo.png';
 	import { logout, type AuthResponse } from '$lib/api/backend/authApi';
 	import { authResp } from '$lib/utils/stores';
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
 
 	let userId = 0;
 
@@ -39,20 +37,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item dropdown">
-					<a
-						class="nav-link dropdown-toggle text-white"
-						href="#"
-						role="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
-						Categories
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-white" href="/test">Test Call</a>
-				</li>
+
 			</ul>
 			<ul class="navbar-nav mx-md-4">
 				{#if isUserLoggedIn }

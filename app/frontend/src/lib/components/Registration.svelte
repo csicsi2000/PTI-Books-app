@@ -21,9 +21,10 @@
 
 	const form =useForm(); 
 
-	function submitCall() {
+	async function submitCall() {
 		//console.log('egyből');
-		registerMyAccount(emailaddress, password, first_name, last_name, age)
+		await registerMyAccount(emailaddress, password, first_name, last_name, age)
+		await new Promise(f => setTimeout(f, 1000));
 		relocation("/Profile");
 	}
 	

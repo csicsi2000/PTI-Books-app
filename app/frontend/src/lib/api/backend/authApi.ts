@@ -1,11 +1,10 @@
-import { authResp, selectedBook, bookFromDatabase, booklist_name, favoriteBooks } from '$lib/utils/stores';
+import { authResp, selectedBook, bookFromDatabase } from '$lib/utils/stores';
 import axios from 'axios';
 import type { Book } from 'shared-component/dist/entity/Book';
 import type { User } from 'shared-component/dist/entity/User';
 import { getBook } from './bookApi';
-import { get } from 'svelte/store';
-import { createBookList, getBookList } from './booklistApi';
 import { updateFavoriteBooks } from '$lib/utils/functions';
+import { component_subscribe } from 'svelte/internal';
 
 export interface AuthResponse {
 	token: string;
@@ -51,30 +50,11 @@ export const register = async (data: RegisterRequestBody): Promise<AuthResponse>
 };
 
 export const setSession = async () => {
-	try {
-		let book = JSON.parse(localStorage.getItem('selectedBook') || '') as Book;
-		if (book != null) {
-			console.log(book as Book);
-			selectedBook.set(book as Book);
-			getBook(book.primary_isbn13)
-				.then((book) => {
-					bookFromDatabase.set(book);
-				})
-				.catch((error) => {
-					bookFromDatabase.set(book);
-					console.error(`Error getting book review: ${error.message}`);
-				});
-			console.log('Book set');
-		}
-	} catch {
-		console.log('No selected book found');
+	console.log("Set session started")
+	console.log(localStorage == undefined);
+	if (localStorage == undefined) {
+		return;
 	}
-
-	selectedBook.subscribe((value) => {
-		console.log('selectedBook changed: ' + value.title);
-		localStorage.setItem('selectedBook', JSON.stringify(value));
-	});
-
 	const sessionToken = localStorage.getItem('token');
 
 	if (!sessionToken) {
@@ -122,7 +102,11 @@ export const logout = () => {
 };
 
 export const getToken = () => {
-	return localStorage.getItem('token');
+	try{
+	return localStorage.getItem('token');}
+	catch{
+		return "";
+	}
 };
 
 export const getUserId = () => {

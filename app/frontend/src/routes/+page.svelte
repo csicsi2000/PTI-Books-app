@@ -1,6 +1,6 @@
 <script lang="ts">
 	// import the Bootstrap style files
-	import 'bootstrap/dist/css/bootstrap.min.css';
+	// import 'bootstrap/dist/css/bootstrap.min.css';
   	import '@fortawesome/fontawesome-free/css/all.css';
 	import autoAnimate from '@formkit/auto-animate';
 	// import 'bootstrap/dist/js/bootstrap.bundle.min.js';

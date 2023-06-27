@@ -21,11 +21,9 @@
 {:else}
 	<div class="container mt-3 bg-light">
 		<div class="row" use:autoAnimate>
-			{#key favorites}
 				{#each favorites as singleBook}
 					<ShowBook book={singleBook} />
 				{/each}
-			{/key}
 		</div>
 	</div>
 {/if}

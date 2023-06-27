@@ -1,11 +1,9 @@
 import axios from 'axios';
 import type { Book } from 'shared-component/dist/entity/Book';
 import type { BookList } from 'shared-component/dist/entity/BookList';
-import { BASE_URL } from './authApi';
 
-try {
-	const apiUrl = BASE_URL;
-} catch {}
+export const BASE_URL = 'http://localhost:3000';
+
 
 export async function getUserBookLists(userId: number): Promise<BookList[]> {
 	try {

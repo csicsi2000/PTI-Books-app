@@ -45,6 +45,7 @@
 		id = authRespValue.user.id.toString();
 		emailaddress = authRespValue.user.email;
 		password = authRespValue.user.password;
+		console.log(password);
 	}
 
 	// window.onload = () => {
