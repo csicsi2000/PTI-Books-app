@@ -51,14 +51,14 @@
 <div class="row d-flex justify-content-center align-items-center h-100">
 	<div class="col-xl-10">
 		<div class="row g-0">
-			<div class="card-body p-md-5 mx-md-4">
+			<div class="card-body p-md-5 mx-md-4 pt-5">
 				<div class="text-center">
 					<img src={Logo} style="width: 100px;" alt="logo" />
 					<h4 class="mt-1 mb-5 pb-1">BOOK Haven</h4>
 				</div>
 
 				<form use:form on:submit|preventDefault={submitCall}>
-					<p>Please login to your account</p>
+					<label class="form-label" for="form2Example11">Email</label>
 
 					<div class="form-outline mb-4">
 						<input
@@ -74,10 +74,9 @@
 							<Hint on="required">This is a mandatory field</Hint>
 							<Hint on="email" hideWhenRequired>Email is not valid</Hint>
 						</HintGroup>
-
-						<label class="form-label" for="form2Example11">Username</label>
 					</div>
 
+					<label class="form-label" for="form2Example22">Password</label>
 					<div class="form-outline mb-4">
 						<input
 							type="password"
@@ -86,11 +85,11 @@
 							use:validators={[required]}
 							id="form2Example22"
 							class="form-control"
+							placeholder="Password"
 						/>
 						<span class="hintgroup">
 							<Hint for="password" on="required">This is a mandatory field</Hint>
 						</span>
-						<label class="form-label" for="form2Example22">Password</label>
 					</div>
 
 					<div class="text-center pt-1 mb-5 pb-1">

@@ -20,7 +20,7 @@
 	} from 'svelte-use-form';
 	import { fade, scale } from 'svelte/transition';
 
-	import type { AuthResponse } from '$lib/api/backend/authApi';
+	import { logout, type AuthResponse } from '$lib/api/backend/authApi';
 	import type { User } from 'shared-component/dist/entity/User';
 	import { get } from 'svelte/store';
 
@@ -95,6 +95,7 @@
 
 	function remove() {
 		removeMyAccount(id);
+		logout();
 		relocation('/');
 	}
 </script>
@@ -110,8 +111,8 @@
 		</div>
 	</div>
 {:else}
-	<div class="min-vh-100 d-flex align-items-center justify-content-center ">
-		<div class="card " style="width: 18rem;">
+	<div class="min-vh-100 d-flex align-items-center justify-content-center">
+		<div class="card" style="width: 18rem;">
 			<div class="card-body">
 				{#if ButtonName == EditButtonName}
 					<div in:fade>
@@ -129,15 +130,20 @@
 					</div>
 				{:else if ButtonName == CHeckButtonName}
 					<div in:fade>
-						<h4 class="mb-2">Name</h4>
-						<div class=".col-4">
-							<input class="mb-2" bind:value={first_name} />
+						<div class="form-outline mb-4">
+							<label class="label" for="first-name">First Name</label>
 
-							<input class="mb-2" bind:value={last_name} />
+							<input class="form-control" bind:value={first_name} />
 						</div>
-						<h4 class="mb-2">Age</h4>
-						<div class=".col-4">
-							<input class="mb-2" bind:value={age} />
+						<div class="form-outline mb-4">
+							<label class="label" for="last-name">Last Name</label>
+
+							<input class="form-control" bind:value={last_name} />
+						</div>
+						<div class="form-outline mb-4">
+							<label class="label" for="last-name">Age</label>
+
+							<input class="form-control" bind:value={age} />
 						</div>
 					</div>
 				{/if}
@@ -156,7 +162,7 @@
 						</button>
 					</div>
 				{:else if ButtonName == CHeckButtonName}
-					<div class=" mb-2 text-center">
+					<div class="mb-2 text-center w-100">
 						<button
 							in:fade
 							type="button"
@@ -171,37 +177,39 @@
 							<i>Delete your account</i>
 						</button>
 					</div>
-					<div class="mb-2">
-						<button
-							in:fade
-							type="submit"
-							class="btn btn-outline-danger btn-floating"
-							data-mdb-ripple-color="dark"
-							name="back"
-							on:click={() => {
-								buttonCHanger();
-							}}
-						>
-							<i class="fa-sharp fa-solid fa-x"> Close</i>
-						</button>
-
-						<button
-							in:fade
-							type="submit"
-							class={ButtonClass}
-							data-mdb-ripple-color="dark"
-							name={ButtonName}
-							on:click={() => {
-								update();
-								buttonCHanger();
-							}}
-						>
-							<i class={ButtonIClass}> Accept</i>
-						</button>
+					<div class="mb-2 row">
+						<div class="col">
+							<button
+								in:fade
+								type="submit"
+								class="btn btn-outline-danger btn-floating w-100"
+								data-mdb-ripple-color="dark"
+								name="back"
+								on:click={() => {
+									buttonCHanger();
+								}}
+							>
+								<i class="fa-sharp fa-solid fa-x pr-2" />Close
+							</button>
+						</div>
+						<div class="col">
+							<button
+								in:fade
+								type="submit"
+								class="{ButtonClass} w-100"
+								data-mdb-ripple-color="dark"
+								name={ButtonName}
+								on:click={() => {
+									update();
+									buttonCHanger();
+								}}
+							>
+								<i class={ButtonIClass} />Accept
+							</button>
+						</div>
 					</div>
 				{/if}
 			</div>
 		</div>
 	</div>
 {/if}
-

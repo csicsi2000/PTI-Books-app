@@ -48,7 +48,6 @@ export function registerMyAccount(
 	register(registerRequestBody)
 		.then((authResponse) => {
 			authResp.set(authResponse);
-			alert(`Logged in with token ${authResponse.token} and user ID ${authResponse.user.email}.`);
 		})
 		.catch((error) => {
 			alert(`Error logging in: ${error.message}`);

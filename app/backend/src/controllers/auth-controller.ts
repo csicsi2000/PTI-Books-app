@@ -4,6 +4,8 @@ import * as jwt from 'jsonwebtoken';
 import { User } from 'shared-component/dist/entity/User';
 import { Session } from '../entity/Session';
 import * as bcrypt from 'bcryptjs';
+import { BookList } from 'shared-component/dist/entity/BookList';
+import { Review } from 'shared-component/dist/entity/Review';
 
 
 interface LoginRequestBody {
@@ -148,8 +150,14 @@ export const deleteUser = async (req: Request, res: Response) => {
   const sessionRepository = AppDataSource.getRepository(Session);
   await sessionRepository.delete({ user: user });
   // Delete the user from the database
+  const booklistRepository = AppDataSource.getRepository(BookList);
+  await booklistRepository.delete({ user: user });
+
+  const reviewRepository = AppDataSource.getRepository(Review);
+  await reviewRepository.delete({ user: user });
   await userRepository.remove(user);
 
+  console.log("User deleted: " + user.email);
   res.json({ message: 'User deleted successfully' });
 };
 
