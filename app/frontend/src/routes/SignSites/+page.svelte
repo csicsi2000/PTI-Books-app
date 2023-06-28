@@ -8,6 +8,7 @@
 	import type { AuthResponse } from '$lib/api/backend/authApi';
 	import type { User } from 'shared-component/dist/entity/User';
 	import { get } from 'svelte/store';
+	import autoAnimate from '@formkit/auto-animate';
 	
 	
 	let currentPage: typeof Login | typeof Profile | typeof Registration = Login;
@@ -50,8 +51,8 @@
 		  </div>
   
 		  <div class="col-lg-6 mb-5 mb-lg-0">
-			<div class="card">
-			  <div class="card-body py-5 px-md-5">
+			<div class="card ">
+			  <div class="card-body py-5 px-md-5 animated-background" use:autoAnimate>
 				
 				<svelte:component this={currentPage} 
 				on:loginSuccessful={handleLoginSuccessful} 
@@ -66,5 +67,4 @@
 	</div>
 
   </section>
-
 

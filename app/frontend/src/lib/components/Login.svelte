@@ -103,7 +103,7 @@
 				</form>
 				<div class="d-flex align-items-center justify-content-center pb-4">
 					<p class="mb-0 me-2">Create new account</p>
-					<button class="btn btn-outline-danger" on:click={navigateToRegistration}>SignIn</button>
+					<button class="btn btn-outline-danger" on:click={navigateToRegistration}>Sign up</button>
 				</div>
 			</div>
 		</div>

@@ -110,8 +110,8 @@
 		</div>
 	</div>
 {:else}
-	<div class="min-vh-100 d-flex align-items-center justify-content-center">
-		<div class="card" style="width: 18rem;">
+	<div class="min-vh-100 d-flex align-items-center justify-content-center ">
+		<div class="card " style="width: 18rem;">
 			<div class="card-body">
 				{#if ButtonName == EditButtonName}
 					<div in:fade>
@@ -204,3 +204,4 @@
 		</div>
 	</div>
 {/if}
+
