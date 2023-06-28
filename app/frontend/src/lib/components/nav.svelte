@@ -36,11 +36,9 @@
 			<span class="navbar-toggler-icon" />
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav me-auto">
-
-			</ul>
+			<ul class="navbar-nav me-auto" />
 			<ul class="navbar-nav mx-md-4">
-				{#if isUserLoggedIn }
+				{#if isUserLoggedIn}
 					<li class="nav-item mx-md-4">
 						<a
 							href="/"

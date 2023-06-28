@@ -21,13 +21,13 @@
 
 	let bookReviews: Review[] = [];
 	updatedBookReviews(bookToReview);
-	
+
 	function updatedBookReviews(aBook: Book) {
 		if (aBook) {
 			getBook(aBook.primary_isbn13)
 				.then((book) => {
 					bookReviews = book.reviews ?? [];
-					console
+					console.log('Updated');
 				})
 				.catch((error) => {
 					console.error(`Error getting book review: ${error.message}`);
@@ -56,11 +56,23 @@
 	}
 
 	function handleSubmit(event: Event) {
-    	event.preventDefault();
+		event.preventDefault();
+	}
+
+	async function submitReview() {
+		if (reviewRating < 1) {
+			reviewRating = 1;
+		}
+		await submitMyReview(reviewTitle, review, userId, bookToReview, reviewRating);
+		reviewTitle = '';
+		review = '';
+		reviewRating = 0;
+		updatedBookReviews(bookToReview);
 	}
 </script>
+
 {#key bookReviews}
-	<Reviews bookReviews={ bookReviews} />
+	<Reviews {bookReviews} />
 {/key}
 
 {#if Number(userId) > 0}
@@ -85,7 +97,7 @@
 			/>
 			<label for="floatingTextarea">Review</label>
 		</div>
-		<spam>
+		<span>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<i
 				class="fa fa-star rating"
@@ -126,22 +138,10 @@
 					setRating(5);
 				}}
 			/>
-		</spam>
+		</span>
 		<div class="col-12">
-			<button
-				class="btn btn-danger"
-				id="reviewSubmit"
-				type="submit"
-				on:click={() => {
-					if (reviewRating < 1) {
-						reviewRating = 1;
-					}
-					submitMyReview(reviewTitle, review, userId, bookToReview, reviewRating);
-					reviewTitle = '';
-					review = '';
-					reviewRating = 0;
-					updatedBookReviews(bookToReview);
-				}}>Submit review</button
+			<button class="btn btn-danger" id="reviewSubmit" type="submit" on:click={submitReview}
+				>Submit review</button
 			>
 		</div>
 	</form>

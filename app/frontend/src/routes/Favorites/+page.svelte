@@ -20,10 +20,12 @@
 	</div>
 {:else}
 	<div class="container mt-3 bg-light">
-		<div class="row" use:autoAnimate>
-				{#each favorites as singleBook}
+		<ul class="row list-unstyled" use:autoAnimate>
+			{#each favorites as singleBook (singleBook)}
+				<li class="col-12 col-md-6 col-lg-4">
 					<ShowBook book={singleBook} />
-				{/each}
-		</div>
+				</li>
+			{/each}
+		</ul>
 	</div>
 {/if}
