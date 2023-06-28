@@ -50,9 +50,7 @@
 			let dataBook = await getBook(isbn13);
 
 			bookReviewNumber = dataBook?.reviews?.length ?? 0;
-			console.log(dataBook);
 			buyLinks = book?.buy_links ?? [];
-			console.log('BuyLinks: ' + buyLinks.length);
 			rating = Math.ceil(
 				(dataBook as Book).reviews?.reduce((acc, review) => acc + review.rating, 0) /
 					bookReviewNumber
