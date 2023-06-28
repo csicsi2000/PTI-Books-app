@@ -48,7 +48,7 @@
 	}
 </script>
 
-<div class="col mt-3 mb-3 d-flex justify-content-center">
+<div class="col mt-3 mb-3 d-flex justify-content-center" style="animation-duration: 1s;">
 	<div class="card book" style="width: 16rem;">
 			<a href="/book/{book.primary_isbn13}" class="text-reset text-decoration-none">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->

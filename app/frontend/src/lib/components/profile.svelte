@@ -90,7 +90,7 @@
 	const form = useForm();
 
 	function update() {
-		updateMyAccount(id, first_name, last_name, age, emailaddress, "");
+		updateMyAccount(id, first_name, last_name, age, emailaddress, '');
 	}
 
 	function remove() {
@@ -110,91 +110,97 @@
 		</div>
 	</div>
 {:else}
-	<div class="card-body text-center">
-		{#if ButtonName == EditButtonName}
-			<div in:fade>
-				<h4 class="mb-2">name</h4>
-				<div class=".col-4">
-					<label class="mb-2" for="first-name">{first_name}</label>
+	<div class="min-vh-100 d-flex align-items-center justify-content-center">
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				{#if ButtonName == EditButtonName}
+					<div in:fade>
+						<p class="mb-2 text-muted">Name</p>
+						<div class=".col-4">
+							<label class="mb-2" for="first-name">{first_name}</label>
 
-					<label class="mb-2" for="last-name">{last_name}</label>
-				</div>
+							<label class="mb-2" for="last-name">{last_name}</label>
+						</div>
 
-				<h4 class="mb-2">age</h4>
-				<div class=".col-4">
-					<label class="mb-2" for="age">{age}</label>
-				</div>
+						<p class="mb-2 text-muted">Age</p>
+						<div class=".col-4">
+							<label class="mb-2" for="age">{age}</label>
+						</div>
+					</div>
+				{:else if ButtonName == CHeckButtonName}
+					<div in:fade>
+						<h4 class="mb-2">Name</h4>
+						<div class=".col-4">
+							<input class="mb-2" bind:value={first_name} />
+
+							<input class="mb-2" bind:value={last_name} />
+						</div>
+						<h4 class="mb-2">Age</h4>
+						<div class=".col-4">
+							<input class="mb-2" bind:value={age} />
+						</div>
+					</div>
+				{/if}
+
+				{#if ButtonName == EditButtonName}
+					<div class=" mb-2 text-center">
+						<button
+							in:fade
+							type="button"
+							class={ButtonClass}
+							data-mdb-ripple-color="dark"
+							name={ButtonName}
+							on:click={() => buttonCHanger()}
+						>
+							<i class={ButtonIClass} />Edit
+						</button>
+					</div>
+				{:else if ButtonName == CHeckButtonName}
+					<div class=" mb-2 text-center">
+						<button
+							in:fade
+							type="button"
+							class="btn btn-outline-danger btn-floating"
+							data-mdb-ripple-color="dark"
+							name={ButtonName}
+							on:click={() => {
+								remove();
+								buttonCHanger();
+							}}
+						>
+							<i>Delete your account</i>
+						</button>
+					</div>
+					<div class="mb-2">
+						<button
+							in:fade
+							type="submit"
+							class="btn btn-outline-danger btn-floating"
+							data-mdb-ripple-color="dark"
+							name="back"
+							on:click={() => {
+								buttonCHanger();
+							}}
+						>
+							<i class="fa-sharp fa-solid fa-x"> Close</i>
+						</button>
+
+						<button
+							in:fade
+							type="submit"
+							class={ButtonClass}
+							data-mdb-ripple-color="dark"
+							name={ButtonName}
+							on:click={() => {
+								update();
+								buttonCHanger();
+							}}
+						>
+							<i class={ButtonIClass}> Accept</i>
+						</button>
+					</div>
+				{/if}
 			</div>
-		{:else if ButtonName == CHeckButtonName}
-			<div in:fade>
-				<h4 class="mb-2">name</h4>
-				<div class=".col-4">
-					<input class="mb-2" bind:value={first_name} />
-
-					<input class="mb-2" bind:value={last_name} />
-				</div>
-				<h4 class="mb-2">age</h4>
-				<div class=".col-4">
-					<input class="mb-2" bind:value={age} />
-				</div>
-			</div>
-		{/if}
-
-		{#if ButtonName == EditButtonName}
-			<button
-				in:fade
-				type="button"
-				class={ButtonClass}
-				data-mdb-ripple-color="dark"
-				name={ButtonName}
-				on:click={() => buttonCHanger()}
-			>
-				<i class={ButtonIClass}> Edit</i>
-			</button>
-		{:else if ButtonName == CHeckButtonName}
-			<div class=" mb-2">
-				<button
-					in:fade
-					type="button"
-					class="btn btn-outline-danger btn-floating"
-					data-mdb-ripple-color="dark"
-					name={ButtonName}
-					on:click={() => {
-						remove();
-						buttonCHanger();
-					}}
-				>
-					<i>Delete your account</i>
-				</button>
-			</div>
-			<div class="mb-2">
-				<button
-					in:fade
-					type="submit"
-					class="btn btn-outline-danger btn-floating"
-					data-mdb-ripple-color="dark"
-					name="back"
-					on:click={() => {
-						buttonCHanger();
-					}}
-				>
-					<i class="fa-sharp fa-solid fa-x"> Close</i>
-				</button>
-
-				<button
-					in:fade
-					type="submit"
-					class={ButtonClass}
-					data-mdb-ripple-color="dark"
-					name={ButtonName}
-					on:click={() => {
-						update();
-						buttonCHanger();
-					}}
-				>
-					<i class={ButtonIClass}> Accept</i>
-				</button>
-			</div>
-		{/if}
+		</div>
 	</div>
 {/if}

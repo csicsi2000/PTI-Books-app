@@ -94,7 +94,7 @@ export function removeMyAccount(User: string) {
 		});
 }
 
-export function submitMyReview(
+export async function submitMyReview(
 	reviewTitle: string,
 	review: string,
 	userId: string,
@@ -106,8 +106,8 @@ export function submitMyReview(
 	} else {
 		let reviewToPost =
 			"<h5 class='card-title'>" + reviewTitle + '</h5>' + "<p class='card-text'>" + review + '</p>';
-		postReview(userId.toString(), bookToReview, reviewToPost, rating)
-			.then((string) => {})
+		return postReview(userId.toString(), bookToReview, reviewToPost, rating)
+			.then((text) => {console.log(text);})
 			.catch((error) => {
 				alert(`Error submitting review`);
 			});
