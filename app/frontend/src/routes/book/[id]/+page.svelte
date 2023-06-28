@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { authResp, bookFromDatabase, selectedBook } from '$lib/utils/stores';
+	import { authResp, bookFromDatabase, favoriteBooks, selectedBook } from '$lib/utils/stores';
 	import { getBook } from '$lib/api/backend/bookApi';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
@@ -11,6 +11,9 @@
 	import ReviewForm from '$lib/components/reviewForm.svelte';
 	import Rating from '$lib/components/rating.svelte';
 	import type { BuyLink } from 'shared-component/dist/entity/BuyLink';
+	import autoAnimate from '@formkit/auto-animate';
+	import { deleteBookFromList, insertBookIntoList } from '$lib/api/backend/booklistApi';
+	import { updateFavoriteBooks } from '$lib/utils/functions';
 
 	export let data: PageData;
 
@@ -39,6 +42,9 @@
 		}
 	}
 
+	selectedBook.subscribe((value) =>{
+		loadData();
+	})
 	async function loadData() {
 		try {
 			let dataBook = await getBook(isbn13);
@@ -48,7 +54,8 @@
 			buyLinks = book?.buy_links ?? [];
 			console.log('BuyLinks: ' + buyLinks.length);
 			rating = Math.ceil(
-				(dataBook as Book).reviews?.reduce((acc, review) => acc + review.rating, 0) / bookReviewNumber
+				(dataBook as Book).reviews?.reduce((acc, review) => acc + review.rating, 0) /
+					bookReviewNumber
 			);
 		} catch (error: any) {
 			bookReviewNumber = 0;
@@ -65,8 +72,36 @@
 	});
 
 	let clicked = false;
-	function addRemoveBookToFavourite(): void {
-		clicked = !clicked;
+
+	function TriggerFavorite() {
+		try {
+			let defBook = book as Book;
+			if (isfavorite) {
+				deleteBookFromList(resp.user.id, bookInFavorite.id);
+			} else {
+				insertBookIntoList(resp.user.id, defBook);
+			}
+			IsFavorite(defBook);
+		} catch {}
+		updateFavoriteBooks();
+	}
+
+	let isfavorite: Boolean;
+	let bookInFavorite: Book;
+
+	let favoriteList: Book[];
+	favoriteBooks.subscribe((data) => {
+		favoriteList = data?.books ?? [];
+	});
+
+	IsFavorite(book as Book);
+	function IsFavorite(book: Book) {
+		bookInFavorite = favoriteList.find((x) => x.title == book.title) as Book;
+		if (bookInFavorite == undefined || bookInFavorite == null) {
+			isfavorite = false;
+			return;
+		}
+		isfavorite = true;
 	}
 </script>
 
@@ -85,13 +120,13 @@
 					/>
 
 					<small class="d-flex align-items-center position-absolute bottom-0 end-0">
-						<div>
-							<!-- svelte-ignore a11y-click-events-have-key-events -->
-							<i
-								class="fa-solid fa-star fa-2x m-2 rate"
-								id="star"
-								on:click={addRemoveBookToFavourite}
-							/>
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div on:click={TriggerFavorite}>
+							{#if isfavorite}
+								<i class="fa-solid fa-star fa-2x m-2" style="color: #ff8000;" />
+							{:else}
+								<i class="fa-solid fa-star fa-2x m-2" />
+							{/if}
 						</div>
 					</small>
 				</div>
@@ -100,7 +135,9 @@
 				<h2 class="title">{book.title[0]}{book.title.substring(1).toLowerCase()}</h2>
 				<p class="md-2"><span class="text-gold">{book.author}</span> (author)</p>
 				<p class="links">
-					{#if bookReviewNumber > 1}
+					{#if bookReviewNumber == 0}
+						<p class="link-dark md-3">No Reviews yet</p>
+					{:else if bookReviewNumber > 1}
 						<Rating {rating} />
 						<p class="link-dark md-3">{bookReviewNumber} reviews</p>
 					{:else}
@@ -120,7 +157,7 @@
 	</div>
 {/if}
 <!-- Modal -->
-{#if book  && book?.book_image }
+{#if book && book?.book_image}
 	<div
 		class="modal fade"
 		id="staticBackdrop"

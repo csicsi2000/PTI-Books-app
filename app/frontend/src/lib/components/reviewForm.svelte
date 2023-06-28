@@ -27,6 +27,7 @@
 			getBook(aBook.primary_isbn13)
 				.then((book) => {
 					bookReviews = book.reviews ?? [];
+					selectedBook.set(book);
 					console.log('Updated');
 				})
 				.catch((error) => {
@@ -140,9 +141,9 @@
 			/>
 		</span>
 		<div class="col-12">
-			<button class="btn btn-danger" id="reviewSubmit" type="submit" on:click={submitReview}
-				>Submit review</button
-			>
+			<button class="btn btn-danger" id="reviewSubmit" type="submit" on:click={submitReview}>
+				Submit review
+			</button>
 		</div>
 	</form>
 {/if}

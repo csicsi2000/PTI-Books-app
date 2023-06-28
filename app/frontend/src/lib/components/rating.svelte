@@ -2,16 +2,15 @@
 	export let rating: number;
 
 	let loopCount = 5;
-	let loopArray = Array.from({ length: loopCount - rating }, (_, i) => i);
-	let ratingArray = Array.from({ length: rating }, (_, i) => i);
+    console.log("Rating: " + rating);
 </script>
 
 <div class="rating column">
 	{#each Array(loopCount) as _, i}
 		{#if i > rating-1}
-			<i class="fa fa-star" />
+            <i class="fa-solid fa-star"></i>
 		{:else}
-			<i class="fa fa-star rating-color" />
+            <i class="fa-solid fa-star" style="color: #ff8000;"></i>
 		{/if}
 	{/each}
 </div>

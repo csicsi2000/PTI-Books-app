@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import 'bootstrap/dist/css/bootstrap.min.css';
 	import { browser } from '$app/environment';
+	import '@fortawesome/fontawesome-free/css/all.css';
 
 	onMount(async () => {
 		if (browser) {
