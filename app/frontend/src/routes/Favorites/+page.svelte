@@ -3,8 +3,13 @@
 	import type { Book } from 'shared-component/dist/entity/Book';
 	import ShowBook from '$lib/components/showBook.svelte';
 	import autoAnimate from '@formkit/auto-animate';
+	import { updateFavoriteBooks } from '$lib/utils/functions';
 
 	let favorites: Book[];
+
+	authResp.subscribe((data) =>{
+		updateFavoriteBooks();
+	});
 
 	favoriteBooks.subscribe((data) => {
 		favorites = data?.books ?? [];
