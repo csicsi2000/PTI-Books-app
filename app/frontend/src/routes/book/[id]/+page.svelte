@@ -101,6 +101,20 @@
 		}
 		isfavorite = true;
 	}
+
+
+	let isUserLoggedIn: boolean;
+
+	authResp.subscribe((value) => {
+		console.log('triggered');
+		if (value == undefined || value == null) {
+			isUserLoggedIn = false;
+		} else {
+			isUserLoggedIn = true;
+		}
+		console.log('Logged in: ' + isUserLoggedIn);
+	});
+
 </script>
 
 {#if book}
@@ -143,8 +157,11 @@
 						<p class="link-dark md-3">{bookReviewNumber} review</p>
 					{/if}
 				</p>
-				<p class="link-dark md-3">Sign in to write a review</p>
-				<p><strong>Description:</strong> {book.description}</p>
+				{#if !isUserLoggedIn}
+				<a href="/SignSites" class="link-dark"> Sign in to write a review
+				</a>
+				{/if}
+				<p class="mt-3	"><strong>Description:</strong> {book.description}</p>
 				<p><strong>Buy this book on the below links:</strong></p>
 				{#each buyLinks as blink}
 					<a href={blink.url} class="buyLink m-1">{blink.name}</a>

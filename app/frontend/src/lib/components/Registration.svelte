@@ -54,6 +54,9 @@
 	const navigateToLogin = () => {
 		dispatch('navigateToLogin');
 	};
+
+
+
 </script>
 
 <div class="container py-5 h-100">
